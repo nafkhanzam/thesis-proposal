@@ -1,0 +1,92 @@
+\ProvidesFile{bahasai.lbx}[by mkamadeus]
+
+\DeclareBibliographyExtras{%
+  \protected\def\mkdaterangecomp{% 2.1 - corrected date ranges
+    \mkdaterangetrunc{long}}%
+  \protected\def\mkdaterangeterse{%
+    \mkdaterangetrunc{short}}%
+  \protected\def\mkdaterangecompextra{%
+    \mkdaterangetruncextra{long}}%
+  \protected\def\mkdaterangeterseextra{%
+    \mkdaterangetruncextra{short}}%
+  \protected\def\mkbibdatelong#1#2#3{%
+    \iffieldundef{#3}
+      {}
+      {\thefield{#3}%
+       \iffieldundef{#2}{}{\nobreakspace}}%
+    \iffieldundef{#2}
+      {}
+      {\mkbibmonth{\thefield{#2}}%
+       \iffieldundef{#1}{}{\space}}%
+    \mkyearzeros{\thefield{#1}}}%
+  \protected\def\mkbibdateshort#1#2#3{%
+    \iffieldundef{#3}
+      {}
+      {\mkdayzeros{\thefield{#3}}%
+       \iffieldundef{#2}{}{/}}%
+    \iffieldundef{#2}
+      {}
+      {\mkmonthzeros{\thefield{#2}}%
+       \iffieldundef{#1}{}{/}}%
+    \mkyearzeros{\thefield{#1}}}%
+}
+
+\DeclareFieldFormat{citehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{%
+    #1%
+    \ifbool{cbx:parens}
+      {\bibcloseparen\global\boolfalse{cbx:parens}}
+      {}}}
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \restorebibmacro{cite}%
+    \usebibmacro{cite}}}
+
+\renewbibmacro*{textcite}{%
+  \ifboolexpr{
+    ( not test {\iffieldundef{prenote}} and
+      test {\ifnumequal{\value{citecount}}{1}} )
+    or
+    ( not test {\iffieldundef{postnote}} and
+      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+  }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+  \printtext[textcitehyperref]{%
+    \restorebibmacro{textcite}%
+    \usebibmacro{textcite}}}
+
+\DeclareBibliographyStrings{%
+  bibliography     = {{Daftar Pustaka}{Daftar Pustaka}},
+  references       = {{Referensi}{Ref.}},
+  byeditor         = {{disunting oleh}{disunting}},
+  andothers        = {{dkk\adddot}{dkk\adddot}},
+  january          = {{Januari}{Jan\adddot}},
+  february         = {{Februari}{Feb\adddot}},
+  march            = {{Maret}{Mar\adddot}},
+  april            = {{April}{Apr\adddot}},
+  may              = {{Mei}{Mei}},
+  june             = {{Juni}{Jun}},
+  july             = {{Juli}{Jul}},
+  august           = {{Agustus}{Agu\adddot}},
+  september        = {{September}{Sep\adddot}},
+  october          = {{Oktober}{Okt\adddot}},
+  november         = {{November}{Nov\adddot}},
+  december         = {{Desember}{Des\adddot}},
+  in               = {{pada}{pada}},
+  volume           = {{volume}{vol\adddot}},
+  page             = {{halaman}{hal\adddot}},
+  pages            = {{halaman}{hal\adddot}},
+  and              = {{dan}{dan}},
+}
+
+\endinput

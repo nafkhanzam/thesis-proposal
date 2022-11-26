@@ -1,0 +1,18 @@
+\section{Hipotesis}
+
+\newcounter{premiseCounter}
+\newcommand\premiseCounter{\stepcounter{premiseCounter}\arabic{premiseCounter}}
+\newcommand\premise{\textbf{Premis \premiseCounter:}~}
+
+\premise AMR berbahasa Inggris dapat digunakan sebagai representasi kalimat dalam bahasa lain \citek{damonte2018}.
+Hal ini ditunjukkan dengan analisis kuantitatif berdasarkan nilai SMATCH \citek{cai2013}. % dan kualitatif berdasarkan divergensi translasi \citek{dorr2002}.
+
+\premise Teknik AMRBART oleh \textcite{bai2022} yang menggunakan \textit{language model} BART merupakan teknik selain \textit{ensemble} yang menghasilkan kinerja \amrparsing~terbaik berdasarkan metrik SMATCH.
+
+\premise \textit{Language model} PALM oleh \textcite{bi2020} menghasilkan kinerja lebih baik dibandingkan BART untuk \textit{task} \textit{question-answering}, peringkasan teks, \textit{question generation}, dan \textit{conversational response generation}.
+
+\premise Fitur \textit{multilingual word embedding} dan pelatihan pada dataset silver dapat meningkatkan kinerja pembangkit AMR cross-lingual \citek{blloshmi2020}. Dataset pasangan kalimat Bahasa Indonesia dan graf AMR berbahasa Inggris dapat dihasilkan dari dataset pasangan teks berbahasa Inggris dan graf AMR yang teks berbahasa Inggrisnya ditranslasi menjadi Bahasa Indonesia serta korpus paralel Indonesia-Inggris yang teks berbahasa Inggrisnya dibangkitkan menjadi graf AMR \citek{putra2022}.
+
+Berdasarkan premis-premis tersebut, disusun hipotesis sebagai berikut:
+
+\textbf{Hipotesis:} Model \amrparsing~\textit{cross-lingual} untuk Bahasa Indonesia dapat dibangun dengan menggunakan teknik pre-training AMRBART menggunakan \textit{language model} PALM dengan dataset yang dibangun dari dataset pasangan teks berbahasa Inggris dan graf AMR serta korpus paralel Indonesia-Inggris.

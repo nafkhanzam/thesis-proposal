@@ -1,0 +1,333 @@
+% margin settings
+\usepackage[top=3cm,bottom=3cm,left=4cm,right=3cm]{geometry}
+
+% float
+\usepackage{float}
+
+% hypenation
+\usepackage[none]{hyphenat}
+
+% bahasa indo
+\usepackage[bahasai.lbx]{babel}
+
+% math support with Times font
+\usepackage{mathptmx}
+
+% datetime
+\usepackage{datetime}
+
+% use utf8 characters
+\usepackage[utf8]{inputenc}
+\usepackage{fvextra}
+\usepackage{csquotes}
+
+% biblatex
+\usepackage[style=authoryear,maxcitenames=2,backend=biber]{biblatex}
+\setquotestyle{english}
+\addbibresource{config/references.bib}
+
+% glossary
+\usepackage{glossaries}
+\makeglossaries
+\input{config/glossaries.sty}
+
+% includegraphics
+\usepackage{graphicx}
+
+% caption
+\usepackage{caption}
+\usepackage{subcaption}
+
+% title, author, date, thanks
+\usepackage{titling}
+
+% placeholder texts
+\usepackage{blindtext}
+\usepackage{lipsum}
+
+% \usepackage{sectsty}
+
+
+% toc settings
+\usepackage[titles]{tocloft}
+\cftsetindents{figure}{0em}{3.5em}
+\cftsetindents{table}{0em}{3.5em}
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % for parts
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % for chapters
+\renewcommand{\cftchapfont}{\normalfont}
+\renewcommand{\cftchappagefont}{\normalfont}
+\renewcommand\cftchappresnum{Bab }
+\newlength\mylen
+\settowidth\mylen{\bfseries Bab III\ }
+\cftsetindents{chap}{0pt}{\mylen}
+
+% minted
+\usepackage[newfloat]{minted}
+\setminted{fontsize=\footnotesize,baselinestretch=1}
+\newmintedfile[yamlcode]{yaml}{
+autogobble,
+breaklines=true,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=5pt,
+gobble=0,
+frame=single,
+framerule=0.4pt,
+framesep=10pt,
+funcnamehighlighting=true,
+tabsize=2,
+obeytabs=false,
+mathescape=false,
+samepage=false,
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+\newmintedfile[pycode]{python}{
+autogobble,
+breaklines=true,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=5pt,
+gobble=0,
+frame=single,
+framerule=0.4pt,
+framesep=10pt,
+funcnamehighlighting=true,
+tabsize=4,
+obeytabs=false,
+mathescape=false,
+samepage=false,
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+\newmintedfile[jsoncode]{json}{
+autogobble,
+breaklines=true,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=5pt,
+gobble=0,
+frame=single,
+framerule=0.4pt,
+framesep=10pt,
+funcnamehighlighting=true,
+tabsize=2,
+obeytabs=false,
+mathescape=false,
+samepage=false,
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+\newmintedfile[plaincode]{text}{
+autogobble,
+breaklines=true,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=5pt,
+gobble=0,
+frame=single,
+framerule=0.4pt,
+framesep=10pt,
+funcnamehighlighting=true,
+tabsize=2,
+obeytabs=false,
+mathescape=false,
+samepage=false,
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+\newmintedfile[gocode]{go}{
+autogobble,
+breaklines=true,
+fontfamily=tt,
+linenos=true,
+numberblanklines=true,
+numbersep=5pt,
+gobble=0,
+frame=single,
+framerule=0.4pt,
+framesep=10pt,
+funcnamehighlighting=true,
+tabsize=2,
+obeytabs=false,
+mathescape=false,
+samepage=false,
+showspaces=false,
+showtabs =false,
+texcl=false,
+}
+
+
+% defining newcommand and stuff
+\usepackage{etoolbox}
+
+% referencing other parts
+\usepackage{hyperref}
+
+
+% title, sections
+\usepackage{titlesec}
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em} % remove vertical space
+% \chapterfont{\centering \MakeUppercase \Large}
+\titleformat{\chapter}[hang]
+    {\bfseries\large}
+    {\chaptertitlename{}~\MakeUppercase{\thechapter}~~~~\centering}
+    {0.0ex} % sep
+    {
+        \vspace{0ex}
+        \centering
+    } % before-code
+    [
+        \vspace{0.0ex}%
+    ] % after-code
+
+\titlespacing*{\section}{0em}{1em}{0.5em}
+\titlespacing*{\subsection}{0em}{1em}{0.5em}
+\titlespacing*{\subsubsection}{0em}{1em}{0.5em}
+\titleformat{\section}
+{\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\normalfont\fontsize{12}{15}\bfseries}{\thesubsection}{1em}{}
+
+
+% paragraph line height
+\usepackage{parskip}
+
+% paragraph line height
+\usepackage{afterpage}
+
+% sets font
+\usepackage[T1]{fontenc}
+\usepackage{tgtermes}
+
+% changepage
+\usepackage{pgfgantt}
+
+% tables
+\usepackage{longtable, booktabs} % Package untuk table multipage
+\usepackage{multirow} % Package untuk multirow
+\usepackage{xcolor} % Package untuk table color
+
+\newcommand{\midsepremove}{\aboverulesep = 0mm \belowrulesep = 0mm}
+\midsepremove
+\newcommand{\midsepdefault}{\aboverulesep = 0.605mm \belowrulesep = 0.984mm}
+\midsepdefault
+
+% set line height to 1.5
+\renewcommand{\baselinestretch}{1.5}
+\graphicspath{
+    {./resources/images/}
+}
+
+% subsubsubsub-section
+\setcounter{secnumdepth}{3}
+
+% counter
+\usepackage{chngcntr}
+\newcounter{listing}
+\counterwithin{listing}{chapter}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+% blankpage command
+\newcommand*{\blankpage}{\afterpage{\null\newpage}}
+
+% monthyear command
+\newcommand*{\monthyear}{\ifcase \month \or Januari\or Februari\or Maret\or %
+April\or Mei \or Juni\or Juli\or Agustus\or September\or Oktober\or November\or %
+Desember\fi~\number\year}
+
+% toc no dots
+% \makeatletter
+% \renewcommand{\@dotsep}{10000}
+% \makeatother
+
+% supress hbox warning
+\hbadness=99999
+
+% listing setup
+\newlistof{code}{loc}{Daftar Kode}
+\DeclareFloatingEnvironment[name=Kode,placement=ht,fileext=loc]{code}
+\SetupFloatingEnvironment{listing}{
+    name={Kode},
+    fileext=loc
+}
+\renewcommand{\cftcodepresnum}{Kode~}
+\setlength{\cftcodenumwidth}{3cm}
+
+\newcommand{\monospace}[1]{\texttt{#1}}
+
+% appendix setup
+\usepackage[toc]{appendix}
+\newcommand\appendixchaptertitlename{Lampiran}
+
+\newlistof{appendix}{loa}{\MakeUppercase{Daftar Lampiran}}
+\newlistentry[appendix]{subappendix}{loa}{1}
+\newlistentry[subappendix]{subsubappendix}{loa}{2}
+\newlistentry[subsubappendix]{subsubsubappendix}{loa}{3}
+
+\renewcommand{\cftappendixpresnum}{Lampiran~}
+
+\setcounter{loadepth}{3}
+
+\renewcommand{\theappendix}{\Alph{appendix}}
+\renewcommand{\thesubappendix}{\theappendix.\arabic{subappendix}}
+\renewcommand{\thesubsubappendix}{\thesubappendix.\arabic{subsubappendix}}
+\renewcommand{\thesubsubsubappendix}{\thesubsubappendix.\arabic{subsubsubappendix}}
+
+\setlength{\cftbeforeappendixskip}{\baselineskip}
+\setlength{\cftappendixnumwidth}{3cm}
+\setlength{\cftappendixindent}{0em}
+
+\setlength{\cftsubappendixnumwidth}{1cm}
+\setlength{\cftsubappendixindent}{2em}
+
+\setlength{\cftsubsubappendixnumwidth}{1cm}
+\setlength{\cftsubsubappendixindent}{4em}
+
+\newcommand{\appendixchapter}[1]{%
+  \refstepcounter{appendix}%
+  \chapter{#1}%
+  \addcontentsline{loa}{appendix}{\protect\numberline{\theappendix}#1}%
+  \par
+}
+
+\newcommand{\appendixsection}[1]{%
+  \refstepcounter{subappendix}%
+  \section*{\thesubappendix\space #1}%
+  \addcontentsline{loa}{subappendix}{\protect\numberline{\thesubappendix}#1}%
+}
+
+\newcommand{\appendixsubsection}[1]{%
+  \refstepcounter{subsubappendix}%
+  \subsection*{\thesubsubappendix\space #1}%
+  \addcontentsline{loa}{subsubappendix}{\protect\numberline{\thesubsubappendix}#1}%
+}
+
+\newcommand{\appendixsubsubsection}[1]{%
+  \refstepcounter{subsubsubappendix}%
+  \subsubsection*{\thesubsubsubappendix\space #1}%
+  \addcontentsline{loa}{subsubsubappendix}{\protect\numberline{\thesubsubsubappendix}#1}%
+}
+
+\usepackage{setspace}
+\usepackage{hanging}
+% \usepackage{todonotes}
+\usepackage{paralist}
+
+% \newcommand{\smtodo}[1]
+% {\todo[caption={#1}, size=\tiny]{#1}}
+
+% \newcommand{\glsfi}[1]{\textit{\glsdesc{#1}} (\gls{#1})}
+% \newcommand{\glsf}[1]{\glsdesc{#1} (\gls{#1})}
+\newcommand{\citek}[1]{(\cite{#1})}
