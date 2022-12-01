@@ -1,7 +1,0 @@
-#! /bin/bash
-
-if [ -z $1 ] ; then
-  echo "filename needed! (without .tex extension)" && exit 1;
-fi
-
-docker run -v $(pwd):/data -v /tmp/.cache/Tectonic:/root/.cache/Tectonic dxjoke/tectonic-docker /bin/sh -c "cd /data; tectonic --keep-intermediates --reruns 0 $1.tex; biber $1; tectonic $1.tex"
