@@ -62,108 +62,108 @@
 \cftsetindents{chap}{0pt}{\mylen}
 
 % minted
-\usepackage[newfloat]{minted}
-\setminted{fontsize=\footnotesize,baselinestretch=1}
-\newmintedfile[yamlcode]{yaml}{
-autogobble,
-breaklines=true,
-fontfamily=tt,
-linenos=true,
-numberblanklines=true,
-numbersep=5pt,
-gobble=0,
-frame=single,
-framerule=0.4pt,
-framesep=10pt,
-funcnamehighlighting=true,
-tabsize=2,
-obeytabs=false,
-mathescape=false,
-samepage=false,
-showspaces=false,
-showtabs =false,
-texcl=false,
-}
-\newmintedfile[pycode]{python}{
-autogobble,
-breaklines=true,
-fontfamily=tt,
-linenos=true,
-numberblanklines=true,
-numbersep=5pt,
-gobble=0,
-frame=single,
-framerule=0.4pt,
-framesep=10pt,
-funcnamehighlighting=true,
-tabsize=4,
-obeytabs=false,
-mathescape=false,
-samepage=false,
-showspaces=false,
-showtabs =false,
-texcl=false,
-}
-\newmintedfile[jsoncode]{json}{
-autogobble,
-breaklines=true,
-fontfamily=tt,
-linenos=true,
-numberblanklines=true,
-numbersep=5pt,
-gobble=0,
-frame=single,
-framerule=0.4pt,
-framesep=10pt,
-funcnamehighlighting=true,
-tabsize=2,
-obeytabs=false,
-mathescape=false,
-samepage=false,
-showspaces=false,
-showtabs =false,
-texcl=false,
-}
-\newmintedfile[plaincode]{text}{
-autogobble,
-breaklines=true,
-fontfamily=tt,
-linenos=true,
-numberblanklines=true,
-numbersep=5pt,
-gobble=0,
-frame=single,
-framerule=0.4pt,
-framesep=10pt,
-funcnamehighlighting=true,
-tabsize=2,
-obeytabs=false,
-mathescape=false,
-samepage=false,
-showspaces=false,
-showtabs =false,
-texcl=false,
-}
-\newmintedfile[gocode]{go}{
-autogobble,
-breaklines=true,
-fontfamily=tt,
-linenos=true,
-numberblanklines=true,
-numbersep=5pt,
-gobble=0,
-frame=single,
-framerule=0.4pt,
-framesep=10pt,
-funcnamehighlighting=true,
-tabsize=2,
-obeytabs=false,
-mathescape=false,
-samepage=false,
-showspaces=false,
-showtabs =false,
-texcl=false,
-}
+% \usepackage[newfloat]{minted}
+% \setminted{fontsize=\footnotesize,baselinestretch=1}
+% \newmintedfile[yamlcode]{yaml}{
+% autogobble,
+% breaklines=true,
+% fontfamily=tt,
+% linenos=true,
+% numberblanklines=true,
+% numbersep=5pt,
+% gobble=0,
+% frame=single,
+% framerule=0.4pt,
+% framesep=10pt,
+% funcnamehighlighting=true,
+% tabsize=2,
+% obeytabs=false,
+% mathescape=false,
+% samepage=false,
+% showspaces=false,
+% showtabs =false,
+% texcl=false,
+% }
+% \newmintedfile[pycode]{python}{
+% autogobble,
+% breaklines=true,
+% fontfamily=tt,
+% linenos=true,
+% numberblanklines=true,
+% numbersep=5pt,
+% gobble=0,
+% frame=single,
+% framerule=0.4pt,
+% framesep=10pt,
+% funcnamehighlighting=true,
+% tabsize=4,
+% obeytabs=false,
+% mathescape=false,
+% samepage=false,
+% showspaces=false,
+% showtabs =false,
+% texcl=false,
+% }
+% \newmintedfile[jsoncode]{json}{
+% autogobble,
+% breaklines=true,
+% fontfamily=tt,
+% linenos=true,
+% numberblanklines=true,
+% numbersep=5pt,
+% gobble=0,
+% frame=single,
+% framerule=0.4pt,
+% framesep=10pt,
+% funcnamehighlighting=true,
+% tabsize=2,
+% obeytabs=false,
+% mathescape=false,
+% samepage=false,
+% showspaces=false,
+% showtabs =false,
+% texcl=false,
+% }
+% \newmintedfile[plaincode]{text}{
+% autogobble,
+% breaklines=true,
+% fontfamily=tt,
+% linenos=true,
+% numberblanklines=true,
+% numbersep=5pt,
+% gobble=0,
+% frame=single,
+% framerule=0.4pt,
+% framesep=10pt,
+% funcnamehighlighting=true,
+% tabsize=2,
+% obeytabs=false,
+% mathescape=false,
+% samepage=false,
+% showspaces=false,
+% showtabs =false,
+% texcl=false,
+% }
+% \newmintedfile[gocode]{go}{
+% autogobble,
+% breaklines=true,
+% fontfamily=tt,
+% linenos=true,
+% numberblanklines=true,
+% numbersep=5pt,
+% gobble=0,
+% frame=single,
+% framerule=0.4pt,
+% framesep=10pt,
+% funcnamehighlighting=true,
+% tabsize=2,
+% obeytabs=false,
+% mathescape=false,
+% samepage=false,
+% showspaces=false,
+% showtabs =false,
+% texcl=false,
+% }
 
 
 % defining newcommand and stuff
@@ -178,10 +178,10 @@ texcl=false,
 \renewcommand{\thechapter}{\Roman{chapter}}
 
 \titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em} % remove vertical space
-% \chapterfont{\centering \MakeUppercase \Large}
+% \chapterfont{\centering \uppercase \Large}
 \titleformat{\chapter}[hang]
     {\bfseries\large}
-    {\chaptertitlename{}~\MakeUppercase{\thechapter}~~~~\centering}
+    {\chaptertitlename{}~\uppercase{\thechapter}~~~~\centering}
     {0.0ex} % sep
     {
         \vspace{0ex}
@@ -256,14 +256,14 @@ Desember\fi~\number\year}
 \hbadness=99999
 
 % listing setup
-\newlistof{code}{loc}{Daftar Kode}
-\DeclareFloatingEnvironment[name=Kode,placement=ht,fileext=loc]{code}
-\SetupFloatingEnvironment{listing}{
-    name={Kode},
-    fileext=loc
-}
-\renewcommand{\cftcodepresnum}{Kode~}
-\setlength{\cftcodenumwidth}{3cm}
+% \newlistof{code}{loc}{Daftar Kode}
+% \DeclareFloatingEnvironment[name=Kode,placement=ht,fileext=loc]{code}
+% \SetupFloatingEnvironment{listing}{
+%     name={Kode},
+%     fileext=loc
+% }
+% \renewcommand{\cftcodepresnum}{Kode~}
+% \setlength{\cftcodenumwidth}{3cm}
 
 \newcommand{\monospace}[1]{\texttt{#1}}
 
@@ -271,7 +271,7 @@ Desember\fi~\number\year}
 \usepackage[toc]{appendix}
 \newcommand\appendixchaptertitlename{Lampiran}
 
-\newlistof{appendix}{loa}{\MakeUppercase{Daftar Lampiran}}
+\newlistof{appendix}{loa}{\uppercase{Daftar Lampiran}}
 \newlistentry[appendix]{subappendix}{loa}{1}
 \newlistentry[subappendix]{subsubappendix}{loa}{2}
 \newlistentry[subsubappendix]{subsubsubappendix}{loa}{3}
