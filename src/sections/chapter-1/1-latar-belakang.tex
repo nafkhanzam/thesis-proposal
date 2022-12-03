@@ -12,7 +12,7 @@ Sebuah teks yang mengandung banyak kalimat dapat direpresentasikan menjadi beber
 Dalam membuat sebuah \gls{AMR} dari sebuah kalimat, perlu dilakukan sebuah proses yang dinamakan \amrparsing.
 
 % AMR Parsing Techniques
-\amrparsing~dapat dikategorikan menjadi dua pendekatan, yaitu dua tahap \textit{parsing} dan satu tahap \textit{parsing} \citek{cai2020}.
+\amrparsing{} dapat dikategorikan menjadi dua pendekatan, yaitu dua tahap \textit{parsing} dan satu tahap \textit{parsing} \citek{cai2020}.
 Pada pendekatan dua tahap \textit{parsing} digunakan desain \textit{pipeline} untuk identifikasi konsep dan prediksi relasi.
 Pada pendekatan satu tahap \textit{parsing} dikategorikan menjadi tiga jenis, yaitu \textit{parsing} berbasis transisi, \textit{parsing} berbasis \gls{seq2seq}, dan \textit{parsing} berbasis graf.
 Pendekatan satu tahap jenis \textit{parsing} berbasis transisi dilakukan dengan memproses kalimat dari kiri ke kanan dan membangun grafik secara bertahap dengan secara bergantian memasukkan simpul atau sisi baru.
@@ -22,30 +22,30 @@ Pendekatan satu tahap jenis \textit{parsing} berbasis graf di mana setiap langka
 % Metrics and Dataset
 Dalam mengukur kelayakan hasil graf \gls{AMR} yang dihasilkan dari suatu teknik, digunakan metrik \gls{SMATCH} \citek{cai2013}.
 SMATCH mengukur derajat \textit{overlap} antara dua struktur fitur semantik graf \gls{AMR}.
-Teknik-teknik \amrparsing~tersebut diukur kelayakannya menggunakan dataset pasangan teks berbahasa Inggris dengan graf AMR-nya.
+Teknik-teknik \amrparsing{} tersebut diukur kelayakannya menggunakan dataset pasangan teks berbahasa Inggris dengan graf AMR-nya.
 Dataset yang pertama kali dikeluarkan adalah AMR 1.0 (LDC2014T12) yang mengandung sebanyak 13.051 kalimat.
 Dataset tersebut kemudian dikembangkan lagi dengan tambahan kalimat dan aturan anotasi menjadi AMR 2.0 (LDC2017T10) sebanyak 39.260 kalimat dan AMR 3.0 (LDC2020T02) sebanyak 59.255 kalimat.
-Teknik \amrparsing~terbaik saat ini adalah teknik MBSE dengan kinerja SMATCH 86.7 pada dataset \gls{AMR} 2.0 dan 85.4 pada dataset \gls{AMR} 3.0 \citek{lee2021}.
-Teknik \amrparsing~terbaik \textit{non-ensemble} saat ini adalah teknik AMRBART dengan kinerja SMATCH 85.4 pada dataset \gls{AMR} 2.0 dan 84.2 pada dataset \gls{AMR} 3.0 \citek{bai2022}.
+Teknik \amrparsing{} terbaik saat ini adalah teknik MBSE dengan kinerja SMATCH 86.7 pada dataset \gls{AMR} 2.0 dan 85.4 pada dataset \gls{AMR} 3.0 \citek{lee2021}.
+Teknik \amrparsing{} terbaik \textit{non-ensemble} saat ini adalah teknik AMRBART dengan kinerja SMATCH 85.4 pada dataset \gls{AMR} 2.0 dan 84.2 pada dataset \gls{AMR} 3.0 \citek{bai2022}.
 
 % Transformer-based model PALM
 %! TODO
 
 % ID-ID Conventional AMR Parsing
-Pada \amrparsing berbahasa Indonesia, telah dikembangkan untuk \textit{parsing} berbasis aturan \citek{severina2019}, berbasis \textit{dependency parser} \citek{ilmy2020}, dan berbasis \textit{cross-lingual} \citek{putra2022}.
+Pada \amrparsing{} berbahasa Indonesia, telah dikembangkan untuk \textit{parsing} berbasis aturan \citek{severina2019}, berbasis \textit{dependency parser} \citek{ilmy2020}, dan berbasis \textit{cross-lingual} \citek{putra2022}.
 Dataset yang digunakan sebagai data pelatihan teknik tersebut terdiri dari 1130 pasangan kalimat dan AMR berbahasa Indonesia.
 Jumlah dataset tersebut masih sangat kurang untuk menghasilkan model yang berkualitas tinggi jika dibandingkan dengan jumlah dataset berbahasa Inggris.
 %! TODO
 
 % XL-AMR Indonesia
-\amrparsing~awalnya digunakan untuk mengubah dari kalimat berbahasa Inggris menjadi sebuah graf \gls{AMR} berbahasa Inggris.
+\amrparsing{} awalnya digunakan untuk mengubah dari kalimat berbahasa Inggris menjadi sebuah graf \gls{AMR} berbahasa Inggris.
 Namun, untuk merepresentasikan kalimat dari bahasa selain Bahasa Inggris, ada beberapa teknik lain yang dapat membaca kalimat bahasa lain menjadi graf \gls{AMR} berbahasa Inggris.
 \gls{XL-AMR} oleh \textcite{blloshmi2020} merupakan salah satu teknik yang dapat mengubah kalimat dari bahasa selain Bahasa Inggris menjadi \gls{AMR} berbahasa Inggris.
 Dalam teknik tersebut, dibutuhkan dataset pasangan teks berbahasa selain Bahasa Inggris yang dituju dengan graf \gls{AMR}-nya.
-Pada Bahasa Indonesia, beberapa teknik \amrparsing~untuk teks berbahasa Indonesia juga dikembangkan.
-Beberapa \amrparsing~Bahasa Indonesia yang telah dikembangkan adalah \amrparsing~berbasis aturan \citek{severina2019}, berbasis \textit{dependency parser} \citek{ilmy2020}, dan berbasis lintas bahasa \citek{putra2022}.
-Teknik \amrparsing~oleh \textcite{putra2022} menggunakan teknik XL-\gls{AMR} dan stog untuk melakukan \amrparsing~dari kalimat berbahasa Indonesia menjadi graf \gls{AMR} berbahasa Inggris.
+Pada Bahasa Indonesia, beberapa teknik \amrparsing{} untuk teks berbahasa Indonesia juga dikembangkan.
+Beberapa \amrparsing{} Bahasa Indonesia yang telah dikembangkan adalah \amrparsing{} berbasis aturan \citek{severina2019}, berbasis \textit{dependency parser} \citek{ilmy2020}, dan berbasis lintas bahasa \citek{putra2022}.
+Teknik \amrparsing{} oleh \textcite{putra2022} menggunakan teknik XL-\gls{AMR} dan stog untuk melakukan \amrparsing{} dari kalimat berbahasa Indonesia menjadi graf \gls{AMR} berbahasa Inggris.
 Model terbaik dari teknik tersebut menghasilkan kinerja SMATCH 51.0 yang masih kalah dengan \textit{baseline}-nya yang menggunakan teknik \textit{translate-and-parse} dengan kinerja SMATCH 62.5.
-Teknik \amrparsing~stog mempunyai kinerja SMATCH 77.0 untuk dataset \gls{AMR} 2.0.
+Teknik \amrparsing{} stog mempunyai kinerja SMATCH 77.0 untuk dataset \gls{AMR} 2.0.
 
 % Problem Analysis (?)
