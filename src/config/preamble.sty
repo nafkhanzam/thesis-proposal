@@ -27,7 +27,7 @@
 \addbibresource{config/references.bib}
 
 % glossary
-\usepackage{glossaries}
+\usepackage[acronym,toc,shortcuts]{glossaries}
 \makeglossaries
 \input{config/glossaries.sty}
 
@@ -323,7 +323,21 @@ Desember\fi~\number\year}
 \usepackage{setspace}
 \usepackage{hanging}
 \usepackage{paralist}
+\usepackage{xparse}
+
+\usepackage[noabbrev,capitalise]{cleveref}
+\crefname{figure}{Gambar}{Gambar}
+\Crefname{figure}{Gambar}{Gambar}
 
 % \newcommand{\glsfi}[1]{\textit{\glsdesc{#1}} (\gls{#1})}
 % \newcommand{\glsf}[1]{\glsdesc{#1} (\gls{#1})}
 \newcommand{\citek}[1]{(\cite{#1})}
+\newcommand{\quotei}[1]{"\textit{#1}"}
+\NewDocumentCommand{\fig}{O{0.5} m m m}{
+  \begin{figure}[hp]
+    \centering
+    \includegraphics[width=#1\textwidth]{#3}
+    \caption{#4}
+    \label{fig:#2}
+  \end{figure}
+}

@@ -1,17 +1,16 @@
-\section{\glsfirst{AMR}}
+\section{\Glsfirst{AMR}}
 
-\glsfirst{AMR} merupakan sebuah bahasa representasi semantik.
+\Glsfirst{AMR} merupakan sebuah bahasa representasi semantik.
 \gls{AMR} adalah graf berakar, berlabel, terarah, dan bersiklus (DAGs) yang terdiri dari satu kalimat utuh.
 Tujuan dari \gls{AMR} ini adalah untuk mengabstraksi representasi sintesis dimana kalimat yang memiliki makna sama harus ditetapkan di \gls{AMR} yang sama meskipun mereka tidak dijabarkan dengan kata-kata yang sama.
-Secara alami, bahasa \gls{AMR} bias terhadap bahasa Inggris dan tidak dimaksudkan untuk berfungsi sebagai bahasa bantu internasional \textcite{banarescu2013}.
+Secara alami, bahasa \gls{AMR} bias terhadap bahasa Inggris dan tidak dimaksudkan untuk berfungsi sebagai bahasa bantu internasional \citek{banarescu2013}.
 
 \gls{AMR} memiliki tujuan untuk mengabstraksi perbedaan sintaksis untuk menghasilkan graf yang sama untuk kalimat bermakna serupa.
-\gls{AMR} menggunakan framesets PropBank (Kingsbury dan Palmer, 2002) secara ekstensif untuk merepresentasikan predikat yang ada dalam kalimat.
-Sebagai contoh, kalimat "\textit{the dog likes to eat}" memiliki dua buah predikat di dalamnya, yaitu likes dan eat.
+\gls{AMR} menggunakan \textit{framesets} PropBank \citek{kingsbury2002} secara ekstensif untuk merepresentasikan predikat yang ada dalam kalimat.
+Sebagai contoh, kalimat \quotei{the dog likes to eat} memiliki dua buah predikat di dalamnya, yaitu \quotei{likes} dan \quotei{eat}.
 Untuk menggunakan kedua predikat tersebut dalam graf \gls{AMR}, digunakan frame dari PropBank yang berkorespondensi dengan makna dari kedua predikat dalam kalimat.
 
 Dalam pembentukan graf dari kalimat, \gls{AMR} tidak mempedulikan urutan dan langkah.
 Anotasi yang ada pada \gls{AMR} berisikan aturan-aturan untuk merepresentasikan berbagai macam kata, frasa, dan kalimat.
 Pada panduan tersebut tidak terdapat aturan eksplisit mengenai langkah pembentukan \gls{AMR} dari suatu kalimat dan bagaimana urutan yang harus diikuti.
 Hal ini mendorong peneliti untuk berpikir secara fleksibel mengenai hubungan antara kalimat dan maknanya.
-

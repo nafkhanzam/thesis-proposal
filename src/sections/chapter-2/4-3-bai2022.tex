@@ -1,0 +1,38 @@
+\subsection{\Glsfirst{AMRBART} \citek{bai2022}}
+
+BART (Lewis, 2020) adalah auto-encoder denoising yang diimplementasikan sebagai model berbasis seq2seq pada standar arsitektur Transformer (Vaswani, 2017).
+Secara tipikal, BART di-train untuk merekonstruksi teks original berbasis teks terkorupsi yang digenerasi oleh 5 fungsi noising.
+
+\begin{enumerate}
+  \item Token masking.
+  Token secara random diubah menjadi elemen mask
+  \item Token deletion.
+  Token secara random dihapus dari input
+  \item Text Infilling.
+  Teks spans secara random diubah menjadi token single mask
+  \item Sentence permutation.
+  Teks dibagi menjadi segmen-segmen lalu diacak.
+  \item Document Rotation.
+  Dokumen dirotasi untuk dimulai dengan token random.
+\end{enumerate}
+
+Model ini melinearisasi graf AMR ke sekuens sehingga baik AMR parsing dan AMR-to-text generation dapat dilakukan menggunakan model seq2seq.
+Sebagai tambahan, model ini membiarkan pre-training pada struktur AMR menggunakan BART.
+Mengikuti Kontes 2017, model ini mengadopsi algoritma Depth-First-Search (DFS) yang berhubungan dekat dengan natural language syntactic trees (Bevilacqua.
+2021).
+
+Model ini mengenalkan dua strategi self-supervised training untuk pre-train model BART pada graf AMR lebih lanjut.
+Pada gambar di atas, strategi level denoising node/edge mendukung model untuk menangkap pengetahuan lokal mengenai nodes dan edges.
+Strategi denoising level graf mengarahkan model untuk memprediksi sub-graf yang memfasilitasi pembelajaran graph-learning.
+
+\begin{enumerate}
+  \item Node/edge level denoising.
+  Pengaplikasian fungsi noise pada node dan edge AMR untuk mengkonstruksi input graf yang kotor.
+  Secara partikular, fungsi noise ini diimplementasikan dengan masking 15\% node dan 15\% edge di setiap graf
+
+  \item Sub-graf level denoising.
+  Tugas ini bertujuan untuk mengembalikan graf lengkap ketika diberikan sebagian dari graf.
+  Metode ini menghilangkan sub-graf secara acak dari graf dan mengubahnya dengan token mask.
+\end{enumerate}
+
+\fig[1]{4-3-fig2}{sections/chapter-2/4-3-fig1.png}{Ilustrasi strategi pre-training: 1) node/edge level denoising (a->b) ; 2) sub-graf level denoising (c->b) \citek{bai2022}.}

@@ -1,0 +1,19 @@
+\section{\textit{Language Model}}
+
+Recurrent neural network, long short-term memory, dan gated recurrent neural network kerap digunakan sebagai pendekatan sequence modeling dan permasalahan transduction seperti language modeling dan machine translation.
+Transformer merupakan sebuah arsitektur model yang menghindari pengulangan dan bergantung sepenuhnya terhadap mekanisme attention untuk menggambarkan ketergantungan global antara input dan output.
+Transformer memperbolehkan paralelisasi lebih dan dapat meraih state of art baru dalam kualitas translasi setelah ditrain selama 12 jam pada 8 P100 GPUs.
+
+Adapun language model lain adalah \glsfirst{BERT} yang merupakan teknik machine learning transformer-based untuk natural language processing, pre-training developed by google.
+\gls{BERT} memiliki jumlah variabel dari layer encoder dan self-attention head.
+Arsitektur yang ada nyaris mirip terhadap implementasi Transformer milik Vaswani.
+\gls{BERT} ditrain terhadap dua tugas yaitu language modeling dan next sentence prediction.
+Sebagai hasil dari proses pembelajaran ini adalah, \gls{BERT} mempelajari embedding kontekstual untuk kata-kata yang ada.
+
+Selain itu, terdapat pula \glsfirst{BART} yang mampu melakukan denoising autoencoder yang memapping dokumen terkorupsi terhadap dokumen originalnya.
+\gls{BART} diimplementasikan sebagai sequence-to-sequence model dengan bidirectional encoder dan left-to-right autoregressive decoder.
+Arsitektur ini sebenarnya sangat berkaitan dengan arsitektur yang digunakan pada \gls{BERT} kecuali perbedaan-perbedaan ini.
+\begin{enumerate}
+  \item Setiap layer dari decoder menampilkan cross-attention over pada layer tersembunyi terakhir dari encoder.
+  \item \gls{BERT} menggunakan tambahan feed-forward neural network sebelum memprediksi kata, \gls{BART} tidak.
+\end{enumerate}

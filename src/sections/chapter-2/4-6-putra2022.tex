@@ -1,0 +1,15 @@
+\subsection{Pembangkitan Abstract Meaning Representation Lintas Bahasa dari Kalimat Berbahasa Indonesia \citek{putra2022}}
+
+Penelitian ini melakukan pembangkitan AMR berbahasa Indonesia dengan pendekatan cross lingual menggunakan dataset berkualitas silver dan gold.
+Pada pembangkitan ini, dilakukan pemilihan kalimat berdasarkan kedekatan semantiknya menggunakan cosine similarity sehingga kalimat dengan kinerja rendah dapat dikeluarkan terlebih dahulu dan mengurangi gap kinerja model.
+Sumber daya yang digunakan dalam penelitian ini adalah multilingual word embedding Numberbatch yang memiliki word embedding untuk bahasa Indo-malay dan Inggris dan berisikan beberapa karakter Cina dan Arab yang tidak muncul dalam dataset AMR 2.0.
+Untuk sumber daya contextual multilingual word embedding, dilakukan alternatif berupa mBERT dan XLM-R dengan alasan mBERT belum dapat mengoptimalkan pretraining untuk multilingual model sehingga memerlukan pelatihan lebih lama.
+Penggunaan XLM-R dan mT5 yang dilatih pada dataset Common Crawl dapat melihat kalimat-kalimat informal yang telah dilatih pada tokopedia.
+Gambaran keseluruhan sistem rancangan solusi adalah sebagai berikut.
+
+Proses evaluasi pada penelitian ini dilakukan dengan pelaksanaan inferensi pada kalimat bahasa Indonesia Gold Dataset untuk menghasilkan AMR berbahasa Inggris.
+Dari graf AMR ini akan dilakukan perhitungan nilai smatch dibandingkan graf AMR gold standard menggunakan fine-grained metrics yang membandingkan AMR dengan beberapa konfigurasi.
+Konfigurasi model pembangkit AMR Cross-lingual yang memiliki nilai smatch terbaik akan digunakan untuk menganalisis secara kuantitatif mengenai translation divergence dari kalimat berbahasa Indonesia ke graf AMR berbahasa Inggris seperti pada gambar berikut.
+
+\fig[0.8]{4-6-fig1}{sections/chapter-2/4-6-fig1.png}{Fig 1}
+\fig[1]{4-6-fig2}{sections/chapter-2/4-6-fig2.png}{Fig 2}
