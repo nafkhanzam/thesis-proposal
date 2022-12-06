@@ -1,34 +1,57 @@
 \section{\Glsfirst{XL-AMR}}
 
-\gls{AMR} parsing merupakan proses mengubah kalimat dari natural language ke representasi \gls{AMR} yang berkorespondensi \citek{banarescu2013}.
-Sebuah \gls{AMR} merupakan graf dengan node yang merepresentasikan konsep dari kalimat dan edge yang merepresentasikan hubungan semantik antar kalimat, Kebanyakan dataset \gls{AMR} yang cukup besar untuk di-train berisikan pasangan kalimat berbahasa Inggris dengan graf \gls{AMR}.
-Properti cross-lingual dari \gls{AMR} di berbagai bahasa merupakan subjek yang sering dibahas.
-Panduan \gls{AMR} menyatakan bahwa \gls{AMR} bukanlah interlingua \citek{banarescu2013} dan dapat dikategorikan dengan jenis yang berbeda antara anotasi dari bahasa yang berbeda.
+% \amrparsing{} merupakan proses mengubah kalimat dari natural language ke representasi \gls{AMR} yang berkorespondensi \citek{banarescu2013}.
+Sebuah \gls{AMR} merupakan graf dengan node yang merepresentasikan konsep dari kalimat dan edge yang merepresentasikan hubungan semantik antar kalimat.
+Dataset \gls{AMR} yang cukup besar untuk di-\textit{train} berisikan pasangan kalimat berbahasa Inggris dengan graf \gls{AMR}.
+Properti \textit{cross-lingual} dari \gls{AMR} di berbagai bahasa merupakan subjek yang sering dibahas.
+\textcite{banarescu2013} menyatakan bahwa \gls{AMR} bukanlah representasi lintas bahasa dan dapat dikategorikan menjadi jenis \gls{AMR} yang berbeda untuk anotasi dari bahasa yang berbeda.
+\cref{fig:xl-amr-example} merupakan contoh graf \gls{AMR} dengan pasangan kalimat Bahasa Inggris dan Italia.
 
 \fig{xl-amr-example}
   {sections/chapter-2/2-amr-example.png}
-  {Contoh graf \gls{AMR} dengan pasangan kalimat Bahasa Inggris dan Italia.}
+  {Contoh graf \gls{AMR} dengan pasangan kalimat Bahasa Inggris dan Italia \citek{damonte2018}.}
 
 Tujuan dari \gls{AMR} adalah untuk mengabstraksikan realisasi sintaktik dari kalimat asli serambi mempertahankan makna yang tersirat.
 Sebagai konsekuensi, perbedaan frasa yang berbeda dari satu kalimat diharapkan untuk memberikan representasi \gls{AMR} yang identik.
-Kanonikalisasi ini tidak selalu berlaku lintas bahasa.
-Dua kalimat yang kalimat yang mengekspresikan makna yang sama dalam dua yang sama dalam dua bahasa yang berbeda tidak dijamin untuk menghasilkan struktur \gls{AMR} yang identik (Xue et al, 2014).
-Dalam mengatasi permasalahan ini, diajukan dua metode yang berbeda.
+Namun, hal ini tidak selalu berlaku untuk lintas bahasa.
+Dua kalimat yang kalimat yang mengekspresikan makna yang sama dalam dua yang sama dalam dua bahasa yang berbeda tidak menjamin untuk menghasilkan struktur \gls{AMR} yang identik \citek{xue2014}.
+Dalam mengatasi permasalahan ini, \textcite{damonte2018} mengusulkan dua metode yang berbeda.
 
 \begin{enumerate}
   \item Proyeksi anotasi.
+  Setiap simpul pada graf \gls{AMR} dapat dipasangkan dengan kata pada kalimat berbahasa Inggris.
+  Dengan asumsi bahasa lain memiliki struktur yang mirip dengan Bahasa Inggris, maka dapat dilakukan pemasangan terhadap bahasa lain tersebut.
 
-  \gls{AMR} tidak didasarkan pada kalimat input, oleh karena itu tidak perlu mengubah anotasi \gls{AMR} saat memproyeksikan ke bahasa lain.
-  Metode ini menganggap label bahasa Inggris untuk simpul-simpul graf sebagai label dari bahasa independen, yang secara kebetulan terlihat mirip dengan bahasa Inggris.
-  Namun, untuk melatih parser \gls{AMR} yang canggih, metode ini juga perlu memproyeksikan keselarasan antara node \gls{AMR} dan kata-kata dalam kalimat (selanjutnya disebut \gls{AMR}).
-  Metode ini menggunakan penjajaran kata, sama halnya dengan pekerjaan proyeksi anotasi lainnya, untuk memproyeksikan \gls{AMR} ke bahasa target.
-  Pendekatan kami bergantung pada asumsi mendasar yang kami buat: jika kata sumber disejajarkan dengan kata target dan \gls{AMR} disejajarkan dengan simpul \gls{AMR}, maka kata target juga disejajarkan dengan simpul \gls{AMR} tersebut.
+  % \gls{AMR} tidak didasarkan pada kalimat input, oleh karena itu tidak perlu mengubah anotasi \gls{AMR} saat memproyeksikan ke bahasa lain.
+  % Metode ini menganggap label bahasa Inggris untuk simpul-simpul graf sebagai label dari bahasa independen, yang secara kebetulan terlihat mirip dengan bahasa Inggris.
+  % Namun, untuk melatih parser \gls{AMR} yang canggih, metode ini juga perlu memproyeksikan keselarasan antara node \gls{AMR} dan kata-kata dalam kalimat (selanjutnya disebut \gls{AMR}).
+  % Metode ini menggunakan penjajaran kata, sama halnya dengan pekerjaan proyeksi anotasi lainnya, untuk memproyeksikan \gls{AMR} ke bahasa target.
+  % Pendekatan kami bergantung pada asumsi mendasar yang kami buat: jika kata sumber disejajarkan dengan kata target dan \gls{AMR} disejajarkan dengan simpul \gls{AMR}, maka kata target juga disejajarkan dengan simpul \gls{AMR} tersebut.
 
-  \item Translasi mesin.
+  \item Mesin translasi.
+  Pada metode ini digunakan sebuah mesin translasi untuk menerjemahkan kalimat dengan bahasa lain menjadi Bahasa Inggris.
+  Hasil kalimat berbahasa Inggris tersebut kemudian diubah menjadi graf \gls{AMR}.
+  Kualitas dari hasil graf \gls{AMR} tersebut bergantung pada kualitas mesin translasi yang digunakan.
 
-  Pada metode ini, dipanggil sistem MT untuk menerjemahkan kalimat input ke dalam bahasa Inggris sehingga dapat digunakan parser berbahasa Inggris yang tersedia untuk memperoleh grafik \gls{AMR}.
-  Tentu saja, kualitas dari grafik keluaran tergantung pada kualitas terjemahan kualitas terjemahan.
-  Jika terjemahan otomatis dekat dengan terjemahan referensi, maka grafik \gls{AMR} yang grafik \gls{AMR} yang diprediksi akan mendekati grafik \gls{AMR} referensi.
-  Oleh karena itu terbukti bahwa metode ini tidak informatif dalam hal sifat lintas bahasa dari \gls{AMR}.
-  Namun, kesederhanaannya menjadikannya solusi teknik yang menarik untuk mengurai bahasa-bahasa lain.
+  % Pada metode ini, dipanggil sistem MT untuk menerjemahkan kalimat input ke dalam bahasa Inggris sehingga dapat digunakan parser berbahasa Inggris yang tersedia untuk memperoleh grafik \gls{AMR}.
+  % Tentu saja, kualitas dari grafik keluaran tergantung pada kualitas terjemahan kualitas terjemahan.
+  % Jika terjemahan otomatis dekat dengan terjemahan referensi, maka grafik \gls{AMR} yang grafik \gls{AMR} yang diprediksi akan mendekati grafik \gls{AMR} referensi.
+  % Oleh karena itu terbukti bahwa metode ini tidak informatif dalam hal sifat lintas bahasa dari \gls{AMR}.
+  % Namun, kesederhanaannya menjadikannya solusi teknik yang menarik untuk mengurai bahasa-bahasa lain.
+\end{enumerate}
+
+\textcite{blloshmi2020} mengusulkan konfigurasi dalam melakukan training untuk \amrparsing{} \textit{cross-lingual}.
+Konfigurasi tersebut adalah sebagai berikut.
+\begin{enumerate}
+  \item Zero-shot.
+  Model dilatih pada kalimat berbahasa Inggris saja dengan mengandalkan fitur \textit{multilingual}, dan dievaluasi pada bahasa yang dituju.
+
+  \item Language-specific.
+  Model dilatih pada kalimat berbahasa bahasa yang dituju, misal Bahasa Indonesia, dan dievaluasi pada bahasa yang dituju tersebut.
+
+  \item Bilingual.
+  Model dilatih pada kalimat berbahasa Inggris dan bahasa yang dituju. dan dievaluasi pada bahasa yang dituju tersebut.
+
+  \item Multilingual.
+  Model dilatih pada kalimat-kalimat dengan berbagai macam bahasa, dan dievaluasi pada bahasa-bahasa yang dituju tersebut.
 \end{enumerate}
