@@ -1,0 +1,7 @@
+Pemetaan,Match,Precision,Recall,F-Score
+{x=a, y=b, z=c},4,4/5,4/6,0.73
+{x=a, y=c, z=b},1,1/5,1/6,0.18
+{x=b, y=a, z=c},0,0/5,0/6,0.00
+{x=b, y=c, z=a},0,0/5,0/6,0.00
+{x=c, y=a, z=b},0,0/5,0/6,0.00
+{x=c, y=b, z=a},2,2/5,2/6,0.36

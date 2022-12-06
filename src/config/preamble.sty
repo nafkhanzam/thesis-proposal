@@ -329,6 +329,39 @@ Desember\fi~\number\year}
 \crefname{figure}{Gambar}{Gambar}
 \Crefname{figure}{Gambar}{Gambar}
 
+\usepackage{csvsimple}
+\makeatletter
+\csvset{
+  autotabularcenter/.style={
+    file=#1,
+    after head=\csv@pretable\begin{tabular}{|*{\csv@columncount}{c|}}\csv@tablehead,
+    table head=\hline\csvlinetotablerow\\\hline,
+    late after line=\\,
+    table foot=\\\hline,
+    late after last line=\csv@tablefoot\end{tabular}\csv@posttable,
+    command=\csvlinetotablerow},
+  autobooktabularcenter/.style={
+    file=#1,
+    after head=\csv@pretable\begin{tabular}{*{\csv@columncount}{c}}\csv@tablehead,
+    table head=\toprule\csvlinetotablerow\\\midrule,
+    late after line=\\,
+    table foot=\\\bottomrule,
+    late after last line=\csv@tablefoot\end{tabular}\csv@posttable,
+    command=\csvlinetotablerow},
+}
+\makeatother
+\newcommand{\csvautotabularcenter}[2][]{\csvloop{autotabularcenter={#2},#1}}
+\newcommand{\csvautobooktabularcenter}[2][]{\csvloop{autobooktabularcenter={#2},#1}}
+\NewDocumentCommand{\tabl}{m m m}{
+  \begin{table}[htbp]
+    \caption{#3}
+    \label{tab:#1}
+    \centering
+    \catcode`\%=12
+    \csvautobooktabularcenter{#2}
+  \end{table}
+}
+
 % \newcommand{\glsfi}[1]{\textit{\glsdesc{#1}} (\gls{#1})}
 % \newcommand{\glsf}[1]{\glsdesc{#1} (\gls{#1})}
 \newcommand{\citek}[1]{(\cite{#1})}
