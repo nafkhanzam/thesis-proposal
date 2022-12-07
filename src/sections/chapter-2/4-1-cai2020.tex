@@ -1,8 +1,8 @@
 \subsection{AMR Parsing via Graph-sequence Iterative Inference \citek{cai2020}}
 
-AMR parsing merupakan suatu tugas mentransformasi teks natural language ke AMR.
-Salah satu tantangan dalam AMR parsing adalah kurangnya alignment eksplisit antara node pada graf dan kata kata dalam teks.
-Untuk saat ini, akurasi parsing dari penelitian-penelitian terkait masih belum memuaskan dibandingkan kinerja manusia, terutama pada kasus dimana kalimat lebih panjang dan informatif.
+% \amrparsing{} merupakan suatu tugas mentransformasi teks natural language ke AMR.
+Salah satu tantangan dalam \amrparsing{} adalah kurangnya pemetaan eksplisit antara simpul pada graf dan kata kata dalam teks.
+Untuk saat ini, akurasi \textit{parsing} dari penelitian-penelitian terkait masih belum memuaskan dibandingkan kinerja manusia, terutama pada kasus dimana kalimat lebih panjang dan informatif.
 Salah satu kemungkinan alasan dari kekurangan ini adalah defekasi turunan dari proses one-pass prediction, yang merupakan kekurangan kapabilitas modeling dari interaksi antara prediksi konsep dan prediksi relasi yang penting untuk mencapai keputusan yang tidak ambigu.
 
 Pada tingkat dasar, kita dapat mengkategorikan pendekatan AMR parsing menjadi dua kelas.
@@ -13,18 +13,18 @@ Kedua kelas ini dijabarkan sebagai berikut.
   \item One-stage parsing uang membangun graf parsing secara inkremental.
   Untuk analisis yang lebih dalam, metode one-stage parsing dapat dikategorikan menjadi tiga tipe.
   \begin{enumerate}
-      \item Transition-based parsing (Wang et al., 2016; Damonte et al., 2017; Ballesteros and Al-Onaizan, 2017; Peng et al., 2017; Guo and Lu, 2018; Liu et al., 2018; Wang and Xue, 2017; Naseem et al., 2019) yang memproses sebuah kalimat dari kiri ke kanan dan membangun graf secara bertahap dengan secara bergantian menyisipkan sebuah simpul baru atau membangun sisi baru.
+      \item Transition-based parsing yang memproses sebuah kalimat dari kiri ke kanan dan membangun graf secara bertahap dengan secara bergantian menyisipkan sebuah simpul baru atau membangun sisi baru.
 
-      \item Seq2seq-based parsing (Barzdins and Gosko, 2016; Konstas et al., 2017; van Noord and Bos, 2017; Peng et al., 2018) yang memandang parsing sebagai transduksi sekuens ke sekuens oleh linearisasi dari graf AMR.
+      \item Seq2seq-based parsing yang memandang parsing sebagai transduksi sekuens ke sekuens oleh linearisasi dari graf AMR.
 
-      \item Graph-based parsing g (Cai and Lam, 2019; Zhang et al., 2019b) dimana setiap langkah, node baru dan koneksinya terhadap node yang telah ada akan diputuskan baik secara berurut atau secara paralel.
+      \item Graph-based parsing di mana pada setiap langkah, simpul baru dan koneksinya terhadap simpul yang telah ada akan ditentukan baik secara berurut atau secara paralel.
   \end{enumerate}
 \end{enumerate}
 
 Sejauh ini, kausal timbal balik dan prediksi konsep masih belum dipelajari secara detail dan dimanfaatkan sepenuhnya.
 TODO \cref{fig:4-1-fig1}.
 Pendekatan AMR Parsing via Graph-sequence Iterative Inference mengikuti proses ketika expert manusia melakukan deduksi graf semantik dari suatu kalimat.
-Output dari graf ini dimulai dari graf kosong yang memanjang secara inkremental dengan cara node ke node.
+Output dari graf ini dimulai dari graf kosong yang memanjang secara inkremental dengan cara simpul ke simpul.
 Pendekatan AMR parsing ini merupakan sebuah seri berisi sekuens graf ganda dengan pendekatan inferensi iteratif untuk pembuatan keputusan dan desain.
 Ilustrasi sekuens graf ganda dengan inferensi iteratif ditampilkan pada \cref{fig:4-1-fig2}.
 
