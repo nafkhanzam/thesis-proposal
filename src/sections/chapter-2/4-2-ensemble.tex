@@ -1,0 +1,40 @@
+\subsection{Teknik \textit{ensemble} untuk \amrparsing{}}
+
+Kenaikan kinerja dari \amrparsing{} dari penelitian-penelitian sebelumnya tidak lagi meningkat secara signifikan.
+Ini dikarenakan efek dari self-learning dan augmentasi silver data mulai berkurang.
+Untuk mengatasi hal tersebut, \textcite{lee2022} mengusulkan untuk menggabungkan teknik \textit{ensemble} berbasis \gls{SMATCH} \citek{hoang2021} dengan \textit{ensemble distillation} untuk menghasilkan silver data berkualitas tinggi.
+
+Teknik \textit{ensemble} yang diusulkan oleh \textcite{hoang2021} dapat dilihat pada \cref{fig:4-2-graph-ensemble-example}.
+Ide utamanya adalah dengan memperbaiki sebuah pivot graf berdasarkan graf yang dihasilkan oleh \textit{parser} lain.
+Dari pivot graf, dilakukan \textit{voting} untuk menghitung jumlah simpul dan sisi graf yang berkorelasi.
+Setelah dilakukan \textit{voting}, dipilih simpul dan sisi yang memiliki jumlah voting terbesar sebagai hasil akhir graf tersebut.
+Hal ini dilakukan berulang kali untuk masing-masing graf sebagai pivot awal.
+
+\fig[1]{4-2-graph-ensemble-example}
+  {sections/chapter-2/4-2-graph-ensemble-example.png}
+  {Fig 1 \citek{lee2022}.}
+
+\textcite{lee2022} mengusulkan sebuah framework untuk melakukan augmentasi data \gls{AMR}.
+Ilustrasi framework tersebut dapat dilihat pada \cref{fig:4-2-silver-data-generation-framework}.
+Dengan keterbatasan jumlah dataset yang dipunya untuk melatih model \textit{cross-lingual}, framework ini menghasilkan lebih banyak pasangan graf \gls{AMR} dan kalimat dengan bahasa yang dituju.
+Teknik-teknik yang digunakan untuk menghasilkannya adalah sebagai berikut.
+\begin{enumerate}
+  \item Kalimat berbahasa Inggris dari dataset \gls{AMR} ditranslasi menjadi bahasa yang dituju.
+
+  \item Graf \gls{AMR} dari dataset \gls{AMR} dilakukan \textit{parsing} menjadi kalimat Bahasa Inggris untuk mendapatkan sebuah alternatif kalimat berbahasa Inggris.
+  Dari kalimat alternatif tersebut dilakukan translasi menjadi bahasa yang dituju.
+
+  \item Kalimat-kalimat dari dataset kumpulan kalimat berbahasa Inggris tak berlabel ditranslasi menjadi bahasa yang dituju dan dilakukan \textit{parsing} menjadi graf \gls{AMR} menggunakan teknik \textit{ensemble}.
+\end{enumerate}
+
+\fig[1]{4-2-silver-data-generation-framework}
+  {sections/chapter-2/4-2-silver-data-generation-framework.png}
+  {Fig 1 \citek{lee2022}.}
+% Ensemble distillation (Hilton, 2015) mengintegrasikan pengetahuan dari perbedaan model pengajar ke model murid.
+% Untuk model sekuens ke sekuens seperti mesin translasi, dimungkinkan untuk membangun model dengan mengkombinasikan kemungkinan konteks kaya yang diberikan setiap langkah waktu (Kim and Rush, 2016).
+% Parser syntactic dan semantik memodelkan distribusi terhadap grad yang lebih sulit diintegrasikan antara model pengajar dalam cara yang optimal.
+% Pada kasus tertentu seperti dependency parsing, dimunhgkinkan untuk melakukan ensemble pengajar berdasar nosi dari edge attachment yang berhubungan dengan metric evaluasi Label Attachment Score (LAS).
+% Meski demikian, graf AMR cukup kompleks dan tidak diratakan kata per kata.
+% Standar metric Smatch (Cai, 2013) memperkirakan NP-Complete problem dari aligning nodes antara graf menggunakan hill climbing algorithm.
+% Hal ini mengilustrasikan kesulitan mencapai konsensus antara pengajar dalam ensembling AMR.
+
