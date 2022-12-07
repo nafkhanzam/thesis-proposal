@@ -1,11 +1,5 @@
 \section{\textit{Language Model}}
 
-\newcommand{\wordem}{\textit{word embedding}}
-\newcommand{\Wordem}{\textit{Word embedding}}
-\newcommand{\mwordem}{\textit{multilingual word embedding}}
-\newcommand{\Mwordem}{\textit{Multilingual word embedding}}
-\newcommand{\multil}{\textit{multilingual}}
-
 Teks yang dapat dipahami oleh manusia tidak dapat dipahami secara langsung oleh model \gls{NLP} sehingga diperlukan sebuah bentuk representasi lain.
 Ada beberapa teknik dalam membuat representasi dari sebuah teks, seperti \textit{bag of words}, \textit{n-gram}, \wordem{}, \gls{SRL}, dan \gls{AMR}.
 Dari representasi-representasi tersebut, dapat dilakukan berbagai macam \textit{task} seperti peringkasan teks, klasifikasi sentimen, mesin translasi, \textit{question-answering}, deteksi parafrasa, dan lain-lain.
@@ -19,7 +13,7 @@ Dalam memahami konteks sebuah kata dari sebuah kalimat, diperlukan untuk memaham
 
 \Glsfirst{RNN}, \glsfirst{LSTM}, dan \glsfirst{GRU} kerap digunakan sebagai pendekatan sequence modeling dan permasalahan transduction seperti language modeling dan machine translation.
 Pendekatan tersebut berguna untuk memahami konteks sebuah kata pada suatu kalimat.
-Transformer merupakan sebuah sequence-to-sequence model yang terdiri dari \textit{encoder} dan \textit{decoder}.
+Transformer merupakan sebuah sequence-to-sequence model yang terdiri dari \textit{encoder} dan \textit{decoder} \citek{vaswani2017}.
 Transformer bergantung sepenuhnya terhadap mekanisme atensi untuk menggambarkan ketergantungan global antara input dan output.
 Model berbasis transformer dapat berjalan secara paralel sehingga dapat mempercepat proses training.
 
@@ -33,8 +27,20 @@ Sebagai hasil dari proses pembelajaran ini adalah, \gls{BERT} mempelajari embedd
 Kemudian dikembangkan \glsfirst{BART} yang mampu melakukan denoising autoencoder yang memapping dokumen terkorupsi terhadap dokumen originalnya \citek{lewis2020}.
 \gls{BART} diimplementasikan sebagai model berbasis transformer dengan bidirectional encoder dan left-to-right autoregressive decoder.
 \gls{BART} memiliki arsitektur \textit{encoder} seperti \gls{BERT} \citek{devlin2019} dan \textit{decoder} seperti \gls{GPT2} \citek{radford2019}.
-\gls{BART} menggunakan teknik pelatihan dengan mengacak urutan kalimat dan menggunakan \textit{masking} untuk diisi kata-kata yang hilang.
-Model ini berguna sangat efektif setelah dilakukan \textit{fine-tuning} ke \textit{task} generasi teks maupun pemahaman teks.
+\gls{BART} \citek{lewis2020} adalah auto-encoder yang diimplementasikan sebagai model berbasis \gls{seq2seq} pada standar arsitektur Transformer \citek{vaswani2017}.
+\gls{BART} di-train untuk merekonstruksi teks original berbasis teks terkorupsi yang digenerasi oleh 5 fungsi noising berikut ini.
+\begin{enumerate}
+  \item Token masking.
+  Token secara random diubah menjadi elemen mask
+  \item Token deletion.
+  Token secara random dihapus dari input
+  \item Text Infilling.
+  Teks spans secara random diubah menjadi token single mask
+  \item Sentence permutation.
+  Teks dibagi menjadi segmen-segmen lalu diacak.
+  \item Document Rotation.
+  Dokumen dirotasi untuk dimulai dengan token random.
+\end{enumerate}
 
 % kecuali perbedaan-perbedaan berikut ini.
 % \begin{enumerate}

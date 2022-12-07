@@ -1,38 +1,26 @@
 \subsection{\Glsfirst{AMRBART} \citek{bai2022}}
 
-BART (Lewis, 2020) adalah auto-encoder denoising yang diimplementasikan sebagai model berbasis seq2seq pada standar arsitektur Transformer (Vaswani, 2017).
-Secara tipikal, BART di-train untuk merekonstruksi teks original berbasis teks terkorupsi yang digenerasi oleh 5 fungsi noising.
+\Glsfirst{PLM} telah terbukti dapat melakukan \textit{task} \amrparsing{} dan generasi AMR-to-text dengan baik.
+Namun, \gls{PLM} umumnya dilatih pada data tekstual, sehingga tidak optimal untuk melakukan generasi data terstruktur seperti \gls{AMR}.
+\textcite{bai2022} memperbaiki permasalahan tersebut dengan menambahkan strategi \textit{pre-training} pada model untuk mengintegrasikan informasi teks dan graf \gls{AMR}.
+Model ini melinearisasi graf \gls{AMR} ke sekuens sehingga baik AMR parsing dan AMR-to-text generation dapat dilakukan menggunakan model \gls{seq2seq}.
+Model ini melakukan pre-training pada struktur \gls{AMR} menggunakan \gls{BART}.
 
+% Mengikuti Kontes 2017, model ini mengadopsi algoritma Depth-First-Search (DFS) yang berhubungan dekat dengan natural language syntactic trees (Bevilacqua. 2021).
+
+Model ini mengenalkan dua strategi \textit{self-supervised training} dalam melakukan \textit{pre-training} model \gls{BART} pada graf \gls{AMR}.
+Dapat dilihat pada \cref{fig:4-3-pre-training-strategies}, strategi level \textit{denoising} simpul/sisi mendukung model untuk menangkap pengetahuan lokal mengenai simpul dan sisi.
+Strategi \textit{denoising} level graf mengarahkan model untuk memprediksi sub-graf yang dapat memfasilitasi pembelajaran graf.
 \begin{enumerate}
-  \item Token masking.
-  Token secara random diubah menjadi elemen mask
-  \item Token deletion.
-  Token secara random dihapus dari input
-  \item Text Infilling.
-  Teks spans secara random diubah menjadi token single mask
-  \item Sentence permutation.
-  Teks dibagi menjadi segmen-segmen lalu diacak.
-  \item Document Rotation.
-  Dokumen dirotasi untuk dimulai dengan token random.
+  \item \textit{Denoising} level simpul/sisi.
+  Pengaplikasian fungsi noise pada simpul dan sisi AMR untuk mengkonstruksi input graf yang kotor.
+  Fungsi noise ini diimplementasikan dengan \textit{masking} 15\% simpul dan 15\% sisi di setiap graf.
+
+  \item \textit{Denoising} level sub-graf.
+  \textit{Task} ini bertujuan untuk mengembalikan graf lengkap ketika diberikan sebagian dari graf.
+  Metode ini menghilangkan sub-graf secara acak dari graf dan mengubahnya dengan token \textit{mask}.
 \end{enumerate}
 
-Model ini melinearisasi graf AMR ke sekuens sehingga baik AMR parsing dan AMR-to-text generation dapat dilakukan menggunakan model seq2seq.
-Sebagai tambahan, model ini membiarkan pre-training pada struktur AMR menggunakan BART.
-Mengikuti Kontes 2017, model ini mengadopsi algoritma Depth-First-Search (DFS) yang berhubungan dekat dengan natural language syntactic trees (Bevilacqua.
-2021).
-
-Model ini mengenalkan dua strategi self-supervised training untuk pre-train model BART pada graf AMR lebih lanjut.
-Pada gambar di atas, strategi level denoising node/edge mendukung model untuk menangkap pengetahuan lokal mengenai nodes dan edges.
-Strategi denoising level graf mengarahkan model untuk memprediksi sub-graf yang memfasilitasi pembelajaran graph-learning.
-
-\begin{enumerate}
-  \item Node/edge level denoising.
-  Pengaplikasian fungsi noise pada node dan edge AMR untuk mengkonstruksi input graf yang kotor.
-  Secara partikular, fungsi noise ini diimplementasikan dengan masking 15\% node dan 15\% edge di setiap graf
-
-  \item Sub-graf level denoising.
-  Tugas ini bertujuan untuk mengembalikan graf lengkap ketika diberikan sebagian dari graf.
-  Metode ini menghilangkan sub-graf secara acak dari graf dan mengubahnya dengan token mask.
-\end{enumerate}
-
-\fig[1]{4-3-fig2}{sections/chapter-2/4-3-fig1.png}{Ilustrasi strategi pre-training: 1) node/edge level denoising (a->b) ; 2) sub-graf level denoising (c->b) \citek{bai2022}.}
+\fig[1]{4-3-pre-training-strategies}
+  {sections/chapter-2/4-3-pre-training-strategies.png}
+  {Ilustrasi strategi pre-training: 1) \textit{denoising} level simpul/sisi (a->b); 2) \textit{denoising} level sub-graf (c->b) \citek{bai2022}.}
