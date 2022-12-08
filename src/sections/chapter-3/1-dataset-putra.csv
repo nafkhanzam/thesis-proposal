@@ -1,0 +1,5 @@
+Dataset,Bahasa,Train,Dev,Sumber
+Gold,EN,{36,521},{1,368},AMR 2.0
+Silver Trans,ID,{32,254},{1,280},AMR 2.0
+Silver Par,ID,{21,839},{2,185},BPPT-PANL
+Silver Par,EN,{21,839},{2,185},BPPT-PANL
