@@ -1,17 +1,15 @@
 \subsection{Peringkasan Abstraktif Multidokumen Menggunakan Abstract Meaning Representation untuk Bahasa Indonesia \citek{severina2019}}
 
-Penelitian ini membahas mengenai pembangunan sistem peringkasan abstraktif dari dokumen berita berbahasa Indonesia memanfaatkan AMR.
-Pendekatan yang digunakan adalah pendekatan berbasis aturan untuk membangkitkan graf AMR berbahasa Indonesia.
-Adapun aturan-aturan pembangkitan graf adalah sebagai berikut.
-
+Penelitian oleh \citek{severina2019} membahas mengenai pembangunan sistem peringkasan secara abstraktif dari dokumen berbahasa Indonesia dengan memanfaatkan AMR.
+Pendekatan yang digunakan adalah \amrparsing{} yang memanfaatkan aturan dan kamus untuk membangun graf AMR berbahasa Indonesia dari teks berbahasa Indonesia.
+Aturan pembangunan graf tersebut adalah sebagai berikut:
 \begin{enumerate}
-  \item Simpul akar graf AMR yang dihasilkan ditentukan dengan dependency parser.
-  \item ARG 0 dan ARG 1 dari suatu predikat ditentukan dengan melihat apakah predikat merupakan kata kerja aktif atau pasif.
+  \item Simpul akar graf AMR yang dihasilkan ditentukan dengan \textit{dependency parser}.
+  \item ARG0 dan ARG1 dari suatu predikat ditentukan dengan melihat apakah predikat merupakan kata kerja aktif atau pasif.
   Argumen akan diisi dengan subjek dan objek dari kata kerja terkait.
-  \item Keterangan dari predikat akan menjadi ARG 3 kecuali kata-kata pada frasa yang bersangkutan memiliki label khusus.
+  \item Keterangan dari predikat akan menjadi ARG2.
 \end{enumerate}
 
-Pendekatan dengan aturan-aturan ini memiliki beberapa keterbatasan.
-Graf AMR yang dihasilkan dari pembangkitan ini hanya dapat memiliki simpul berupa frasa.
-Selain itu, belum adanya PropBank berbahasa Indonesia menyebabkan predikat yang dihasilkan berupa kata dasar berlabel "-01".
-Pada penelitian ini pengukuran yang digunakan adalah ukuran akurasi dari kemunculan simpul pada AMR dan hasilnya dibandingkan dengan referensi.
+Teknik \amrparsing{} ini masih terbatas dengan banyak jumlah relasi ARG hanya sebanyak 3 buah.
+Konsep pada \gls{AMR} yang dihasilkan masih berupa predikat yang diberi label \quotei{-01} di belakangnya dikarenakan PropBank berbahasa Indonesia masih belum ada.
+Teknik evaluasi yang digunakan pada penilitian ini tidak menggunakan \gls{SMATCH}, namun menggunakan ukuran akurasi kemunculan simpul pada \gls{AMR} yang dihasilkan dibandingkan dengan referensinya.
