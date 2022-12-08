@@ -17,4 +17,5 @@ Dataset pasangan kalimat Bahasa Indonesia dan graf AMR berbahasa Inggris dapat d
 Berdasarkan premis-premis tersebut, disusun hipotesis sebagai berikut:
 
 \textbf{Hipotesis:}
-Model \amrparsing{} \textit{cross-lingual} untuk Bahasa Indonesia dapat dibangun dengan menggunakan teknik pre-training AMRBART menggunakan \textit{language model} PALM dengan dataset yang dibangun dari dataset pasangan teks berbahasa Inggris dan graf AMR serta korpus paralel Indonesia-Inggris.
+Model \amrparsing{} \textit{cross-lingual} untuk Bahasa Indonesia dapat dibangun dengan menggunakan teknik pre-training AMRBART oleh \textcite{bai2022} menggunakan \textit{language model} PALM dengan dataset yang dibangun dari dataset pasangan teks berbahasa Inggris dan graf AMR serta korpus paralel Indonesia-Inggris dengan teknik augmentasi data oleh \textcite{lee2022}.
+Hasil kinerja model tersebut dapat menghasilkan evaluasi yang lebih baik dari \textit{baseline} yang menggunakan teknik \textit{translate-and-parse} oleh \textcite{uhrig2021}.
