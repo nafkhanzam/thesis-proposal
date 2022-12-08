@@ -6,7 +6,7 @@ Namun terdapat keterbatasan dataset untuk \textit{task} \amrparsing{} dari bahas
 Dalam penelitian \textcite{blloshmi2020}, setidaknya diperlukan dataset yang berkualitas silver untuk data latih dan gold untuk melakukan evaluasi model.
 Misal untuk membangun model untuk \amrparsing{} dari kalimat berbahasa Indonesia menjadi graf \gls{AMR}, diperlukan dataset pasangan kalimat berbahasa Indonesia dengan graf \gls{AMR}-nya yang berkualitas gold dan silver.
 
-Untuk saat ini, terdapat dataset berkualitas silver dan gold untuk kalimat berbahasa Indonesia dari Dataset AMR 2.0 dan korpus paralel BPPT-PANL \citek{putra2022}.
+Saat ini terdapat dataset berkualitas silver dan gold untuk kalimat berbahasa Indonesia dari Dataset AMR 2.0 dan korpus paralel BPPT-PANL \citek{putra2022}.
 \cref{tab:1-dataset-putra} menunjukkan dataset yang dibangun oleh \textcite{putra2022}.
 Dataset Silver Trans merupakan hasil translasi dari kalimat berbahasa Inggris yang berkualitas gold.
 Dataset Silver Par merupakan hasil \textit{parsing} kalimat berbahasa Inggris yang berkualitas gold menjadi graf \gls{AMR}.
@@ -16,7 +16,7 @@ Dataset Silver Par merupakan hasil \textit{parsing} kalimat berbahasa Inggris ya
   {Statistik dataset berkualitas gold dan silver yang dibangun oleh \textcite{putra2022}.}
 
 \textcite{putra2022} telah membangun sebuah model \gls{AMR} \textit{Parser} Lintas Bahasa untuk Bahasa Indonesia dengan skor \gls{SMATCH} 51.0.
-Model tersebut dibangun dengan \mwordem mT5 yang merupakan sebuah \glsfirst{PLM}.
+Model tersebut dibangun dengan \mwordem{} mT5 yang merupakan sebuah \glsfirst{PLM}.
 Namun dengan baseline dari \textit{pipline translate-and-parse} yang memiliki skor \gls{SMATCH} 62.5, model tersebut masih belum dapat melampaui kinerja baseline.
 \textcite{putra2022} menggunakan teknik Sequence-to-Graph Transduction \citek{zhang2019} yang bukan lagi \textit{state of the art} \amrparsing{} saat ini.
 \textcite{bai2022} menyebutkan bahwa \gls{PLM} umumnya dilatih pada data tekstual, sehingga tidak optimal untuk melakukan generasi data terstruktur seperti \gls{AMR}.
