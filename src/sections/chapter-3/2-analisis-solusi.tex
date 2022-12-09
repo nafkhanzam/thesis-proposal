@@ -10,7 +10,7 @@ Jumlah dataset silver dapat diperbanyak dengan cara-cara berikut:
 
   \item Menggunakan korpus paralel tambahan IWSLT17.
   \textcite{putra2022} hanya menggunakan korpus paralel BPPT-PANL \citek{bppt2009}.
-  Korpus paralel IWSLT17 dapat menambah sampai 107,329 pasang dataset silver.
+  Korpus paralel IWSLT17 \citek{cettolo2017} dapat menambah sampai 107,329 pasang dataset silver.
 
   \item Mengadopsi teknik augmentasi data oleh \textcite{lee2022}.
   Melakukan \textit{parsing} graf \gls{AMR} dari dataset gold menjadi teks berbahasa Inggris, lalu dilakukan translasi ke Bahasa Indonesia.
@@ -25,7 +25,7 @@ Teknik tersebut belum dicoba untuk \textit{cross-lingual} \amrparsing{}.
 Konfigurasi \textit{training} model \textit{cross-lingual} \amrparsing{} telah diusulkan oleh \textcite{blloshmi2020}.
 Teknik \textit{self-supervised training} oleh \textcite{bai2022} tersebut dapat dilakukan dengan konfigurasi oleh \textcite{blloshmi2020} untuk membangun model \textit{cross-lingual} untuk \textit{task} \amrparsing{}.
 
-Teknik \textit{masked pre-training} \textit{language model} \gls{PALM} \citek{bi2020} dapat menghasilkan evaluasi yang lebih baik dari \gls{MASS}, \gls{BART}, maupun T5 untuk \textit{task} \textit{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
+Teknik \textit{masked pre-training} \textit{language model} \gls{PALM} \citek{bi2020} dapat menghasilkan kinerja yang lebih baik dari \gls{MASS}, \gls{BART}, maupun T5 untuk \textit{task} \textit{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
 \gls{PALM} dibangun dengan fokus untuk generasi teks penerus input yang diberikan.
 \gls{PALM} diharapkan dapat meningkatkan kualitas \amrparsing{} dengan menggunakan teknik \textit{masking} oleh \textcite{bai2022}.
 Namun untuk \amrparsing{} lintas bahasa diperlukan model \multil{} \gls{PALM}.

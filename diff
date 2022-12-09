@@ -1,0 +1,4 @@
+#! /bin/bash
+
+diff2html -F build/diff.html
+aws s3 --endpoint-url https://99e0307e13e8a8b0820c9c383003db99.r2.cloudflarestorage.com/storage-nafkhanzam-com cp K02_03_IF5200_FinalReport.pdf s3://kuliah/proyek-penelitian-terapan/K02_03_IF5200_FinalReport.pdf
