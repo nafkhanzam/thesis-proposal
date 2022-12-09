@@ -179,10 +179,10 @@
 \renewcommand{\thechapter}{\Roman{chapter}}
 
 \titlespacing*{\chapter}{0pt}{-2\baselineskip}{1em} % remove vertical space
-% \chapterfont{\centering \uppercase \Large}
+% \chapterfont{\centering \MakeUppercase \Large}
 \titleformat{\chapter}[hang]
     {\bfseries\large}
-    {\chaptertitlename{}~\uppercase{\thechapter}~~~~\centering}
+    {\chaptertitlename{}~\MakeUppercase{\thechapter}~~~~\centering}
     {0.0ex} % sep
     {
         \vspace{0ex}
@@ -272,7 +272,7 @@ Desember\fi~\number\year}
 \usepackage[toc]{appendix}
 \newcommand\appendixchaptertitlename{Lampiran}
 
-\newlistof{appendix}{loa}{\uppercase{Daftar Lampiran}}
+\newlistof{appendix}{loa}{\MakeUppercase{Daftar Lampiran}}
 \newlistentry[appendix]{subappendix}{loa}{1}
 \newlistentry[subappendix]{subsubappendix}{loa}{2}
 \newlistentry[subsubappendix]{subsubsubappendix}{loa}{3}
