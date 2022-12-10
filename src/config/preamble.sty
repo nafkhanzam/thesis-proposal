@@ -217,7 +217,6 @@
 % tables
 \usepackage{longtable, booktabs} % Package untuk table multipage
 \usepackage{multirow} % Package untuk multirow
-\usepackage{xcolor} % Package untuk table color
 
 \newcommand{\midsepremove}{\aboverulesep = 0mm \belowrulesep = 0mm}
 \midsepremove
@@ -374,4 +373,12 @@ Desember\fi~\number\year}
     \caption{#4}
     \label{fig:#2}
   \end{figure}
+}
+
+\usepackage{xcolor, color, soul}
+\sethlcolor{red}
+\NewDocumentCommand{\todo}{o}{
+  \IfNoValueTF{#1}
+  {\textcolor{white}{\hl{TODO}}}
+  {\textcolor{white}{\hl{TODO: #1}}}
 }

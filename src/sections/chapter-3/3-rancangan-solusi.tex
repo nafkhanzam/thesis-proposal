@@ -2,10 +2,25 @@
 
 Pada masalah kurangnya jumlah dataset yang digunakan sebagai data latih model, dibangun kumpulan dataset silver untuk pelatihan model \amrparsing{} lintas bahasa.
 Diagram alur keseluruhan proses konstruksi dataset gold dan silver dapat dilihat pada \cref{fig:3-dataset-construction}.
-Alur tersebut mengikuti framework augmentasi data oleh \textcite{lee2022}.
-Korpus paralel PANL-BPPT dan IWSLT2017 digunakan sebagai dataset pasangan kalimat Bahasa Inggris dan Bahasa Indonesia.
-
+Alur proses konstruksi dataset berkualitas silver mengikuti framework augmentasi data oleh \textcite{lee2022}.
 
 \fig[1]{3-dataset-construction}
   {sections/chapter-3/3-dataset-construction.png}
-  {Diagram alur untuk konstruksi dataset gold dan silver.}
+  {Diagram alur untuk konstruksi dataset gold dan silver dari korpus paralel dan dataset AMR.}
+
+Korpus paralel PANL-BPPT dan IWSLT2017 digunakan sebagai dataset pasangan kalimat Bahasa Inggris dan Bahasa Indonesia.
+Kalimat berbahasa Inggris dari korpus paralel diubah menjadi graf \gls{AMR}.
+Model \amrparsing{} yang digunakan adalah model \sota{} saat ini, yaitu \glsfirst{MBSE}.
+Hasil graf \gls{AMR} yang dihasilkan akan digunakan sebagai dataset latih berkualitas silver.
+
+Dataset \gls{AMR} berkualitas gold yang digunakan AMR 3.0 dengan kode katalog LDC2020T02.
+Augmentasi data untuk konstruksi dataset berkualitas silver mengambil bagian Train dan Dev \textit{split} dari AMR 3.0.
+Kalimat berbahasa Inggris dari dataset \gls{AMR} tersebut diubah menjadi kalimat berbahasa Indonesia dengan menggunakan mesin translasi.
+Model mesin translasi yang digunakan adalah model \sota{} saat ini, yaitu \todo{}.
+Graf \gls{AMR} berkualitas gold juga dilakukan \textit{parsing} menjadi kalimat berbahasa Inggris (AMR-to-text) untuk menambah jumlah variasi pasangan dataset.
+Kalimat berbahasa Inggris hasil \textit{parsing} tersebut juga diubah menjadi kalimat berbahasa Indonesia dengan menggunakan mesin translasi.
+Hasil kumpulan kalimat yang dihasilkan akan digunakan sebagai dataset latih berkualitas silver.
+
+Augmentasi data untuk konstruksi dataset berkualitas gold mengambil bagian Test \textit{split} dari AMR 3.0.
+Bagian kalimat berbahasa Inggris dari Test \textit{split} ditranslasi menjadi Bahasa Indonesia oleh ahli.
+Hasil kalimat berbahasa Indonesia tersebut berkualitas gold dan digunakan sebagai dataset test.
