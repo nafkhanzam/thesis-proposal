@@ -28,8 +28,12 @@
 \renewcommand*{\nameyeardelim}{\addcomma\space}
 
 % glossary
-\usepackage[acronym,toc,shortcuts]{glossaries}
-\makeglossaries
+\usepackage[indexonlyfirst]{glossaries}
+\makenoidxglossaries
+\renewcommand*\entryname{SINGKATAN}
+\renewcommand*\descriptionname{Nama}
+\renewcommand*\pagelistname{Pemakaian pertama kali pada halaman}
+\setglossarystyle{long3colheader}
 \input{config/glossaries.sty}
 
 % includegraphics

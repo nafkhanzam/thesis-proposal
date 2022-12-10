@@ -1,0 +1,3 @@
+#! /bin/bash
+
+tectonic makeglossaries -d build/main main

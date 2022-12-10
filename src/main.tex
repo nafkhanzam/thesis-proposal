@@ -25,7 +25,7 @@
           % \input{sections/tableofappendix.tex}
           \input{sections/tableoffigures.tex}
           \input{sections/tableoftables.tex}
-          % \input{sections/glossary.tex}
+          \input{sections/glossary.tex}
       \end{spacing}
   \fi
 
@@ -34,6 +34,7 @@
   \pagenumbering{arabic}
   \setcounter{page}{1}
 
+  \glsresetall
   \input{sections/chapter-1/_index.tex}
   \input{sections/chapter-2/_index.tex}
   \input{sections/chapter-3/_index.tex}
