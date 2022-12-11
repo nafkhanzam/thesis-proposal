@@ -6,5 +6,5 @@
 - [x] Baseline Evaluation.
 - [x] AMR-to-text plan for the silver dataset.
 - [x] Define multilingual models gonna be used.
-- [ ] Define T5 in Chapter 2.
+- [x] Define T5 in Chapter 2.
 - [ ] Recheck that 1.1 has everything for the whole first chapter.

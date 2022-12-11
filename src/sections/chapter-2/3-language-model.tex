@@ -51,7 +51,12 @@ Kemudian dikembangkan \gls{BART} yang mampu melakukan denoising autoencoder yang
 Dalam menangani \ti{task} yang memerlukan lebih dari satu bahasa, seperti mesin translasi, digunakan representasi \mwordem{}.
 Model \multil{} dapat dibangun dengan menambahkan \ti{vocabulary} dari bahasa lain dalam data \ti{training}.
 \gls{BERT} juga dapat digunakan untuk menghasilkan \mwordem{} dengan dilatih menggunakan dataset yang terdiri dari 101 bahasa untuk menghasilkan \multil{} model bernama mBERT.
+Terdapat variasi \gls{BERT} yang digunakan sebagai \mwordem{} yang tidak terikat ke bahasa apapun, yaitu \gls{LABSE} \citek{feng2022}.
 \gls{BART} juga dikembangkan untuk menghasilkan representasi \mwordem{} bernama mBART \citek{liu2020}.
+
+Model berbasis transformer lain bernama T5 \citek{raffel2020} merupakan model yang dilatih dengan campuran \ti{task} \ti{unsupervised} dan \ti{supervised}.
+T5 bekerja dengan baik untuk berbagai macam \ti{task} seperti peringkasan teks dan translasi.
+Model T5 juga dikembangkan untuk \mwordem{} bernama mT5 \citek{xue2021} yang dilatih pada Common Crawl yang memiliki 101 bahasa.
 
 Menurut \textcite{bi2020}, teknik \pretraining{} pada \gls{BERT} dan \gls{BART} kurang konsisten dengan tujuan beberapa \ti{task} generasi teks, seperti \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
 \textcite{bi2020} mengusulkan \gls{PALM} dengan adanya skema yang menggabungkan \pretraining{} \ti{auto-encoding} dan \ti{autoregressive} \ti{language model} pada korpus besar tak berlabel.
