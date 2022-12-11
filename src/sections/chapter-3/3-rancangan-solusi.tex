@@ -56,7 +56,13 @@ Bentuk graf pada input maupun output berupa format PENMAN.
     \code{$\bar{t}/\bar{g}$} merupakan teks/graf yang hilang.
   }
 
+% Evaluation
+Evaluasi dilakukan secara kuantitatif dan kualitatif.
+Metrik evaluasi yang digunakan untuk evaluasi kuantitatif adalah \SMATCH{}.
+Evaluasi tersebut dilakukan dengan menghitung kemiripan graf \AMR{} hasil prediksi dan graf \AMR{} asli dari dataset test.
+Metode kualitatif yang digunakan adalah evaluasi \transdiver{}.
+
 % Baseline Evaluation
-Pendekatan \ti{translate and parse} \citek{uhrig2021} digunakan sebagai baseline pada penelitian ini.
+Pendekatan \ti{translate-and-parse} \citek{uhrig2021} digunakan sebagai baseline pada penelitian ini.
 Model mesin translasi yang digunakan adalah {OPUS-MT} dan model \amrparsing{} yang digunakan adalah \gls{AMRBART}.
 Tahapan yang dilakukan adalah melakukan translasi dari kalimat berbahasa Indonesia menjadi Bahasa Inggris, lalu dilakukan \amrparsing{} menjadi graf \AMR{}.
