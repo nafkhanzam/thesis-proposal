@@ -5,5 +5,5 @@
 - [x] XL-AMR explains training schemas.
 - [x] Baseline Evaluation.
 - [x] AMR-to-text plan for the silver dataset.
-- [ ] Define multilingual models gonna be used.
+- [x] Define multilingual models gonna be used.
 - [ ] Recheck that 1.1 has everything for the whole first chapter.
