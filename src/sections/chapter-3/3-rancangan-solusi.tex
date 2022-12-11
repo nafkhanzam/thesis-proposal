@@ -21,6 +21,7 @@ Augmentasi data untuk konstruksi dataset berkualitas silver mengambil bagian Tra
 Kalimat berbahasa Inggris dari dataset \AMR{} tersebut diubah menjadi kalimat berbahasa Indonesia dengan menggunakan mesin translasi.
 Model mesin translasi yang digunakan adalah model {OPUS-MT} \citek{tiedemann2020}.
 Graf \AMR{} berkualitas gold juga dilakukan \ti{parsing} menjadi kalimat berbahasa Inggris (AMR-to-text) untuk menambah jumlah variasi pasangan dataset.
+Model AMR-to-text yang digunakan adalah \gls{AMRBART}.
 Kalimat berbahasa Inggris hasil \ti{parsing} tersebut juga diubah menjadi kalimat berbahasa Indonesia dengan menggunakan mesin translasi.
 Maka akan terdapat dua pasangan kalimat berbahasa Inggris dan Indonesia untuk satu buah graf \AMR{}.
 Dua pasangan tersebut dilakukan \ti{cross join} untuk menghasilkan empat pasang data latih berkualitas silver.
@@ -41,7 +42,7 @@ Skema pelatihan yang digunakan hanya untuk yang melakukan \amrparsing{}.
 Pada skema pelatihan \ti{bilingual}, diperlukan sedikit modifikasi untuk melakukan \pretraining{} graf pada teknik \gls{AMRBART}.
 % Token \code{<s>} yang digunakan pada \gls{AMRBART} diganti menjadi kode bahasa yang digunakan.
 % Bahasa Inggris ditandai dengan token \code{<en>} dan Bahasa Indonesia ditandai dengan token \code{<id>}.
-Sesuai dengan skema pelatihan \ti{bilingual}, kalimat berbahasa Inggris dan Indonesia dilinearisasi secara sejajar sebagai input \pretraining{} maupun \finetuning{}.
+Sesuai dengan skema pelatihan \ti{bilingual}, kalimat berbahasa Indonesia dan Inggris dilinearisasi secara sejajar sebagai input \pretraining{} maupun \finetuning{}.
 Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa tersebut dapat dilihat pada \cref{tab:3-pt-ft-strategies}.
 Output pelatihan tetap berupa graf \AMR{} yang dilinearisasi, seperti \code{<g>g1,g2,...,gm</g>}.
 Bentuk graf pada input maupun output berupa format PENMAN.
@@ -50,7 +51,7 @@ Bentuk graf pada input maupun output berupa format PENMAN.
   {sections/chapter-3/3-pt-ft-strategies.csv}
   {
     Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual}.
-    \code{a1,a2,...,an1} merupakan token untuk Bahasa Inggris, sedangkan \code{b1,b2,...,bn2} merupakan token untuk Bahasa Indonesia.
+    \code{a1,a2,...,an1} merupakan token untuk Bahasa Indonesia, sedangkan \code{b1,b2,...,bn2} merupakan token untuk Bahasa Inggris.
     \code{$t/g$} merupakan teks/graf \ti{original}.
     \code{$\hat{t}/\hat{g}$} merupakan teks/graf yang \ti{noisy} (hasil \denoising{}).
     \code{$\bar{t}/\bar{g}$} merupakan teks/graf yang hilang.
