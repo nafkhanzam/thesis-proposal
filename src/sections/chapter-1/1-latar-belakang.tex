@@ -46,8 +46,11 @@ Model \gls{XL-AMR} memiliki kinerja SMATCH 53.0 untuk Bahasa Cina, 53.0 untuk Ba
 % XL-AMR Indonesia
 Pada Bahasa Indonesia, beberapa teknik \amrparsing{} untuk teks berbahasa Indonesia juga dikembangkan.
 Beberapa \amrparsing{} Bahasa Indonesia yang telah dikembangkan adalah \amrparsing{} berbasis aturan \citek{severina2019}, berbasis \ti{dependency parser} \citek{ilmy2020}, dan berbasis lintas bahasa \citek{putra2022}.
-Teknik \amrparsing{} oleh \textcite{putra2022} menggunakan teknik \ti{training} \gls{XL-AMR} \citek{blloshmi2020} dengan model Sequence-to-Graph Transduction \citek{zhang2019} untuk melakukan \amrparsing{} dari kalimat berbahasa Indonesia menjadi graf \AMR{} berbahasa Inggris.
-\amrparsing{} dengan Sequence-to-Graph Transduction \citek{zhang2019} menggunakan pendekatan dua tahap \ti{parsing}, yaitu tahap identifikasi konsep dan tahap prediksi relasi.
+Teknik \amrparsing{} oleh \textcite{putra2022} menggunakan teknik \ti{training} \gls{XL-AMR} \citek{blloshmi2020} dengan model \gls{stog} \citek{zhang2019} untuk melakukan \amrparsing{} dari kalimat berbahasa Indonesia menjadi graf \AMR{} berbahasa Inggris.
+Model \gls{stog} menggunakan pendekatan dua tahap \ti{parsing}, yaitu tahap identifikasi konsep dan tahap prediksi relasi.
+Model \amrparsing{} lintas bahasa memanfaatkan \mwordem{} dalam memahami konteks setiap bahasa yang dibutuhkan.
+Model \gls{stog} menggunakan mBERT \citek{conneau2019} sebagai \mwordem{}.
+Terdapat beberapa model lain yang mendukung \mwordem{}, seperti mBART \citek{liu2020} yang merupakan versi \multil{} dari \gls{BART} \citek{lewis2020}, dan mT5 \citek{xue2021} yang merupakan versi \multil{} dari T5 \citek{raffel2020}.
 Teknik \amrparsing{} lintas bahasa dapat memanfaatkan dataset silver yang dapat dibuat dari dataset AMR dan korpus paralel.
 Korpus paralel pasangan Bahasa Inggris dan Bahasa Indonesia seperti PANL-BPPT \citek{bppt2009} dan IWSLT2017 \citek{cettolo2017} dapat digunakan untuk \amrparsing{} untuk kalimat berbahasa Indonesia.
 
@@ -64,8 +67,9 @@ Karena keterbatasan jumlah dataset yang dipunya untuk melatih model \amrparsing{
 Teknik tersebut meningkatkan kinerja SMATCH pada model XL-AMR \citek{blloshmi2020} menjadi 63.0 untuk Bahasa Cina, 73.7 untuk Bahasa Jernam, 76.1 untuk Bahasa Italia, dan 77.1 untuk Bahasa Spanyol.
 
 % PALM
-Teknik \amrparsing{} terbaik saat ini adalah teknik \gls{AMRBART} dengan kinerja SMATCH 85.4 pada dataset \AMR{} 2.0 dan 84.2 pada dataset \AMR{} 3.0 \citek{bai2022}.
-\gls{AMRBART} dibangun dari transformer-based \ti{language model} \gls{BART}.
+Model \amrparsing{} terbaik saat ini adalah \gls{AMRBART}.
+\gls{AMRBART} dibangun dari \ti{language model} \gls{BART} menggunakan teknik graf \pretraining{}.
+\gls{AMRBART} merupakan model \sota{} dengan kinerja SMATCH 85.4 pada dataset \AMR{} 2.0 dan 84.2 pada dataset \AMR{} 3.0 \citek{bai2022}.
 \gls{PALM} merupakan sebuah teknik pre-training yang dapat menghasilkan kualitas \ti{language model} yang cukup baik untuk \ti{task} generasi teks.
 \gls{PALM} dapat menghasilkan kinerja yang lebih baik dari \gls{BART} untuk \ti{task} \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
 \gls{PALM} belum pernah digunakan untuk \ti{task} \amrparsing{} dan membuka kemungkinan untuk menghasilkan kualitas yang lebih baik.
