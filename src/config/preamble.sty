@@ -383,6 +383,6 @@ Desember\fi~\number\year}
 \sethlcolor{red}
 \NewDocumentCommand{\todo}{o}{
   \IfNoValueTF{#1}
-  {\textcolor{white}{\hl{TODO}}}
-  {\textcolor{white}{\hl{TODO: #1}}}
+  {\textcolor{white}{\hl{\mbox{TODO}}}}
+  {\textcolor{white}{\hl{\mbox{TODO: #1}}}}
 }
