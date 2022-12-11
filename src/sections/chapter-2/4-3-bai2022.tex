@@ -1,26 +1,26 @@
 \subsection{\Glsfirst{AMRBART} \citek{bai2022}}
 
-\Glsfirst{PLM} telah terbukti dapat melakukan \textit{task} \amrparsing{} dan generasi AMR-to-text dengan baik.
-Namun, \gls{PLM} umumnya dilatih pada data tekstual, sehingga tidak optimal untuk melakukan generasi data terstruktur seperti \gls{AMR}.
-\textcite{bai2022} memperbaiki permasalahan tersebut dengan menambahkan strategi \textit{pre-training} pada model untuk mengintegrasikan informasi teks dan graf \gls{AMR}.
-Model ini melinearisasi graf \gls{AMR} ke sekuens sehingga baik AMR parsing dan AMR-to-text generation dapat dilakukan menggunakan model \gls{seq2seq}.
-Model ini melakukan pre-training pada struktur \gls{AMR} menggunakan \gls{BART}.
+\Glsfirst{PLM} telah terbukti dapat melakukan \ti{task} \amrparsing{} dan generasi AMR-to-text dengan baik.
+Namun, \gls{PLM} umumnya dilatih pada data tekstual, sehingga tidak optimal untuk melakukan generasi data terstruktur seperti \AMR{}.
+\textcite{bai2022} memperbaiki permasalahan tersebut dengan menambahkan strategi \pretraining{} pada model untuk mengintegrasikan informasi teks dan graf \AMR{}.
+Model ini melinearisasi graf \AMR{} ke sekuens sehingga baik AMR parsing dan AMR-to-text generation dapat dilakukan menggunakan model \gls{seq2seq}.
+Model ini melakukan pre-training pada struktur \AMR{} menggunakan \gls{BART}.
 
 % Mengikuti Kontes 2017, model ini mengadopsi algoritma Depth-First-Search (DFS) yang berhubungan dekat dengan natural language syntactic trees (Bevilacqua. 2021).
 
-Model ini mengenalkan dua strategi \textit{self-supervised training} dalam melakukan \textit{pre-training} model \gls{BART} pada graf \gls{AMR}.
-Dapat dilihat pada \cref{fig:4-3-pre-training-strategies}, strategi level \textit{denoising} simpul/sisi mendukung model untuk menangkap pengetahuan lokal mengenai simpul dan sisi.
-Strategi \textit{denoising} level graf mengarahkan model untuk memprediksi sub-graf yang dapat memfasilitasi pembelajaran graf.
+Model ini mengenalkan dua strategi \ti{self-supervised training} dalam melakukan \pretraining{} model \gls{BART} pada graf \AMR{}.
+Dapat dilihat pada \cref{fig:4-3-pre-training-strategies}, strategi level \ti{denoising} simpul/sisi mendukung model untuk menangkap pengetahuan lokal mengenai simpul dan sisi.
+Strategi \ti{denoising} level graf mengarahkan model untuk memprediksi sub-graf yang dapat memfasilitasi pembelajaran graf.
 \begin{enumerate}
-  \item \textit{Denoising} level simpul/sisi.
+  \item \ti{Denoising} level simpul/sisi.
   Pengaplikasian fungsi noise pada simpul dan sisi AMR untuk mengkonstruksi input graf yang kotor.
-  Fungsi noise ini diimplementasikan dengan \textit{masking} 15\% simpul dan 15\% sisi di setiap graf.
+  Fungsi noise ini diimplementasikan dengan \ti{masking} 15\% simpul dan 15\% sisi di setiap graf.
 
-  \item \textit{Denoising} level sub-graf.
-  \textit{Task} ini bertujuan untuk mengembalikan graf lengkap ketika diberikan sebagian dari graf.
-  Metode ini menghilangkan sub-graf secara acak dari graf dan mengubahnya dengan token \textit{mask}.
+  \item \ti{Denoising} level sub-graf.
+  \ti{Task} ini bertujuan untuk mengembalikan graf lengkap ketika diberikan sebagian dari graf.
+  Metode ini menghilangkan sub-graf secara acak dari graf dan mengubahnya dengan token \ti{mask}.
 \end{enumerate}
 
 \fig[1]{4-3-pre-training-strategies}
   {sections/chapter-2/4-3-pre-training-strategies.png}
-  {Ilustrasi strategi pre-training: 1) \textit{denoising} level simpul/sisi (a->b); 2) \textit{denoising} level sub-graf (c->b) \citek{bai2022}.}
+  {Ilustrasi strategi pre-training: 1) \ti{denoising} level simpul/sisi (a->b); 2) \ti{denoising} level sub-graf (c->b) \citek{bai2022}.}

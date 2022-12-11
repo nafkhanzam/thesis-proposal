@@ -1,60 +1,60 @@
 \subsection{\Glsfirst{SMATCH}}
 
-\gls{SMATCH} merupakan metrics untuk mengukur kesamaan antara dua representasi semantik.
+\SMATCH{} merupakan metrics untuk mengukur kesamaan antara dua representasi semantik.
 Tujuan utama dari semantik parsing adalah untuk menghasilkan hubungan relasi semantik dalam teks.
 Hasil dari semantik parsing ini biasanya direpresentasikan oleh struktur semantik suatu kalimat utuh.
 Evaluasi dari struktur ini diperlukan untuk tugas parsing semantik dan tugas anotasi semantik yang menghasilkan linguistic resource untuk semantic parsing.
-Secara definisi, \gls{SMATCH} merupakan nilai f-score maksimal yang didapatkan berdasarkan padanan satu-satu antara dua representasi semantik \citek{cai2013}.
+Secara definisi, \SMATCH{} merupakan nilai f-score maksimal yang didapatkan berdasarkan padanan satu-satu antara dua representasi semantik \citek{cai2013}.
 
-Pada kasus ini, \gls{SMATCH} digunakan untuk mengukur kesamaan antara dua \gls{AMR}.
-Sebagai contoh, terdapat dua kalimat representasi \gls{AMR} yaitu \quotei{the boy wants to go} dan \quotei{the boy wants the football}.
-Perhitungan \gls{SMATCH} dari kedua \gls{AMR} ini memerlukan kedua \gls{AMR} dalam bentuk format logika proposisi yang terdiri dari relasi(variabel, konsep) dan relasi(variabel1, variabel2).
-Setelah itu dapat dihitung presisi, recall, dan f-score dari kesamaan logika proposisi kedua \gls{AMR} tersebut.
+Pada kasus ini, \SMATCH{} digunakan untuk mengukur kesamaan antara dua \AMR{}.
+Sebagai contoh, terdapat dua kalimat representasi \AMR{} yaitu \quotei{the boy wants to go} dan \quotei{the boy wants the football}.
+Perhitungan \SMATCH{} dari kedua \AMR{} ini memerlukan kedua \AMR{} dalam bentuk format logika proposisi yang terdiri dari relasi(variabel, konsep) dan relasi(variabel1, variabel2).
+Setelah itu dapat dihitung presisi, recall, dan f-score dari kesamaan logika proposisi kedua \AMR{} tersebut.
 
 Sebagai contoh, terdapat dua kalimat \quotei{the boy wants to go} dan \quotei{the boy wants the football}.
-Kedua kalimat tersebut diubah menjadi bentuk \gls{AMR} dengan format logika.
-Logika proposisi dari representasi \gls{AMR} pertama dapat dilihat pada \cref{fig:first-logical-proposition}.
+Kedua kalimat tersebut diubah menjadi bentuk \AMR{} dengan format logika.
+Logika proposisi dari representasi \AMR{} pertama dapat dilihat pada \cref{fig:first-logical-proposition}.
 Sedangkan bentuk logika proposisi untuk representasi kedua dapat dilihat pada \cref{fig:second-logical-proposition}.
-Berdasarkan contoh tersebut, terdapat 6 cara untuk memasangkan variabel-variabel antara kedua \gls{AMR} tersebut.
-\cref{tab:smatch-matching} menunjukkan kombinasi cara memasangkan variabel kedua \gls{AMR} tersebut.
+Berdasarkan contoh tersebut, terdapat 6 cara untuk memasangkan variabel-variabel antara kedua \AMR{} tersebut.
+\cref{tab:smatch-matching} menunjukkan kombinasi cara memasangkan variabel kedua \AMR{} tersebut.
 
 \fig{first-logical-proposition}
   {sections/chapter-2/1-1-first-logical-proposition.png}
-  {Logika proposisi untuk \gls{AMR} dari kalimat \quotei{the boy wants to go}.}
+  {Logika proposisi untuk \AMR{} dari kalimat \quotei{the boy wants to go}.}
 
 \fig{second-logical-proposition}
   {sections/chapter-2/1-1-second-logical-proposition.png}
-  {Logika proposisi untuk \gls{AMR} dari kalimat \quotei{the boy wants the football}.}
+  {Logika proposisi untuk \AMR{} dari kalimat \quotei{the boy wants the football}.}
 
 \tabl{smatch-matching}
   {sections/chapter-2/1-1-smatch-matching.csv}
   {
-    Kombinasi pasangan dan kalkulasi F-Score kedua \gls{AMR} \citek{cai2013}.
+    Kombinasi pasangan dan kalkulasi F-Score kedua \AMR{} \citek{cai2013}.
     Hasil skor SMATCH diambil dari nilai F-Score tertinggi, yaitu 0.73.
   }
 
-Karena kedua \gls{AMR} ini memiliki variabel yang berbeda dan tidak ada informasi mengenai hubungan antar variabel yang ada, perlu dicari semua kemungkinan dari pemetaan variabel yang ada.
-Dari seluruh pemetaan, nilai \gls{SMATCH} akan mengambil hasil yang memiliki f-score tertinggi.
+Karena kedua \AMR{} ini memiliki variabel yang berbeda dan tidak ada informasi mengenai hubungan antar variabel yang ada, perlu dicari semua kemungkinan dari pemetaan variabel yang ada.
+Dari seluruh pemetaan, nilai \SMATCH{} akan mengambil hasil yang memiliki f-score tertinggi.
 Untuk mengurangi waktu yang dibutuhkan dalam evaluasi tanpa menurunkan akurasi, dimanfaatkan metode hill-climbing.
 Metode ini bekerja secara greedy dan tidak seoptimal bruteforce, namun bisa menghasilkan perhitungan yang cukup baik.
 % Metode ini dilakukan dengan cara:
 % \begin{enumerate}
-%   \item Memetakan satu-satu antara m variable dari \gls{AMR} pertama dan n variable dari \gls{AMR} kedua.
+%   \item Memetakan satu-satu antara m variable dari \AMR{} pertama dan n variable dari \AMR{} kedua.
 %   \item Menghitung jumlah proposisi yang dipetakan dan melakukan hill-climbing.
 %   \item Mencoba hal ini untuk m (n-1) neighbors pemetaan yang ada lalu dipilih pemetaan terbaik.
 %   \item Melakukan repetisi langkah 2-3 hingga tidak ada tetangga yang menghasilkan pemetaan lebih baik.
 % \end{enumerate}
 
-% Varian lain dalam evaluasi \gls{SMATCH} adalah \textit{finegrained} \gls{SMATCH} \citek{damonte2017}.
+% Varian lain dalam evaluasi \SMATCH{} adalah \ti{finegrained} \SMATCH{} \citek{damonte2017}.
 % Metode ini membandingkan berbagai aspek dari graf yang dihasilkan untuk menilai kelebihan dan kekurangan yang ada.
-% Nilai-nilai evaluasi \textit{finegrained} yang bergantung pada \gls{SMATCH} adalah sebagai berikut.
+% Nilai-nilai evaluasi \ti{finegrained} yang bergantung pada \SMATCH{} adalah sebagai berikut.
 % \begin{enumerate}
 %   \item Unlabeled.
-%   Perhitungan \gls{SMATCH} dilakukan dengan kondisi semua label relasi yang ada pada grad \gls{AMR} diubah menjadi label dummy sehingga evaluasi \gls{SMATCH} terfokus pada struktur graf dan label simpul saja.
+%   Perhitungan \SMATCH{} dilakukan dengan kondisi semua label relasi yang ada pada grad \AMR{} diubah menjadi label dummy sehingga evaluasi \SMATCH{} terfokus pada struktur graf dan label simpul saja.
 %   \item No WSD.
-%   Semua simpul yang berupa fram propBank akan dihilangkan terlebih dahulu sense-nya sebelum proses perhitungan \gls{SMATCH} sehingga nilai ini menunjukkan \gls{SMATCH} bila tidak ada kesalahan pada Word Sense Disambiguation.
+%   Semua simpul yang berupa fram propBank akan dihilangkan terlebih dahulu sense-nya sebelum proses perhitungan \SMATCH{} sehingga nilai ini menunjukkan \SMATCH{} bila tidak ada kesalahan pada Word Sense Disambiguation.
 %   \item Reentrancies.
-%   Pengambilan logika proposisi yang variabelnya memiliki lebih dari satu parent lalu dilakukan perhitungan \gls{SMATCH} pada graf yang dihasilkan.
+%   Pengambilan logika proposisi yang variabelnya memiliki lebih dari satu parent lalu dilakukan perhitungan \SMATCH{} pada graf yang dihasilkan.
 %   \item SRL.
-%   Penilaian yang difokuskan pada identifikasi struktur predikat-argumen dengan cara menghitung \gls{SMATCH} hanya pada logika proposisi yang mengandung relasi: ARGx dan logika proposisi yang berhubungan dengannya.
+%   Penilaian yang difokuskan pada identifikasi struktur predikat-argumen dengan cara menghitung \SMATCH{} hanya pada logika proposisi yang mengandung relasi: ARGx dan logika proposisi yang berhubungan dengannya.
 % \end{enumerate}

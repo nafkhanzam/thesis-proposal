@@ -4,12 +4,12 @@ Penelitian oleh \citek{severina2019} membahas mengenai pembangunan sistem pering
 Pendekatan yang digunakan adalah \amrparsing{} yang memanfaatkan aturan dan kamus untuk membangun graf AMR berbahasa Indonesia dari teks berbahasa Indonesia.
 Aturan pembangunan graf tersebut adalah sebagai berikut:
 \begin{enumerate}
-  \item Simpul akar graf AMR yang dihasilkan ditentukan dengan \textit{dependency parser}.
+  \item Simpul akar graf AMR yang dihasilkan ditentukan dengan \ti{dependency parser}.
   \item ARG0 dan ARG1 dari suatu predikat ditentukan dengan melihat apakah predikat merupakan kata kerja aktif atau pasif.
   Argumen akan diisi dengan subjek dan objek dari kata kerja terkait.
   \item Keterangan dari predikat akan menjadi ARG2.
 \end{enumerate}
 
 Teknik \amrparsing{} ini masih terbatas dengan banyak jumlah relasi ARG hanya sebanyak 3 buah.
-Konsep pada \gls{AMR} yang dihasilkan masih berupa predikat yang diberi label \quotei{-01} di belakangnya dikarenakan PropBank berbahasa Indonesia masih belum ada.
-Teknik evaluasi yang digunakan pada penilitian ini tidak menggunakan \gls{SMATCH}, namun menggunakan ukuran akurasi kemunculan simpul pada \gls{AMR} yang dihasilkan dibandingkan dengan referensinya.
+Konsep pada \AMR{} yang dihasilkan masih berupa predikat yang diberi label \quotei{-01} di belakangnya dikarenakan PropBank berbahasa Indonesia masih belum ada.
+Teknik evaluasi yang digunakan pada penilitian ini tidak menggunakan \SMATCH{}, namun menggunakan ukuran akurasi kemunculan simpul pada \AMR{} yang dihasilkan dibandingkan dengan referensinya.

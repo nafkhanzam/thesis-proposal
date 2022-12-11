@@ -1,7 +1,7 @@
 \subsection{Pembangkitan Abstract Meaning Representation Lintas Bahasa dari Kalimat Berbahasa Indonesia \citek{putra2022}}
 
 Penelitian ini melakukan \amrparsing{} dari kalimat berbahasa Indonesia dengan pendekatan cross lingual menggunakan dataset berkualitas silver dan gold.
-Pada pembangkitan ini, dilakukan pemilihan kalimat berdasarkan kedekatan semantiknya menggunakan \textit{cosine similarity} sehingga kalimat dengan kinerja rendah dapat dikeluarkan terlebih dahulu dan mengurangi gap kinerja model.
+Pada pembangkitan ini, dilakukan pemilihan kalimat berdasarkan kedekatan semantiknya menggunakan \cossim{} sehingga kalimat dengan kinerja rendah dapat dikeluarkan terlebih dahulu dan mengurangi gap kinerja model.
 Sumber daya yang digunakan dalam penelitian ini adalah \mwordem{} Numberbatch yang memiliki word embedding untuk bahasa Indo-Malay dan Inggris.
 Untuk meningkatkan efisiensi dari \wordem{} tersebut, beberapa karakter Cina dan Arab yang tidak muncul dalam dataset AMR 2.0 dihapus.
 Untuk sumber daya contextual \mwordem{}, digunakan beberapa alternatif berupa mBERT \citek{conneau2019}, XLM-R \citek{conneau2019}, dan mT5 \citek{xue2021}.
@@ -11,12 +11,12 @@ Tahapan yang dilakukan adalah sebagai berikut:
 \begin{enumerate}
   \item Kontruksi korpus sebagai dataset yang dibutuhkan.
   \item Pelatihan model \amrparsing{} lintas bahasa.
-  \item Inferensi kalimat berbahasa Indonesia menjadi graf \gls{AMR} berbahasa Inggris.
+  \item Inferensi kalimat berbahasa Indonesia menjadi graf \AMR{} berbahasa Inggris.
 \end{enumerate}
 
-\fig[0.7]{4-6-solution-diagram}{sections/chapter-2/4-6-solution-diagram.png}{Gambaran keseluruhan sistem rancangan solusi pembangunan model \textit{cross-lingual} untuk Bahasa Indonesia \citek{putra2022}.}
+\fig[0.7]{4-6-solution-diagram}{sections/chapter-2/4-6-solution-diagram.png}{Gambaran keseluruhan sistem rancangan solusi pembangunan model \ti{cross-lingual} untuk Bahasa Indonesia \citek{putra2022}.}
 
-Proses evaluasi pada penelitian ini dilakukan dengan pelaksanaan inferensi pada kalimat berbahasa Indonesia dari dataset gold untuk menghasilkan \gls{AMR} berbahasa Inggris.
-Dari graf \gls{AMR} ini akan dilakukan perhitungan skor \gls{SMATCH} dengan membandingkannya dengan graf \gls{AMR} gold.
-Konfigurasi model \amrparsing{} lintas bahasa yang memiliki skor \gls{SMATCH} terbaik adalah dengan \mwordem{} dari \gls{PLM} mT5 dengan skor \gls{SMATCH} 51.0.
-Namun teknik \textit{baseline} \textit{translate-and-parse pipeline} masih memiliki skor \gls{SMATCH} yang lebih tinggi, yaitu 62.5.
+Proses evaluasi pada penelitian ini dilakukan dengan pelaksanaan inferensi pada kalimat berbahasa Indonesia dari dataset gold untuk menghasilkan \AMR{} berbahasa Inggris.
+Dari graf \AMR{} ini akan dilakukan perhitungan skor \SMATCH{} dengan membandingkannya dengan graf \AMR{} gold.
+Konfigurasi model \amrparsing{} lintas bahasa yang memiliki skor \SMATCH{} terbaik adalah dengan \mwordem{} dari \gls{PLM} mT5 dengan skor \SMATCH{} 51.0.
+Namun teknik \ti{baseline} \ti{translate-and-parse pipeline} masih memiliki skor \SMATCH{} yang lebih tinggi, yaitu 62.5.

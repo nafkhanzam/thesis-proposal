@@ -1,15 +1,15 @@
 \subsection{Pembangkitan Graf Abstract Meaning Representation Berbahasa Indonesia \citek{ilmy2020}}
 
 Pada penelitian ini, dilakukan pembangkitan graf AMR berbahasa Indonesia menggunakan pembelajaran mesin.
-Pendekatan yang digunakan adalah pendekatan menggunakan hasil \textit{dependency parsing} untuk mengetahui hubungan antar kata.
+Pendekatan yang digunakan adalah pendekatan menggunakan hasil \ti{dependency parsing} untuk mengetahui hubungan antar kata.
 Dataset yang digunakan untuk melatih pembangkitan graf AMR masih terbatas dan hanya terdiri dari kalimat sederhana.
 Metode dalam penelitian ini dikembangkan berdasarkan pada penelitian \textcite{zhang2019}.
 Metode tersebut melibatkan tiga tahap, yaitu:
 \begin{enumerate}
   \item Prediksi pasangan yang menghasilkan kandidat pasangan dengan konsep yang memiliki relasi dari input.
   \item Prediksi label yang melakukan prediksi mengenai relasi kandidat pasangan.
-  \item Melakukan \textit{post-process} dari kandidat pasangan berlabel untuk menghasilkan graf AMR yang valid.
+  \item Melakukan \ti{post-process} dari kandidat pasangan berlabel untuk menghasilkan graf AMR yang valid.
 \end{enumerate}
 
-Hasil dari metode ini dapat menghasilkan hasil yang baik untuk kalimat terstruktur yang simpel dengan skor \gls{SMATCH} 0.820 pada test dataset kalimat sederhana.
-Namun, masih untuk kalimat yang lebih kompleks, hasil masih belum memuaskan dengan skor \gls{SMATCH} 0.684 untuk topik b-salah-darat, 0.583 untuk topik c-gedung-roboh, 0.677 topik d-indo-fuji, 0.687 topik untuk fbunuh-diri, and 0.672 untuk topik g-gempa-dieng.
+Hasil dari metode ini dapat menghasilkan hasil yang baik untuk kalimat terstruktur yang simpel dengan skor \SMATCH{} 0.820 pada test dataset kalimat sederhana.
+Namun, masih untuk kalimat yang lebih kompleks, hasil masih belum memuaskan dengan skor \SMATCH{} 0.684 untuk topik b-salah-darat, 0.583 untuk topik c-gedung-roboh, 0.677 topik d-indo-fuji, 0.687 topik untuk fbunuh-diri, and 0.672 untuk topik g-gempa-dieng.

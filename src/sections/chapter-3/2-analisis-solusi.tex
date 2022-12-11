@@ -6,28 +6,28 @@ Pada \amrparsing{}, dataset silver diperlukan untuk membangun dataset lintas bah
 Jumlah dataset silver dapat diperbanyak dengan cara-cara berikut:
 \begin{enumerate}
   \item Menggunakan dataset AMR 3.0.
-  Dataset AMR 3.0 memiliki sekitar 20,000 pasangan kalimat dan graf \gls{AMR} lebih banyak dibandingkan dengan Dataset AMR 2.0.
+  Dataset AMR 3.0 memiliki sekitar 20,000 pasangan kalimat dan graf \AMR{} lebih banyak dibandingkan dengan Dataset AMR 2.0.
 
   \item Menggunakan korpus paralel tambahan IWSLT17.
   \textcite{putra2022} hanya menggunakan korpus paralel BPPT-PANL \citek{bppt2009}.
   Korpus paralel IWSLT17 \citek{cettolo2017} dapat menambah sampai 107,329 pasang dataset silver.
 
   \item Mengadopsi teknik augmentasi data oleh \textcite{lee2022}.
-  Melakukan \textit{parsing} graf \gls{AMR} dari dataset gold menjadi teks berbahasa Inggris, lalu dilakukan translasi ke Bahasa Indonesia.
+  Melakukan \ti{parsing} graf \AMR{} dari dataset gold menjadi teks berbahasa Inggris, lalu dilakukan translasi ke Bahasa Indonesia.
   Teknik ini dapat menambah jumlah pasangan dataset silver menjadi sampai dua kali lipat.
 \end{enumerate}
 
-Peningkatan kualitas dataset silver dapat dilakukan dengan menggunakan teknik \textit{ensemble} oleh \textcite{lee2022}.
-Berdasarkan hasil penelitian \textcite{lee2022}, algoritma graphene-Smatch \citek{hoang2021} dengan melakukan \textit{ensembling} 5 model \textit{state of the art} \gls{AMR} \textit{parser} dapat meningkatkan kualitas dataset silver secara signifikan.
+Peningkatan kualitas dataset silver dapat dilakukan dengan menggunakan teknik \ti{ensemble} oleh \textcite{lee2022}.
+Berdasarkan hasil penelitian \textcite{lee2022}, algoritma graphene-Smatch \citek{hoang2021} dengan melakukan \ti{ensembling} 5 model \ti{state of the art} \AMR{} \ti{parser} dapat meningkatkan kualitas dataset silver secara signifikan.
 
-Teknik \textit{self-supervised training} oleh \textcite{bai2022} yang menggunakan \textit{language model} \gls{BART} terbukti dapat meningkatkan skor \gls{SMATCH} untuk \amrparsing{}.
-Teknik tersebut belum dicoba untuk \textit{cross-lingual} \amrparsing{}.
-Konfigurasi \textit{training} model \textit{cross-lingual} \amrparsing{} telah diusulkan oleh \textcite{blloshmi2020}.
-Teknik \textit{self-supervised training} oleh \textcite{bai2022} tersebut dapat dilakukan dengan konfigurasi oleh \textcite{blloshmi2020} untuk membangun model \textit{cross-lingual} untuk \textit{task} \amrparsing{}.
+Teknik \ti{self-supervised training} oleh \textcite{bai2022} yang menggunakan \ti{language model} \gls{BART} terbukti dapat meningkatkan skor \SMATCH{} untuk \amrparsing{}.
+Teknik tersebut belum dicoba untuk \ti{cross-lingual} \amrparsing{}.
+Konfigurasi \ti{training} model \ti{cross-lingual} \amrparsing{} telah diusulkan oleh \textcite{blloshmi2020}.
+Teknik \ti{self-supervised training} oleh \textcite{bai2022} tersebut dapat dilakukan dengan konfigurasi oleh \textcite{blloshmi2020} untuk membangun model \ti{cross-lingual} untuk \ti{task} \amrparsing{}.
 
-Teknik \textit{masked pre-training} \textit{language model} \gls{PALM} \citek{bi2020} dapat menghasilkan kinerja yang lebih baik dari \gls{MASS}, \gls{BART}, maupun T5 untuk \textit{task} \textit{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
+Teknik \ti{masked pre-training} \ti{language model} \gls{PALM} \citek{bi2020} dapat menghasilkan kinerja yang lebih baik dari \gls{MASS}, \gls{BART}, maupun T5 untuk \ti{task} \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
 \gls{PALM} dibangun dengan fokus untuk generasi teks penerus input yang diberikan.
-\gls{PALM} diharapkan dapat meningkatkan kualitas \amrparsing{} dengan menggunakan teknik \textit{masking} oleh \textcite{bai2022}.
+\gls{PALM} diharapkan dapat meningkatkan kualitas \amrparsing{} dengan menggunakan teknik \ti{masking} oleh \textcite{bai2022}.
 Namun untuk \amrparsing{} lintas bahasa diperlukan model \multil{} \gls{PALM}.
-\Multil{} \gls{PALM} dapat dibangun dengan melanjutkan \textit{pre-training} dengan data baru berbahasa Indonesia.
-Dataset tak berlabel berbahasa Indonesia yang digunakan oleh model mBART \citek{tang2020} dapat digunakan untuk melakukan \textit{pre-training} \multil{} \gls{PALM}.
+\Multil{} \gls{PALM} dapat dibangun dengan melanjutkan \pretraining{} dengan data baru berbahasa Indonesia.
+Dataset tak berlabel berbahasa Indonesia yang digunakan oleh model mBART \citek{tang2020} dapat digunakan untuk melakukan \pretraining{} \multil{} \gls{PALM}.

@@ -1,32 +1,32 @@
-\section{\textit{Language Model}}
+\section{\ti{Language Model}}
 
 Teks yang dapat dipahami oleh manusia tidak dapat dipahami secara langsung oleh model \gls{NLP} sehingga diperlukan sebuah bentuk representasi lain.
-Ada beberapa teknik dalam membuat representasi dari sebuah teks, seperti \textit{bag of words}, \textit{n-gram}, \wordem{}, \gls{SRL}, dan \gls{AMR}.
-Dari representasi-representasi tersebut, dapat dilakukan berbagai macam \textit{task} seperti peringkasan teks, klasifikasi sentimen, mesin translasi, \textit{question-answering}, deteksi parafrasa, dan lain-lain.
+Ada beberapa teknik dalam membuat representasi dari sebuah teks, seperti \ti{bag of words}, \ti{n-gram}, \wordem{}, \gls{SRL}, dan \AMR{}.
+Dari representasi-representasi tersebut, dapat dilakukan berbagai macam \ti{task} seperti peringkasan teks, klasifikasi sentimen, mesin translasi, \ti{question-answering}, deteksi parafrasa, dan lain-lain.
 
 \Wordem{} merupakan representasi vektor berdimensi tinggi yang merepresentasikan kedudukan sebuah kata di antara kata-kata lain.
 \Wordem{} dapat dibentuk dengan berbagai metode.
 Ada metode yang tidak memberikan konteks pada kata seperti Word2Vec \citek{mikolov2013}, GloVe \citek{pennington2014}, dan FastText \citek{bojanowski2017}.
-Metode tersebut menghasilkan yang disebut dengan \textit{non-contextual} \wordem{}.
-Ada juga metode yang memberikan konteks pada kata dari sebuah kalimat, yang disebut dengan \textit{contextual} \wordem{}.
+Metode tersebut menghasilkan yang disebut dengan \ti{non-contextual} \wordem{}.
+Ada juga metode yang memberikan konteks pada kata dari sebuah kalimat, yang disebut dengan \ti{contextual} \wordem{}.
 Dalam memahami konteks sebuah kata dari sebuah kalimat, diperlukan untuk memahami membaca keseluruhan kalimat tersebut.
 
 \Glsfirst{RNN}, \glsfirst{LSTM}, dan \glsfirst{GRU} kerap digunakan sebagai pendekatan sequence modeling dan permasalahan transduction seperti language modeling dan machine translation.
 Pendekatan tersebut berguna untuk memahami konteks sebuah kata pada suatu kalimat.
-Transformer merupakan sebuah sequence-to-sequence model yang terdiri dari \textit{encoder} dan \textit{decoder} \citek{vaswani2017}.
+Transformer merupakan sebuah sequence-to-sequence model yang terdiri dari \ti{encoder} dan \ti{decoder} \citek{vaswani2017}.
 Transformer bergantung sepenuhnya terhadap mekanisme atensi untuk menggambarkan ketergantungan global antara input dan output.
 Model berbasis transformer dapat berjalan secara paralel sehingga dapat mempercepat proses training.
 
-Salah satu pengembangan \textit{encoder} dari model transformer adalah \glsfirst{BERT}.
+Salah satu pengembangan \ti{encoder} dari model transformer adalah \glsfirst{BERT}.
 \gls{BERT} merupakan teknik machine learning berbasis transformer untuk \gls{NLP} yang dikembangkan oleh Google \citek{devlin2019}.
 \gls{BERT} memiliki kemampuan untuk memahami konteks dalam sebuah kalimat dan menggunakannya untuk menghasilkan hasil yang lebih akurat daripada model pembelajaran mesin sebelumnya.
-\gls{BERT} merupakan pengembangan komponen \textit{encoder} pada model transformer.
-\gls{BERT} dilatih terhadap dua \textit{task} yaitu \textit{language modeling} dan \textit{next sentence prediction}.
+\gls{BERT} merupakan pengembangan komponen \ti{encoder} pada model transformer.
+\gls{BERT} dilatih terhadap dua \ti{task} yaitu \ti{language modeling} dan \ti{next sentence prediction}.
 Sebagai hasil dari proses pembelajaran ini adalah, \gls{BERT} mempelajari embedding kontekstual untuk kata-kata yang ada.
 
 Kemudian dikembangkan \glsfirst{BART} yang mampu melakukan denoising autoencoder yang memapping dokumen terkorupsi terhadap dokumen originalnya \citek{lewis2020}.
 \gls{BART} diimplementasikan sebagai model berbasis transformer dengan bidirectional encoder dan left-to-right autoregressive decoder.
-\gls{BART} memiliki arsitektur \textit{encoder} seperti \gls{BERT} \citek{devlin2019} dan \textit{decoder} seperti \gls{GPT2} \citek{radford2019}.
+\gls{BART} memiliki arsitektur \ti{encoder} seperti \gls{BERT} \citek{devlin2019} dan \ti{decoder} seperti \gls{GPT2} \citek{radford2019}.
 \gls{BART} \citek{lewis2020} adalah auto-encoder yang diimplementasikan sebagai model berbasis \gls{seq2seq} pada standar arsitektur Transformer \citek{vaswani2017}.
 \gls{BART} di-train untuk merekonstruksi teks original berbasis teks terkorupsi yang digenerasi oleh 5 fungsi noising berikut ini.
 \begin{enumerate}
@@ -48,14 +48,14 @@ Kemudian dikembangkan \glsfirst{BART} yang mampu melakukan denoising autoencoder
 %   \item \gls{BERT} menggunakan tambahan feed-forward neural network sebelum memprediksi kata, \gls{BART} tidak.
 % \end{enumerate}
 
-Dalam menangani \textit{task} yang memerlukan lebih dari satu bahasa, seperti mesin translasi, digunakan representasi \mwordem{}.
-Model \multil{} dapat dibangun dengan menambahkan \textit{vocabulary} dari bahasa lain dalam data \textit{training}.
+Dalam menangani \ti{task} yang memerlukan lebih dari satu bahasa, seperti mesin translasi, digunakan representasi \mwordem{}.
+Model \multil{} dapat dibangun dengan menambahkan \ti{vocabulary} dari bahasa lain dalam data \ti{training}.
 \gls{BERT} juga dapat digunakan untuk menghasilkan \mwordem{}.
 \textcite{devlin2019} melatih \gls{BERT} dengan menggunakan dataset yang terdiri dari 101 bahasa untuk menghasilkan \multil{} model bernama mBERT.
 \gls{BART} juga dikembangkan untuk menghasilkan representasi \mwordem{} bernama mBART \citek{liu2020}.
 
-Menurut \textcite{bi2020}, teknik \textit{pre-training} pada \gls{BERT} dan \gls{BART} kurang konsisten dengan tujuan beberapa \textit{task} generasi teks, seperti \textit{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
-\textcite{bi2020} mengusulkan \glsfirst{PALM} dengan adanya skema yang menggabungkan \textit{pre-training} \textit{auto-encoding} dan \textit{autoregressive} \textit{language model} pada korpus besar tak berlabel.
+Menurut \textcite{bi2020}, teknik \pretraining{} pada \gls{BERT} dan \gls{BART} kurang konsisten dengan tujuan beberapa \ti{task} generasi teks, seperti \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
+\textcite{bi2020} mengusulkan \glsfirst{PALM} dengan adanya skema yang menggabungkan \pretraining{} \ti{auto-encoding} dan \ti{autoregressive} \ti{language model} pada korpus besar tak berlabel.
 \gls{PALM} didesain untuk mengenerasi teks baru yang bergantung pada konteks.
-Skema ini menangani ketidakcocokan antara teknik \textit{pre-training} dan \textit{fine-tuning} yang ada sebelumnya.
+Skema ini menangani ketidakcocokan antara teknik \pretraining{} dan \ti{fine-tuning} yang ada sebelumnya.
 Namun, model \gls{PALM} untuk \mwordem{} belum pernah dikembangkan.

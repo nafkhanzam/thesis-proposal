@@ -1,44 +1,45 @@
 \section{\Glsfirst{AMR}}
 
 \Glsfirst{AMR} merupakan sebuah bahasa representasi semantik.
-\gls{AMR} adalah graf berakar, berlabel, terarah, dan bersiklus yang terdiri dari satu kalimat utuh.
-Tujuan dari \gls{AMR} mengabstraksikan kalimat dari representasi sintaktiknya, di mana kalimat-kalimat yang memiliki pengertian yang sama seharusnya memiliki \gls{AMR} yang sama, walaupun tidak direpresentasikan dengan kalimat yang sama.
-\gls{AMR} awalnya dibuat untuk kalimat berbahasa Inggris dan tidak digunakan sebagai bahasa secara umum \citek{banarescu2013}.
+\AMR{} adalah graf berakar, berlabel, terarah, dan bersiklus yang terdiri dari satu kalimat utuh.
+Tujuan dari \AMR{} mengabstraksikan kalimat dari representasi sintaktiknya, di mana kalimat-kalimat yang memiliki pengertian yang sama seharusnya memiliki \AMR{} yang sama, walaupun tidak direpresentasikan dengan kalimat yang sama.
+\AMR{} awalnya dibuat untuk kalimat berbahasa Inggris dan tidak digunakan sebagai bahasa secara umum \citek{banarescu2013}.
 
-\gls{AMR} menggunakan \textit{framesets} PropBank \citek{kingsbury2002} secara ekstensif untuk merepresentasikan predikat yang ada dalam kalimat.
+\AMR{} menggunakan \ti{framesets} PropBank \citek{kingsbury2002} secara ekstensif untuk merepresentasikan predikat yang ada dalam kalimat.
 Sebagai contoh, kalimat \quotei{the dog likes to eat} memiliki dua buah predikat di dalamnya, yaitu \quotei{likes} dan \quotei{eat}.
-Untuk menggunakan kedua predikat tersebut dalam graf \gls{AMR}, digunakan frame dari PropBank yang berkorespondensi dengan makna dari kedua predikat dalam kalimat.
+Untuk menggunakan kedua predikat tersebut dalam graf \AMR{}, digunakan frame dari PropBank yang berkorespondensi dengan makna dari kedua predikat dalam kalimat.
 
-Dalam pembentukan graf dari kalimat, \gls{AMR} tidak mempedulikan urutan dan langkah.
-Anotasi yang ada pada \gls{AMR} berisikan aturan-aturan untuk merepresentasikan berbagai macam kata, frasa, dan kalimat.
-Pada panduan tersebut tidak terdapat aturan eksplisit mengenai langkah pembentukan \gls{AMR} dari suatu kalimat dan bagaimana urutan yang harus diikuti.
+Dalam pembentukan graf dari kalimat, \AMR{} tidak mempedulikan urutan dan langkah.
+Anotasi yang ada pada \AMR{} berisikan aturan-aturan untuk merepresentasikan berbagai macam kata, frasa, dan kalimat.
+Pada panduan tersebut tidak terdapat aturan eksplisit mengenai langkah pembentukan \AMR{} dari suatu kalimat dan bagaimana urutan yang harus diikuti.
 Hal ini mendorong peneliti untuk berpikir secara fleksibel mengenai hubungan antara kalimat dan maknanya.
 
-Sebuah \gls{AMR} dapat dituliskan dalam beberapa format sebagai berikut.
+Sebuah \AMR{} dapat dituliskan dalam beberapa format sebagai berikut.
 
 \begin{enumerate}
   \item Format graf.
 
-  Karena \gls{AMR} berupa sebuah graf, maka sebuah graf \gls{AMR} dapat dituliskan dalam sebuah gambar graf.
-  Contoh sebuah graf \gls{AMR} dari kalimat \quotei{the boy wants to go} dapat dilihat pada \cref{fig:amr-graph-example}.
+  Karena \AMR{} berupa sebuah graf, maka sebuah graf \AMR{} dapat dituliskan dalam sebuah gambar graf.
+  Contoh sebuah graf \AMR{} dari kalimat \quotei{the boy wants to go} dapat dilihat pada \cref{fig:amr-graph-example}.
 
   \fig{amr-graph-example}{sections/chapter-2/1-amr-graph-example.png}
-    {Contoh sebuah graf \gls{AMR} dari kalimat \quotei{the boy wants to go} \citek{banarescu2013}.}
+    {Contoh sebuah graf \AMR{} dari kalimat \quotei{the boy wants to go} \citek{banarescu2013}.}
 
   \item Format PENMAN.
 
-  Untuk penulisan secara linear supaya lebih mudah diproses secara komputasi, sebuah \gls{AMR} dapat dilinearisasi menjadi format PENMAN.
+  Untuk penulisan secara linear supaya lebih mudah diproses secara komputasi, sebuah \AMR{} dapat dilinearisasi menjadi format PENMAN.
   Bila suatu entitas digunakan secara berulang, maka digunakan variabel sebagai referensi sebuah simpul pada graf yang dapat digunakan ulang.
-  Contoh sebuah \gls{AMR} dari kalimat \quotei{the boy wants to go} dalam format PENMAN dapat dilihat pada \cref{fig:amr-penman-example}.
+  Contoh sebuah \AMR{} dari kalimat \quotei{the boy wants to go} dalam format PENMAN dapat dilihat pada \cref{fig:amr-penman-example}.
 
   \fig{amr-penman-example}{sections/chapter-2/1-amr-penman-example.png}
-    {Contoh sebuah \gls{AMR} dari kalimat \quotei{the boy wants to go} dalam format PENMAN \citek{banarescu2013}.}
+    {Contoh sebuah \AMR{} dari kalimat \quotei{the boy wants to go} dalam format PENMAN \citek{banarescu2013}.}
 
   \item Format logika.
 
   Format logika merepresentasikan keterhubungan antar simpul dan/atau sisi dari graf.
-  Contoh sebuah \gls{AMR} dari kalimat \quotei{the boy wants to go} dalam format logika dapat dilihat pada \cref{fig:amr-logic-example}.
+  Contoh sebuah \AMR{} dari kalimat \quotei{the boy wants to go} dalam format logika dapat dilihat pada \cref{fig:amr-logic-example}.
 
-  \fig{amr-logic-example}{sections/chapter-2/1-amr-logic-example.png}
-    {Contoh sebuah \gls{AMR} dari kalimat \quotei{the boy wants to go} dalam format logika \citek{banarescu2013}.}
+  \fig{amr-logic-example}
+    {sections/chapter-2/1-amr-logic-example.png}
+    {Contoh sebuah \AMR{} dari kalimat \quotei{the boy wants to go} dalam format logika \citek{banarescu2013}.}
 \end{enumerate}
