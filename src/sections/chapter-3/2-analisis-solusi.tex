@@ -20,10 +20,15 @@ Jumlah dataset silver dapat diperbanyak dengan cara-cara berikut:
 Peningkatan kualitas dataset silver dapat dilakukan dengan menggunakan teknik \ti{ensemble} oleh \textcite{lee2022}.
 Berdasarkan hasil penelitian \textcite{lee2022}, algoritma graphene-Smatch \citek{hoang2021} dengan melakukan \ti{ensembling} 5 model \ti{state of the art} \AMR{} \ti{parser} dapat meningkatkan kualitas dataset silver secara signifikan.
 
-Teknik \ti{self-supervised training} oleh \textcite{bai2022} yang menggunakan \ti{language model} \gls{BART} terbukti dapat meningkatkan skor \SMATCH{} untuk \amrparsing{}.
-Teknik tersebut belum dicoba untuk \ti{cross-lingual} \amrparsing{}.
-Konfigurasi \ti{training} model \ti{cross-lingual} \amrparsing{} telah diusulkan oleh \textcite{blloshmi2020}.
-Teknik \ti{self-supervised training} oleh \textcite{bai2022} tersebut dapat dilakukan dengan konfigurasi oleh \textcite{blloshmi2020} untuk membangun model \ti{cross-lingual} untuk \ti{task} \amrparsing{}.
+Teknik \pretraining{} graf oleh \textcite{bai2022} yang menggunakan \ti{language model} \gls{BART} terbukti dapat meningkatkan skor \SMATCH{} untuk \amrparsing{}.
+Teknik tersebut belum dicoba untuk \crosslingual{} \amrparsing{}.
+Skema model pelatihan \crosslingual{} \amrparsing{} telah diusulkan oleh \textcite{blloshmi2020}, yaitu \ti{zero-shot}, \ti{language-specific}, dan \ti{bilingual}.
+\cref{fig:2-xl-amr-training-schemas} menunjukkan tiga skema pelatihan tersebut.
+Teknik \pretraining{} graf oleh \textcite{bai2022} tersebut dapat dilakukan dengan skema pelatihan \textcite{blloshmi2020} untuk membangun model \crosslingual{} untuk \ti{task} \amrparsing{}.
+
+\fig{2-xl-amr-training-schemas}
+  {sections/chapter-3/2-xl-amr-training-schemas.png}
+  {Model pelatihan \crosslingual{} untuk Bahasa Indonesia: (a) \ti{zero-shot}, (b)\ti{language-specific}, dan (c) \ti{bilingual} \citek{putra2022}.}
 
 Teknik \ti{masked pre-training} \ti{language model} \gls{PALM} \citek{bi2020} dapat menghasilkan kinerja yang lebih baik dari \gls{MASS}, \gls{BART}, maupun T5 untuk \ti{task} \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
 \gls{PALM} dibangun dengan fokus untuk generasi teks penerus input yang diberikan.

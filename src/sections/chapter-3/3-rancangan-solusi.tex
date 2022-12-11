@@ -35,8 +35,7 @@ Hasil kalimat berbahasa Indonesia tersebut berkualitas gold dan digunakan sebaga
 Kualitas dataset silver diukur dengan mengukur \cossim{} dari \multil{} \ti{sentence embedding} dari pasangan kalimat Bahasa Indonesia dan Bahasa Inggris.
 Model \mwordem{} yang digunakan untuk mengdapatkan \multil{} \ti{sentence embedding} dari sebuah kalimat adalah \todo[Pick a \sota{}]{}.
 
-% AMRBART
-Teknik \pretraining{}
-
 % XL-AMR Techniques
-Skema pelatihan yang digunakan menggunakan
+Skema pelatihan yang digunakan menggunakan skema \ti{zero-shot}, \ti{language-specific}, dan \ti{bilingual}.
+Skema pelatihan \ti{bilingual} memerlukan sedikit modifikasi untuk melakukan \pretraining{} graf pada teknik \gls{AMRBART}.
+

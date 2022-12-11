@@ -14,7 +14,17 @@ Tahapan yang dilakukan adalah sebagai berikut:
   \item Inferensi kalimat berbahasa Indonesia menjadi graf \AMR{} berbahasa Inggris.
 \end{enumerate}
 
-\fig[0.7]{4-6-solution-diagram}{sections/chapter-2/4-6-solution-diagram.png}{Gambaran keseluruhan sistem rancangan solusi pembangunan model \ti{cross-lingual} untuk Bahasa Indonesia \citek{putra2022}.}
+\fig[0.7]{4-6-solution-diagram}{sections/chapter-2/4-6-solution-diagram.png}{Gambaran keseluruhan sistem rancangan solusi pembangunan model \crosslingual{} untuk Bahasa Indonesia \citek{putra2022}.}
+
+Skema model pelatihan \crosslingual{} \amrparsing{} menggunakan skema yang diusulkan oleh \textcite{blloshmi2020}, yaitu \ti{zero-shot}, \ti{language-specific}, dan \ti{bilingual}.
+\cref{fig:4-6-training-schemas} menunjukkan tiga skema pelatihan tersebut.
+\ti{Zero-shot} hanya menggunakan kalimat berbahasa Inggris saja sebagai input model dan mengandalkan \mwordem{} untuk memahami konteks Bahasa Indonesia.
+\ti{Language-specific} menggunakan kalimat berbahasa Indonesia saja sebagai input model.
+\ti{Bilingual} menggunakan kalimat berbahasa Inggris dan Indonesia sebagai input model yang kemudian dievaluasi ke Bahasa Indonesia.
+
+\fig{4-6-training-schemas}
+  {sections/chapter-2/4-6-training-schemas.png}
+  {Model pelatihan \crosslingual{} untuk Bahasa Indonesia: (a) \ti{zero-shot}, (b)\ti{language-specific}, dan (c) \ti{bilingual} \citek{putra2022}.}
 
 Proses evaluasi pada penelitian ini dilakukan dengan pelaksanaan inferensi pada kalimat berbahasa Indonesia dari dataset gold untuk menghasilkan \AMR{} berbahasa Inggris.
 Dari graf \AMR{} ini akan dilakukan perhitungan skor \SMATCH{} dengan membandingkannya dengan graf \AMR{} gold.
