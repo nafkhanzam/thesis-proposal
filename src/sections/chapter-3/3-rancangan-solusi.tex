@@ -12,14 +12,14 @@ Alur proses konstruksi dataset berkualitas silver mengikuti framework augmentasi
 % Dataset Silver Parallel Corpora
 Korpus paralel PANL-BPPT dan IWSLT2017 digunakan sebagai dataset pasangan kalimat Bahasa Inggris dan Bahasa Indonesia.
 Kalimat berbahasa Inggris dari korpus paralel diubah menjadi graf \AMR{}.
-Model \amrparsing{} yang digunakan adalah model \sota{} saat ini, yaitu \glsfirst{MBSE}.
+Model \amrparsing{} yang digunakan adalah model \sota{} saat ini, yaitu \gls{MBSE}.
 Hasil graf \AMR{} yang dihasilkan akan digunakan sebagai dataset latih berkualitas silver.
 
 % Dataset Silver AMR 3.0
 Dataset \AMR{} berkualitas gold yang digunakan adalah Dataset AMR 3.0 (LDC2020T02).
 Augmentasi data untuk konstruksi dataset berkualitas silver mengambil bagian Train dan Dev \ti{split} dari AMR 3.0.
 Kalimat berbahasa Inggris dari dataset \AMR{} tersebut diubah menjadi kalimat berbahasa Indonesia dengan menggunakan mesin translasi.
-Model mesin translasi yang digunakan adalah model \sota{} saat ini, yaitu \todo[Pick a \sota{}]{}.
+Model mesin translasi yang digunakan adalah model {OPUS-MT} \citek{tiedemann2020}.
 Graf \AMR{} berkualitas gold juga dilakukan \ti{parsing} menjadi kalimat berbahasa Inggris (AMR-to-text) untuk menambah jumlah variasi pasangan dataset.
 Kalimat berbahasa Inggris hasil \ti{parsing} tersebut juga diubah menjadi kalimat berbahasa Indonesia dengan menggunakan mesin translasi.
 Maka akan terdapat dua pasangan kalimat berbahasa Inggris dan Indonesia untuk satu buah graf \AMR{}.
@@ -33,17 +33,18 @@ Hasil kalimat berbahasa Indonesia tersebut berkualitas gold dan digunakan sebaga
 
 % Dataset Silver Evaluation Method
 Kualitas dataset silver diukur dengan mengukur \cossim{} dari \multil{} \ti{sentence embedding} dari pasangan kalimat Bahasa Indonesia dan Bahasa Inggris.
-Model \mwordem{} yang digunakan untuk mengdapatkan \multil{} \ti{sentence embedding} dari sebuah kalimat adalah \todo[Pick a \sota{}]{}.
+Model \mwordem{} yang digunakan untuk mendapatkan \multil{} \ti{sentence embedding} dari sebuah kalimat adalah \gls{LABSE} \citek{feng2022}.
 
 % Training Techniques
 Skema pelatihan yang digunakan menggunakan skema \ti{zero-shot}, \ti{language-specific}, dan \ti{bilingual}.
-Skema pelatihan \ti{bilingual} memerlukan sedikit modifikasi untuk melakukan \pretraining{} graf pada teknik \gls{AMRBART}.
 Skema pelatihan yang digunakan hanya untuk yang melakukan \amrparsing{}.
+Pada skema pelatihan \ti{bilingual}, diperlukan sedikit modifikasi untuk melakukan \pretraining{} graf pada teknik \gls{AMRBART}.
 % Token \code{<s>} yang digunakan pada \gls{AMRBART} diganti menjadi kode bahasa yang digunakan.
 % Bahasa Inggris ditandai dengan token \code{<en>} dan Bahasa Indonesia ditandai dengan token \code{<id>}.
 Sesuai dengan skema pelatihan \ti{bilingual}, kalimat berbahasa Inggris dan Indonesia dilinearisasi secara sejajar sebagai input \pretraining{} maupun \finetuning{}.
 Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa tersebut dapat dilihat pada \cref{tab:3-pt-ft-strategies}.
 Output pelatihan tetap berupa graf \AMR{} yang dilinearisasi, seperti \code{<g>g1,g2,...,gm</g>}.
+Bentuk graf pada input maupun output berupa format PENMAN.
 
 \tabl{3-pt-ft-strategies}
   {sections/chapter-3/3-pt-ft-strategies.csv}
@@ -54,3 +55,8 @@ Output pelatihan tetap berupa graf \AMR{} yang dilinearisasi, seperti \code{<g>g
     \code{$\hat{t}/\hat{g}$} merupakan teks/graf yang \ti{noisy} (hasil \denoising{}).
     \code{$\bar{t}/\bar{g}$} merupakan teks/graf yang hilang.
   }
+
+% Baseline Evaluation
+Pendekatan \ti{translate and parse} \citek{uhrig2021} digunakan sebagai baseline pada penelitian ini.
+Model mesin translasi yang digunakan adalah {OPUS-MT} dan model \amrparsing{} yang digunakan adalah \gls{AMRBART}.
+Tahapan yang dilakukan adalah melakukan translasi dari kalimat berbahasa Indonesia menjadi Bahasa Inggris, lalu dilakukan \amrparsing{} menjadi graf \AMR{}.
