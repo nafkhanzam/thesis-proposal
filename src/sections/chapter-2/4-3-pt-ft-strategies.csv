@@ -4,7 +4,7 @@ Std. P.T.,\code{$\hat{t}2t$},\codesm{<s>x1,..[mask]..,xn</s>},\codesm{<s>x1,x2,.
 Std. F.T.,\code{$g2t$},\codesm{<g>g1,g2,...,gm</g>},\codesm{<s>x1,x2,...,xn</s>}
 ,\code{$t2g$},\codesm{<s>x1,x2,...,xn</s>},\codesm{<g>g1,g2,...,gm</g>}
 Unified P.T.,\code{$\hat{t}\bar{g}2t$},\codesm{<s>x1,..[mask]..,xn</s><g>[mask]</g>},\codesm{<s>x1,x2,...,xn</s>}
-,\code{$\bar{t}\hat{g}2t$},\codesm{<s>[mask]</s><g>g1,..[mask]..,gm</g>},\codesm{<g>g1,g2,...,gm</g>}
+,\code{$\bar{t}\hat{g}2g$},\codesm{<s>[mask]</s><g>g1,..[mask]..,gm</g>},\codesm{<g>g1,g2,...,gm</g>}
 ,\code{$\hat{t}g2t$},\codesm{<s>x1,..[mask]..,xn</s><g>g1,g2,...,gm</g>},\codesm{<s>x1,x2,...,xn</s>}
 ,\code{$t\hat{g}2g$},\codesm{<s>x1,x2,...,xn</s><g>g1,..[mask]..,gm</g>},\codesm{<g>g1,g2,...,gm</g>}
 ,\code{$\hat{t}\hat{g}2t$},\codesm{<s>x1,..[mask]..,xn</s><g>g1,..[mask]..,gm</g>},\codesm{<s>x1,x2,...,xn</s>}

@@ -35,7 +35,22 @@ Hasil kalimat berbahasa Indonesia tersebut berkualitas gold dan digunakan sebaga
 Kualitas dataset silver diukur dengan mengukur \cossim{} dari \multil{} \ti{sentence embedding} dari pasangan kalimat Bahasa Indonesia dan Bahasa Inggris.
 Model \mwordem{} yang digunakan untuk mengdapatkan \multil{} \ti{sentence embedding} dari sebuah kalimat adalah \todo[Pick a \sota{}]{}.
 
-% XL-AMR Techniques
+% Training Techniques
 Skema pelatihan yang digunakan menggunakan skema \ti{zero-shot}, \ti{language-specific}, dan \ti{bilingual}.
 Skema pelatihan \ti{bilingual} memerlukan sedikit modifikasi untuk melakukan \pretraining{} graf pada teknik \gls{AMRBART}.
+Skema pelatihan yang digunakan hanya untuk yang melakukan \amrparsing{}.
+% Token \code{<s>} yang digunakan pada \gls{AMRBART} diganti menjadi kode bahasa yang digunakan.
+% Bahasa Inggris ditandai dengan token \code{<en>} dan Bahasa Indonesia ditandai dengan token \code{<id>}.
+Sesuai dengan skema pelatihan \ti{bilingual}, kalimat berbahasa Inggris dan Indonesia dilinearisasi secara sejajar sebagai input \pretraining{} maupun \finetuning{}.
+Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa tersebut dapat dilihat pada \cref{tab:3-pt-ft-strategies}.
+Output pelatihan tetap berupa graf \AMR{} yang dilinearisasi, seperti \code{<g>g1,g2,...,gm</g>}.
 
+\tabl{3-pt-ft-strategies}
+  {sections/chapter-3/3-pt-ft-strategies.csv}
+  {
+    Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual}.
+    \code{a1,a2,...,an1} merupakan token untuk Bahasa Inggris, sedangkan \code{b1,b2,...,bn2} merupakan token untuk Bahasa Indonesia.
+    \code{$t/g$} merupakan teks/graf \ti{original}.
+    \code{$\hat{t}/\hat{g}$} merupakan teks/graf yang \ti{noisy} (hasil \denoising{}).
+    \code{$\bar{t}/\bar{g}$} merupakan teks/graf yang hilang.
+  }

@@ -31,7 +31,7 @@ Pada \AMR{} berbahasa Indonesia, telah dikembangkan untuk \ti{parsing} berbasis 
 Teknik \amrparsing{} berbasis aturan dan \ti{dependency parser} masih terbatas karena kurangnya panduan anotasi dan PropBank untuk adaptasi \AMR{} dalam Bahasa Indonesia.
 Dataset yang digunakan sebagai data pelatihan teknik tersebut terdiri dari 1,130 pasang kalimat dan AMR berbahasa Indonesia.
 Jumlah dataset tersebut masih sangat kurang untuk menghasilkan model yang berkualitas tinggi jika dibandingkan dengan jumlah dataset berbahasa Inggris yang memiliki 59.255 pasang.
-Anotasi untuk \AMR{} Bahasa Indonesia hanya terbatas pada 6 relasi saja, yaitu \quotei{:ARG0}, \quotei{:ARG1}, \quotei{:name}, \quotei{:time}, \quotei{:location}, \quotei{:mod} \citek{ilmy2020}.
+Anotasi untuk \AMR{} Bahasa Indonesia hanya terbatas pada 6 relasi saja, yaitu \code{:ARG0}, \code{:ARG1}, \code{:name}, \code{:time}, \code{:location}, \code{:mod} \citek{ilmy2020}.
 Konsep yang membutuhkan argumen relasi lebih banyak yang tidak tersedia akan diabaikan.
 Sehingga AMR Bahasa Indonesia tidak dapat merepresentasikan kalimat yang lebih panjang dan kompleks.
 
@@ -66,6 +66,6 @@ Teknik tersebut meningkatkan kinerja SMATCH pada model XL-AMR \citek{blloshmi202
 % PALM
 Teknik \amrparsing{} terbaik saat ini adalah teknik \gls{AMRBART} dengan kinerja SMATCH 85.4 pada dataset \AMR{} 2.0 dan 84.2 pada dataset \AMR{} 3.0 \citek{bai2022}.
 \gls{AMRBART} dibangun dari transformer-based \ti{language model} \gls{BART}.
-\Glsfirst{PALM} merupakan sebuah teknik pre-training yang dapat menghasilkan kualitas \ti{language model} yang cukup baik untuk \ti{task} generasi teks.
-\gls{PALM} dapat menghasilkan kinerja yang lebih baik dari \gls{MASS}, \gls{BART}, maupun T5 untuk \ti{task} \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
+\gls{PALM} merupakan sebuah teknik pre-training yang dapat menghasilkan kualitas \ti{language model} yang cukup baik untuk \ti{task} generasi teks.
+\gls{PALM} dapat menghasilkan kinerja yang lebih baik dari \gls{BART} untuk \ti{task} \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
 \gls{PALM} belum pernah digunakan untuk \ti{task} \amrparsing{} dan membuka kemungkinan untuk menghasilkan kualitas yang lebih baik.

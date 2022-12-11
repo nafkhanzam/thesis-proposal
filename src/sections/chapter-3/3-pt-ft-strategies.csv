@@ -1,0 +1,5 @@
+Phase,Task,Input
+Pre-training,\code{$\bar{t}\hat{g}2g$},\codesm{<s>[mask]</s><g>g1,..[mask]..,gm</g>}
+,\code{$t\hat{g}2g$},\codesm{<s>a1,a2,...,an1,b1,b2,...,bn2</s><g>g1,..[mask]..,gm</g>}
+,\code{$\hat{t}\hat{g}2g$},\codesm{<s>a1,..[mask]..,an1,b1..[mask]..,bn2</s><g>g1,..[mask]..,gm</g>}
+Fine-tuning,\code{$t\bar{g}2g$},\codesm{<s>a1,a2,...,an1,b1,b2,...,bn2</s><g>[mask]</g>}
