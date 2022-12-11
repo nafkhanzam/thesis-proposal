@@ -57,9 +57,3 @@ Terdapat variasi \gls{BERT} yang digunakan sebagai \mwordem{} yang tidak terikat
 Model berbasis transformer lain bernama T5 \citek{raffel2020} merupakan model yang dilatih dengan campuran \ti{task} \ti{unsupervised} dan \ti{supervised}.
 T5 bekerja dengan baik untuk berbagai macam \ti{task} seperti peringkasan teks dan translasi.
 Model T5 juga dikembangkan untuk \mwordem{} bernama mT5 \citek{xue2021} yang dilatih pada Common Crawl yang memiliki 101 bahasa.
-
-Menurut \textcite{bi2020}, teknik \pretraining{} pada \gls{BERT} dan \gls{BART} kurang konsisten dengan tujuan beberapa \ti{task} generasi teks, seperti \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
-\textcite{bi2020} mengusulkan \gls{PALM} dengan adanya skema yang menggabungkan \pretraining{} \ti{auto-encoding} dan \ti{autoregressive} \ti{language model} pada korpus besar tak berlabel.
-\gls{PALM} didesain untuk mengenerasi teks baru yang bergantung pada konteks.
-Skema ini menangani ketidakcocokan antara teknik \pretraining{} dan \finetuning{} yang ada sebelumnya.
-Namun, model \gls{PALM} untuk \mwordem{} belum pernah dikembangkan.

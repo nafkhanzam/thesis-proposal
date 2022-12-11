@@ -1,13 +1,9 @@
 \section{Masalah Penelitian}
 
-Teknik \crosslingual{} \amrparsing{} terbaru untuk Bahasa Indonesia adalah teknik oleh \textcite{putra2022} yang menggunakan teknik Sequence-to-Graph Transduction oleh \citek{zhang2019}.
+Teknik \crosslingual{} \amrparsing{} terbaru untuk Bahasa Indonesia adalah teknik oleh \textcite{putra2022} yang menggunakan teknik \gls{stog} oleh \citek{zhang2019}.
 Banyak teknik-teknik lain yang memiliki kinerja \amrparsing{} yang lebih baik, seperti AMRBART \citek{bai2022}.
 Dataset yang digunakan oleh \textcite{putra2022} juga belum menggunakan dataset terbaru, yakni AMR 3.0, yang memiliki kalimat dan aturan anotasi lebih banyak dari AMR 2.0.
 Terdapat korpus paralel IWSLT2017 \citek{cettolo2017} yang belum digunakan oleh \textcite{putra2022}.
-
-Teknik \amrparsing{} terbaik saat ini adalah teknik AMRBART yang berbasis \ti{language model} BART oleh \textcite{lewis2020}.
-Terdapat \ti{language model} bernama PALM oleh \textcite{bi2020} yang kinerjanya lebih baik dibandingkan BART untuk \ti{task} \ti{question-answering}, peringkasan teks, \ti{question generation}, dan \ti{conversational response generation}.
-\ti{Language model} PALM belum pernah digunakan untuk \amrparsing{} berbahasa Inggris maupun Indonesia dan berpotensi untuk menghasilkan kinerja yang lebih baik dibandingkan teknik yang digunakan sebelumnya.
 
 % Thesis Problem
 Rumusan masalah dari tesis ini adalah bagaimana melakukan \amrparsing{} dari kalimat berbahasa Indonesia menjadi graf \AMR{} berbahasa Inggris dengan menggunakan dataset \AMR{} Bahasa Inggris, korpus paralel Bahasa Inggris-Indonesia, dan \multil{} \ti{language model} yang sudah ada.

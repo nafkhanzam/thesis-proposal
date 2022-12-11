@@ -29,10 +29,3 @@ Teknik \pretraining{} graf oleh \textcite{bai2022} tersebut dapat dilakukan deng
 \fig[0.8]{2-xl-amr-training-schemas}
   {sections/chapter-3/2-xl-amr-training-schemas.png}
   {Model pelatihan \crosslingual{} untuk Bahasa Indonesia: (a) \ti{zero-shot}, (b)\ti{language-specific}, dan (c) \ti{bilingual} \citek{putra2022}.}
-
-Teknik \ti{masked pre-training} \ti{language model} \gls{PALM} \citek{bi2020} dapat menghasilkan kinerja yang lebih baik dari \gls{MASS}, \gls{BART}, maupun T5 untuk \ti{task} \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
-\gls{PALM} dibangun dengan fokus untuk generasi teks penerus input yang diberikan.
-\gls{PALM} diharapkan dapat meningkatkan kualitas \amrparsing{} dengan menggunakan teknik \ti{masking} oleh \textcite{bai2022}.
-Namun untuk \amrparsing{} lintas bahasa diperlukan model \multil{} \gls{PALM}.
-\Multil{} \gls{PALM} dapat dibangun dengan melanjutkan \pretraining{} dengan data baru berbahasa Indonesia.
-Dataset tak berlabel berbahasa Indonesia yang digunakan oleh model mBART \citek{tang2020} dapat digunakan untuk melakukan \pretraining{} \multil{} \gls{PALM}.

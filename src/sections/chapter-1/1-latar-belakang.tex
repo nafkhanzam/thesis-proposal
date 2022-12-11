@@ -66,10 +66,7 @@ Hal ini diduga karena jumlah dataset yang dihasilkan masih belum maksimal dan da
 Karena keterbatasan jumlah dataset yang dipunya untuk melatih model \amrparsing{} lintas bahasa, teknik ini menghasilkan lebih banyak pasangan graf \AMR{} dan kalimat dengan bahasa yang dituju.
 Teknik tersebut meningkatkan kinerja SMATCH pada model XL-AMR \citek{blloshmi2020} menjadi 63.0 untuk Bahasa Cina, 73.7 untuk Bahasa Jernam, 76.1 untuk Bahasa Italia, dan 77.1 untuk Bahasa Spanyol.
 
-% PALM
+% AMRBART
 Model \amrparsing{} terbaik saat ini adalah \gls{AMRBART}.
 \gls{AMRBART} dibangun dari \ti{language model} \gls{BART} menggunakan teknik graf \pretraining{}.
 \gls{AMRBART} merupakan model \sota{} dengan kinerja SMATCH 85.4 pada dataset \AMR{} 2.0 dan 84.2 pada dataset \AMR{} 3.0 \citek{bai2022}.
-\gls{PALM} merupakan sebuah teknik pre-training yang dapat menghasilkan kualitas \ti{language model} yang cukup baik untuk \ti{task} generasi teks.
-\gls{PALM} dapat menghasilkan kinerja yang lebih baik dari \gls{BART} untuk \ti{task} \ti{question answering}, peringkasan teks, generasi pertanyaan, dan generasi respon.
-\gls{PALM} belum pernah digunakan untuk \ti{task} \amrparsing{} dan membuka kemungkinan untuk menghasilkan kualitas yang lebih baik.

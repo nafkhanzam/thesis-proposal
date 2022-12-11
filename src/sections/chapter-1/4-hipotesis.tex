@@ -9,8 +9,6 @@ Hal ini ditunjukkan dengan analisis kuantitatif berdasarkan nilai SMATCH \citek{
 
 \premise Teknik graf \pretraining{} AMRBART oleh \textcite{bai2022} yang menggunakan \ti{language model} BART merupakan teknik yang menghasilkan kinerja \amrparsing{} terbaik berdasarkan metrik SMATCH.
 
-\premise \ti{Language model} PALM oleh \textcite{bi2020} menghasilkan kinerja lebih baik dibandingkan BART untuk \ti{task} \ti{question-answering}, peringkasan teks, \ti{question generation}, dan \ti{conversational response generation}.
-
 \premise Fitur \ti{multilingual word embedding} dan pelatihan pada dataset silver dapat meningkatkan kinerja pembangkit AMR cross-lingual \citek{blloshmi2020}
 Dataset pasangan kalimat Bahasa Indonesia dan graf AMR berbahasa Inggris dapat dihasilkan dari dataset pasangan teks berbahasa Inggris dan graf AMR yang teks berbahasa Inggrisnya ditranslasi menjadi Bahasa Indonesia serta korpus paralel Indonesia-Inggris yang teks berbahasa Inggrisnya dibangkitkan menjadi graf AMR \citek{putra2022}.
 Teknik augmentasi data oleh \textcite{lee2022} terbukti dapat meningkatkan kinerja \amrparsing{} lintas bahasa untuk Bahasa Cina, Jerman, Italia, dan Spanyol.
@@ -18,5 +16,5 @@ Teknik augmentasi data oleh \textcite{lee2022} terbukti dapat meningkatkan kiner
 Berdasarkan premis-premis tersebut, disusun hipotesis sebagai berikut:
 
 \textbf{Hipotesis:}
-Model \amrparsing{} \crosslingual{} untuk Bahasa Indonesia dapat dibangun dengan menggunakan teknik pre-training AMRBART oleh \textcite{bai2022} menggunakan \ti{language model} PALM dengan dataset yang dibangun dari dataset pasangan teks berbahasa Inggris dan graf AMR serta korpus paralel Indonesia-Inggris dengan teknik augmentasi data oleh \textcite{lee2022}.
+Model \amrparsing{} \crosslingual{} untuk Bahasa Indonesia dapat dibangun dengan menggunakan teknik pre-training AMRBART oleh \textcite{bai2022} menggunakan \ti{multilingual language model} dengan dataset yang dibangun dari dataset pasangan teks berbahasa Inggris dan graf AMR serta korpus paralel Indonesia-Inggris dengan teknik augmentasi data oleh \textcite{lee2022}.
 Hasil kinerja model tersebut dapat menghasilkan kinerja yang lebih baik dari \ti{baseline} yang menggunakan teknik \ti{translate-and-parse} oleh \textcite{uhrig2021}.
