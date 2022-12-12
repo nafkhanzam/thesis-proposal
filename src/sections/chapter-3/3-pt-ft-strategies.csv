@@ -5,4 +5,4 @@
 ,\code{$t\hat{g}2g$},\makecell[cl]{\codesm{<s>a1,a2,...,an1,b1,b2,...,bn2</s>}\\\codesm{<g>g1,..[mask]..,gm</g>}},\makecell[cl]{\codesm{<g>g1,g2,...,gm</g>}}
 ,\code{$\hat{t}\hat{g}2t$},\makecell[cl]{\codesm{<s>a1,..[mask]..,an1,b1,..[mask]..,bn2</s>}\\\codesm{<g>g1,..[mask]..,gm</g>}},\makecell[cl]{\codesm{<s>a1,a2,...,an1,b1,b2,...,bn2</s>}}
 ,\code{$\hat{t}\hat{g}2g$},\makecell[cl]{\codesm{<s>a1,..[mask]..,an1,b1..[mask]..,bn2</s>}\\\codesm{<g>g1,..[mask]..,gm</g>}},\makecell[cl]{\codesm{<g>g1,g2,...,gm</g>}}
-,\code{$t\bar{g}2g$},\makecell[cl]{\codesm{<s>a1,a2,...,an1,b1,b2,...,bn2</s>}\\\codesm{<g>[mask]</g>}},\makecell[cl]{\codesm{<s>a1,a2,...,an1,b1,b2,...,bn2</s>}}
+,\code{$t\bar{g}2g$},\makecell[cl]{\codesm{<s>a1,a2,...,an1,b1,b2,...,bn2</s>}\\\codesm{<g>[mask]</g>}},\makecell[cl]{\codesm{<g>g1,g2,...,gm</g>}}
