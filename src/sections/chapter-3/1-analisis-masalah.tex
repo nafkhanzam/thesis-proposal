@@ -17,8 +17,8 @@ Dataset Silver Par merupakan hasil \ti{parsing} kalimat berbahasa Inggris yang b
 
 \textcite{putra2022} telah membangun sebuah model \AMR{} \ti{Parser} Lintas Bahasa untuk Bahasa Indonesia dengan skor \SMATCH{} 51.0.
 Model tersebut dibangun dengan \mwordem{} mT5 yang merupakan sebuah \gls{PLM}.
-Namun dengan baseline dari \ti{pipline translate-and-parse} yang memiliki skor \SMATCH{} 62.5, model tersebut masih belum dapat melampaui kinerja baseline.
-\textcite{putra2022} menggunakan teknik Sequence-to-Graph Transduction \citek{zhang2019} yang bukan lagi \ti{state of the art} \amrparsing{} saat ini.
+Namun dengan baseline dari \ti{pipeline translate-and-parse} yang memiliki skor \SMATCH{} 62.5, model tersebut masih belum dapat melampaui kinerja baseline.
+\textcite{putra2022} menggunakan model \gls{stog} \citek{zhang2019} yang bukan lagi \ti{state of the art} \amrparsing{} saat ini.
 \textcite{bai2022} menyebutkan bahwa \gls{PLM} umumnya dilatih pada data tekstual, sehingga tidak optimal untuk melakukan generasi data terstruktur seperti \AMR{}.
 Hasil kinerja yang buruk juga dimungkinkan disebabkan oleh kualitas data latih yang buruk.
 \textcite{lee2022} menyebutkan bahwa kenaikan kinerja dari \amrparsing{} dari penelitian-penelitian sebelumnya tidak lagi meningkat secara signifikan.

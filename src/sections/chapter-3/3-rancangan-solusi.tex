@@ -44,10 +44,9 @@ Pada skema pelatihan \ti{bilingual}, diperlukan sedikit modifikasi untuk melakuk
 % Bahasa Inggris ditandai dengan token \code{<en>} dan Bahasa Indonesia ditandai dengan token \code{<id>}.
 Sesuai dengan skema pelatihan \ti{bilingual}, kalimat berbahasa Indonesia dan Inggris dilinearisasi secara sejajar sebagai input \pretraining{} maupun \finetuning{}.
 Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa tersebut dapat dilihat pada \cref{tab:3-pt-ft-strategies}.
-Output pelatihan tetap berupa graf \AMR{} yang dilinearisasi, seperti \code{<g>g1,g2,...,gm</g>}.
-Bentuk graf pada input maupun output berupa format PENMAN.
+Linearisasi graf menggunakan algoritma \gls{DFS} \citek{bevilacqua2021}.
 
-\tabl{3-pt-ft-strategies}
+\tabl[dashed]{3-pt-ft-strategies}
   {sections/chapter-3/3-pt-ft-strategies.csv}
   {
     Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual}.
