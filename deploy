@@ -1,0 +1,3 @@
+#! /bin/bash
+
+up2storage ./build/main/main.pdf thesis/main.pdf

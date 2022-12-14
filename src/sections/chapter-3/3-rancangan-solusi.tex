@@ -36,23 +36,36 @@ Hasil kalimat berbahasa Indonesia tersebut berkualitas gold dan digunakan sebaga
 Kualitas dataset silver diukur dengan mengukur \cossim{} dari \multil{} \ti{sentence embedding} dari pasangan kalimat Bahasa Indonesia dan Bahasa Inggris.
 Model \mwordem{} yang digunakan untuk mendapatkan \multil{} \ti{sentence embedding} dari sebuah kalimat adalah \gls{LABSE} \citek{feng2022}.
 Dataset silver akan difiltrasi untuk menghapus hasil translasi yang buruk.
-Filtrasi dilakukan dengan melakukan translasi kembali ke Bahasa Inggris, lalu dilakukan algoritma 1-NN dengan \cossim{} sebagai nilai kedekatan antar dua kalimat.
-Apabila hasil kalimat yang ditemukan dari 1-NN bukan merupakan kalimat awal sebelum translasi, maka pasangan kalimat tersebut tidak digunakan sebagai data pelatihan.
+Filtrasi dilakukan dengan melakukan translasi kembali ke Bahasa Inggris, lalu diaplikasikan algoritma \gls{1-NN} dengan \cossim{} sebagai nilai kedekatan antar dua kalimat.
+Apabila hasil kalimat yang ditemukan dari \gls{1-NN} bukan merupakan kalimat awal sebelum translasi, maka pasangan kalimat tersebut tidak digunakan sebagai data pelatihan.
 
 % Training Techniques
 Skema pelatihan yang digunakan menggunakan skema \ti{zero-shot}, \ti{language-specific}, dan \ti{bilingual}.
 Skema pelatihan yang digunakan hanya untuk yang melakukan \amrparsing{}.
 Pada skema pelatihan \ti{bilingual}, diperlukan sedikit modifikasi untuk melakukan \pretraining{} graf pada teknik \gls{AMRBART}.
-% Token \code{<s>} yang digunakan pada \gls{AMRBART} diganti menjadi kode bahasa yang digunakan.
-% Bahasa Inggris ditandai dengan token \code{<en>} dan Bahasa Indonesia ditandai dengan token \code{<id>}.
+Token \code{<s>} yang digunakan pada \gls{AMRBART} diganti menjadi kode bahasa yang digunakan.
+Bahasa Indonesia ditandai dengan token \code{<id>} dan Bahasa Inggris ditandai dengan token \code{<en>}.
 Sesuai dengan skema pelatihan \ti{bilingual}, kalimat berbahasa Indonesia dan Inggris dilinearisasi secara sejajar sebagai input \pretraining{} maupun \finetuning{}.
 Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa tersebut dapat dilihat pada \cref{tab:3-pt-ft-strategies}.
+Output dari pelatihan tersebut merupakan graf \AMR{} yang dilinearisasi, yaitu \code{<g>g1,g2,...,gm</g>}.
 Linearisasi graf menggunakan algoritma \gls{DFS} \citek{bevilacqua2021}.
 
-\tabl[dashed]{3-pt-ft-strategies}
-  {sections/chapter-3/3-pt-ft-strategies.csv}
+\begin{filecontents*}{3-pt-ft-strategies.csv}
+Phase,Task,Input
+PT,\code{$\bar{t}\bar{t}\hat{g}2g$},\makecell[cl]{\codesm{<id>[mask]</id><en>[mask]</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
+,\code{$t\bar{t}\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,a2,...,an1</id><en>[mask]</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
+,\code{$\bar{t}t\hat{g}2g$},\makecell[cl]{\codesm{<id>[mask]</id><en>b1,b2,...,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
+,\code{$tt\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,a2,...,an1</id><en>b1,b2,...,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
+,\code{$t\hat{t}\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,a2,...,an1</id><en>b1,..[mask]..,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
+,\code{$\hat{t}t\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,..[mask]..,an1</id><en>b1,b2,...,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
+,\code{$\hat{t}\hat{t}\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,..[mask]..,an1</id><en>b1,..[mask]..,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
+FT,\code{$t\bar{t}\bar{g}2g$},\makecell[cl]{\codesm{<id>a1,a2,...,an1</id><en>[mask]</en>}\codesm{<g>[mask]</g>}}
+\end{filecontents*}
+
+\tabl{3-pt-ft-strategies}
+  {3-pt-ft-strategies.csv}
   {
-    Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual}.
+    Strategi \pretraining{} (PT) dan \finetuning{} (FT) untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual}.
     \code{a1,a2,...,an1} merupakan token untuk Bahasa Indonesia, sedangkan \code{b1,b2,...,bn2} merupakan token untuk Bahasa Inggris.
     \code{$t/g$} merupakan teks/graf \ti{original}.
     \code{$\hat{t}/\hat{g}$} merupakan teks/graf yang \ti{noisy} (hasil \denoising{}).

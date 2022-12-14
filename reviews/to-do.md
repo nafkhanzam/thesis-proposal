@@ -12,3 +12,4 @@
 - [ ] Write the proof that XL-AMR works.
 - [x] Plan threshold filter for silver data from translation.
 - [ ] Numberbatch (?)
+- [ ] Add labels to sections.
