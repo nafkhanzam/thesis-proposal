@@ -5,6 +5,7 @@ Pada masalah kurangnya jumlah dataset yang digunakan sebagai data latih model, d
 Diagram alur keseluruhan proses konstruksi dataset gold dan silver dapat dilihat pada \cref{fig:3-dataset-construction}.
 Alur proses konstruksi dataset berkualitas silver mengikuti framework augmentasi data oleh \textcite{lee2022}.
 
+% TODO: Add filtration process.
 \fig[1]{3-dataset-construction}
   {sections/chapter-3/3-dataset-construction.png}
   {Diagram alur untuk konstruksi dataset gold dan silver dari korpus paralel dan dataset AMR.}
@@ -12,7 +13,7 @@ Alur proses konstruksi dataset berkualitas silver mengikuti framework augmentasi
 % Dataset Silver Parallel Corpora
 Korpus paralel PANL-BPPT dan IWSLT2017 digunakan sebagai dataset pasangan kalimat Bahasa Inggris dan Bahasa Indonesia.
 Kalimat berbahasa Inggris dari korpus paralel diubah menjadi graf \AMR{}.
-Model \amrparsing{} yang digunakan adalah model \sota{} saat ini, yaitu \gls{MBSE}.
+Model \amrparsing{} yang digunakan adalah teknik \ti{ensembling} dari 5 model \sota{} \citek{lee2022}.
 Hasil graf \AMR{} yang dihasilkan akan digunakan sebagai dataset latih berkualitas silver.
 
 % Dataset Silver AMR 3.0
@@ -27,50 +28,54 @@ Maka akan terdapat dua pasangan kalimat berbahasa Inggris dan Indonesia untuk sa
 Dua pasangan tersebut dilakukan \ti{cross join} untuk menghasilkan empat pasang data latih berkualitas silver.
 Hasil kumpulan kalimat yang dihasilkan akan digunakan sebagai dataset latih berkualitas silver.
 
+% TODO: Add quality measurement and filtration explanations.
+
 % Dataset Gold
 Augmentasi data untuk konstruksi dataset berkualitas gold mengambil bagian Test \ti{split} dari AMR 3.0.
 Bagian kalimat berbahasa Inggris dari Test \ti{split} ditranslasi menjadi Bahasa Indonesia oleh ahli.
 Hasil kalimat berbahasa Indonesia tersebut berkualitas gold dan digunakan sebagai dataset test.
 
-% Dataset Silver Evaluation Method
-Kualitas dataset silver diukur dengan mengukur \cossim{} dari \multil{} \ti{sentence embedding} dari pasangan kalimat Bahasa Indonesia dan Bahasa Inggris.
-Model \mwordem{} yang digunakan untuk mendapatkan \multil{} \ti{sentence embedding} dari sebuah kalimat adalah \gls{LABSE} \citek{feng2022}.
-Dataset silver akan difiltrasi untuk menghapus hasil translasi yang buruk.
-Filtrasi dilakukan dengan melakukan translasi kembali ke Bahasa Inggris, lalu diaplikasikan algoritma \gls{1-NN} dengan \cossim{} sebagai nilai kedekatan antar dua kalimat.
-Apabila hasil kalimat yang ditemukan dari \gls{1-NN} bukan merupakan kalimat awal sebelum translasi, maka pasangan kalimat tersebut tidak digunakan sebagai data pelatihan.
+% \fig[0.8]{3-xl-amr-training-schema}
+%   {sections/chapter-3/3-xl-amr-training-schema.png}
+%   {Model pelatihan \crosslingual{} dengan skema bilingual untuk Bahasa Indonesia.}
 
 % Training Techniques
-Skema pelatihan yang digunakan menggunakan skema \ti{zero-shot}, \ti{language-specific}, dan \ti{bilingual}.
-Skema pelatihan yang digunakan hanya untuk yang melakukan \amrparsing{}.
+Skema pelatihan yang digunakan hanya untuk yang melakukan \amrparsing{} dengan menggunakan skema \ti{bilingual}.
 Pada skema pelatihan \ti{bilingual}, diperlukan sedikit modifikasi untuk melakukan \pretraining{} graf pada teknik \gls{AMRBART}.
 Token \code{<s>} yang digunakan pada \gls{AMRBART} diganti menjadi kode bahasa yang digunakan.
 Bahasa Indonesia ditandai dengan token \code{<id>} dan Bahasa Inggris ditandai dengan token \code{<en>}.
 Sesuai dengan skema pelatihan \ti{bilingual}, kalimat berbahasa Indonesia dan Inggris dilinearisasi secara sejajar sebagai input \pretraining{} maupun \finetuning{}.
 Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa tersebut dapat dilihat pada \cref{tab:3-pt-ft-strategies}.
-Output dari pelatihan tersebut merupakan graf \AMR{} yang dilinearisasi, yaitu \code{<g>g1,g2,...,gm</g>}.
+Output dari pelatihan tersebut merupakan graf \AMR{} yang dilinearisasi, yaitu \code{<g>$g_1$,..,$g_m$</g>}.
 Linearisasi graf menggunakan algoritma \gls{DFS} \citek{bevilacqua2021}.
 
+\newcommand\graphMasked{\codesm{\textcolor[rgb]{0,.33,0}{<g>$g_1$,..[mask]..,$g_m$</g>}}}
+\newcommand\graphBarMasked{\codesm{\textcolor[rgb]{0,.33,0}{<g>[mask]</g>}}}
+\newcommand\idTagged[1]{\codesm{\textcolor{red}{<id>#1</id>}}}
+\newcommand\enTagged[1]{\codesm{\textcolor{blue}{<en>#1</en>}}}
+
+% TODO: Colorize
 \begin{filecontents*}{3-pt-ft-strategies.csv}
 Phase,Task,Input
-PT,\code{$\bar{t}\bar{t}\hat{g}2g$},\makecell[cl]{\codesm{<id>[mask]</id><en>[mask]</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
-,\code{$t\bar{t}\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,a2,...,an1</id><en>[mask]</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
-,\code{$\bar{t}t\hat{g}2g$},\makecell[cl]{\codesm{<id>[mask]</id><en>b1,b2,...,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
-,\code{$tt\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,a2,...,an1</id><en>b1,b2,...,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
-,\code{$t\hat{t}\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,a2,...,an1</id><en>b1,..[mask]..,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
-,\code{$\hat{t}t\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,..[mask]..,an1</id><en>b1,b2,...,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
-,\code{$\hat{t}\hat{t}\hat{g}2g$},\makecell[cl]{\codesm{<id>a1,..[mask]..,an1</id><en>b1,..[mask]..,bn2</en>}\codesm{<g>g1,..[mask]..,gm</g>}}
-FT,\code{$t\bar{t}\bar{g}2g$},\makecell[cl]{\codesm{<id>a1,a2,...,an1</id><en>[mask]</en>}\codesm{<g>[mask]</g>}}
+PT,\code{$\bar{t}_{_{ID}}\bar{t}{_{_{EN}}}\hat{g}2g$},\makecell[cl]{\idTagged{[mask]}\enTagged{[mask]}\graphMasked{}}
+,\code{$t_{_{ID}}\bar{t}{_{_{EN}}}\hat{g}2g$},\makecell[cl]{\idTagged{$a_1$,..,$a_{n_1}$}\enTagged{[mask]}\graphMasked{}}
+,\code{$\bar{t}{_{_{ID}}}t_{_{EN}}\hat{g}2g$},\makecell[cl]{\idTagged{[mask]}\enTagged{$b_1$,..,$b_{n_2}$}\graphMasked{}}
+,\code{$t_{_{ID}}t_{_{EN}}\hat{g}2g$},\makecell[cl]{\idTagged{$a_1$,..,$a_{n_1}$}\enTagged{$b_1$,..,$b_{n_2}$}\graphMasked{}}
+,\code{$t_{_{ID}}\hat{t}{_{_{EN}}}\hat{g}2g$},\makecell[cl]{\idTagged{$a_1$,..,$a_{n_1}$}\enTagged{$b_1$,..[mask]..,$b_{n_2}$}\graphMasked{}}
+,\code{$\hat{t}{_{_{ID}}}t_{_{EN}}\hat{g}2g$},\makecell[cl]{\idTagged{$a_1$,..[mask]..,$a_{n_1}$}\enTagged{$b_1$,..,$b_{n_2}$}\graphMasked{}}
+,\code{$\hat{t}{_{_{ID}}}\hat{t}{_{_{EN}}}\hat{g}2g$},\makecell[cl]{\idTagged{$a_1$,..[mask]..,$a_{n_1}$}\enTagged{$b_1$,..[mask]..,$b_{n_2}$}\graphMasked{}}
+FT,\code{$t_{_{ID}}\bar{t}{_{_{EN}}}\bar{g}{}2g$},\makecell[cl]{\idTagged{$a_1$,..,$a_{n_1}$}\enTagged{[mask]}\graphBarMasked{}}
 \end{filecontents*}
-
 \tabl{3-pt-ft-strategies}
   {3-pt-ft-strategies.csv}
   {
-    Strategi \pretraining{} (PT) dan \finetuning{} (FT) untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual}.
-    \code{a1,a2,...,an1} merupakan token untuk Bahasa Indonesia, sedangkan \code{b1,b2,...,bn2} merupakan token untuk Bahasa Inggris.
+    Strategi \pretraining{} (PT) dan \finetuning{} (FT) untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual} dengan teknik data augmentasi \ti{concatenate}.
     \code{$t/g$} merupakan teks/graf \ti{original}.
     \code{$\hat{t}/\hat{g}$} merupakan teks/graf yang \ti{noisy} (hasil \denoising{}).
     \code{$\bar{t}/\bar{g}$} merupakan teks/graf yang hilang.
   }
+
+% TODO: Explain data augmentation for masked pre-training language model.
 
 Pelatihan \amrparsing{} akan dicoba pada beberapa \multil{} model.
 Model-model yang akan dicoba adalah mBART, mT5, IndoBART, dan IndoT5.

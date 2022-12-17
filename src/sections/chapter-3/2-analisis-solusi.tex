@@ -1,7 +1,7 @@
 \section{Analisis Solusi}
 
-Terdapat dua aspek dari permasalah keterbatasan dataset yang dapat diperbaiki, yaitu jumlah dan kualitas dataset.
-Pada \amrparsing{}, dataset silver diperlukan untuk membangun dataset lintas bahasa dari dataset gold yang telah ada dalam Bahasa Inggris.
+Terdapat dua aspek dari permasalah dataset yang dapat diperbaiki dari penelitian \textcite{putra2022}, yaitu jumlah dan kualitas dataset.
+Pada \amrparsing{} lintas bahasa, dataset silver diperlukan untuk membangun model \amrparsing{} lintas bahasa yang bisa didapatkan dari dataset gold yang telah ada dalam Bahasa Inggris.
 \textcite{putra2022} telah membangun dataset silver untuk Bahasa Indonesia dari dataset AMR 2.0 dan korpus paralel BPPT-PANL \citek{bppt2009}.
 Jumlah dataset silver dapat diperbanyak dengan cara-cara berikut:
 \begin{enumerate}
@@ -14,18 +14,23 @@ Jumlah dataset silver dapat diperbanyak dengan cara-cara berikut:
 
   \item Mengadopsi teknik augmentasi data oleh \textcite{lee2022}.
   Melakukan \ti{parsing} graf \AMR{} dari dataset gold menjadi teks berbahasa Inggris, lalu dilakukan translasi ke Bahasa Indonesia.
-  Teknik ini dapat menambah jumlah pasangan dataset silver menjadi sampai dua kali lipat.
+  Teknik ini dapat menambah jumlah pasangan dataset silver dari dataset AMR menjadi sampai maksimal dua kali lipat lebih banyak.
 \end{enumerate}
 
-Peningkatan kualitas dataset silver dapat dilakukan dengan menggunakan teknik \ti{ensemble} oleh \textcite{lee2022}.
-Berdasarkan hasil penelitian \textcite{lee2022}, algoritma graphene-Smatch \citek{hoang2021} dengan melakukan \ti{ensembling} 5 model \ti{state of the art} \AMR{} \ti{parser} dapat meningkatkan kualitas dataset silver secara signifikan.
+Peningkatan kualitas dataset silver dapat dilakukan dengan menggunakan teknik \ti{ensemble} oleh \textcite{hoang2021}.
+Berdasarkan hasil penelitian \textcite{lee2022}, teknik \ti{ensembling} 5 model \amrparser{} dapat meningkatkan kualitas dataset silver secara signifikan.
+
+Kualitas dataset silver dapat diukur dengan menghitung \cossim{} dari \multil{} \ti{sentence embedding} dari pasangan kalimat Bahasa Indonesia dan Bahasa Inggris.
+Model \mwordem{} yang digunakan untuk mendapatkan \multil{} \ti{sentence embedding} dari sebuah kalimat adalah \gls{LABSE} \citek{feng2022}.
+Dalam meningkatkan kualitas dataset silver tersebut, dapat dilakukan dilakukan filtrasi untuk menghapus hasil translasi yang buruk.
+Filtrasi dilakukan dengan mengaplikasikan algoritma \gls{1-NN} dengan \cossim{} sebagai nilai kedekatan antar kalimat berbahasa Inggris dan hasil translasinya.
+Apabila hasil kalimat yang ditemukan dari \gls{1-NN} bukan merupakan kalimat awal sebelum translasi, maka pasangan kalimat tersebut tidak digunakan sebagai data pelatihan.
 
 Teknik \pretraining{} graf oleh \textcite{bai2022} yang menggunakan \ti{language model} \gls{BART} terbukti dapat meningkatkan skor \SMATCH{} untuk \amrparsing{}.
 Teknik tersebut belum dicoba untuk \crosslingual{} \amrparsing{}.
 Skema model pelatihan \crosslingual{} \amrparsing{} telah diusulkan oleh \textcite{blloshmi2020}, yaitu \ti{zero-shot}, \ti{language-specific}, dan \ti{bilingual}.
-\cref{fig:2-xl-amr-training-schemas} menunjukkan tiga skema pelatihan tersebut.
-Teknik \pretraining{} graf oleh \textcite{bai2022} tersebut dapat dilakukan dengan skema pelatihan \textcite{blloshmi2020} untuk membangun model \crosslingual{} untuk \ti{task} \amrparsing{}.
+Pada penelitian \textcite{putra2022}, ditunjukkan bahwa skema \ti{bilingual} menghasilkan kinerja terbaik.
+Teknik \pretraining{} graf oleh \textcite{bai2022} tersebut dapat dilakukan dengan skema pelatihan \ti{bilingual} \citek{blloshmi2020} untuk membangun model \crosslingual{} untuk \ti{task} \amrparsing{}.
 
-\fig[0.8]{2-xl-amr-training-schemas}
-  {sections/chapter-3/2-xl-amr-training-schemas.png}
-  {Model pelatihan \crosslingual{} untuk Bahasa Indonesia: (a) \ti{zero-shot}, (b)\ti{language-specific}, dan (c) \ti{bilingual} \citek{putra2022}.}
+Skema \ti{bilingual} pada penelitian \textcite{blloshmi2020} dan \textcite{putra2022}, dataset silver berbahasa Inggris dan Indonesia dianggap sebagai \ti{instance} data yang berbeda.
+Mengadopsi teknik \pretraining{} \gls{XLM}, kalimat berbahasa Inggris dan Indonesia dapat di-\ti{concatenate} menjadi satu \ti{instance} data.

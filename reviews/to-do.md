@@ -13,3 +13,4 @@
 - [x] Plan threshold filter for silver data from translation.
 - [ ] Numberbatch (?)
 - [ ] Add labels to sections.
+- [ ] Add proof that the more silver data the better the performance to MBSE section.

@@ -1,25 +1,13 @@
 \section{Analisis Masalah}
 
 Pelatihan pembelajaran mesin untuk \ti{task} \amrparsing{} memerlukan dataset \ti{training} pasangan kalimat dan graf \AMR{}-nya.
-Dataset AMR 3.0 menyediakan 59,255 pasangan kalimat berbahasa Inggris dan graf \AMR{}.
-Namun terdapat keterbatasan dataset untuk \ti{task} \amrparsing{} dari bahasa selain Bahasa Inggris.
-Dalam penelitian \textcite{blloshmi2020}, setidaknya diperlukan dataset yang berkualitas silver untuk data latih dan gold untuk melakukan evaluasi model.
-Misal untuk membangun model untuk \amrparsing{} dari kalimat berbahasa Indonesia menjadi graf \AMR{}, diperlukan dataset pasangan kalimat berbahasa Indonesia dengan graf \AMR{}-nya yang berkualitas gold dan silver.
+Penelitian \textcite{putra2022} menggunakan dataset silver yang dihasilkan dari AMR 2.0 dan korpus paralel PANL-BPPT sebagai data latih \amrparsing{} lintas bahasa untuk Bahasa Indonesia.
+Berdasarkan pada penelitian \textcite{lee2022}, model \amrparsing{} dapat meningkat kinerjanya dengan bertambahnya jumlah dataset silver.
+Dataset yang digunakan \textcite{putra2022} secara kuantitas masih kurang karena ada korpus paralel IWSLT17 dan dataset AMR 3.0 yang belum digunakan.
 
-Saat ini terdapat dataset berkualitas silver dan gold untuk kalimat berbahasa Indonesia dari Dataset AMR 2.0 dan korpus paralel BPPT-PANL \citek{putra2022}.
-\cref{tab:1-dataset-putra} menunjukkan dataset yang dibangun oleh \textcite{putra2022}.
-Dataset Silver Trans merupakan hasil translasi dari kalimat berbahasa Inggris yang berkualitas gold.
-Dataset Silver Par merupakan hasil \ti{parsing} kalimat berbahasa Inggris yang berkualitas gold menjadi graf \AMR{}.
+Pembangunan dataset silver pada penelitian \textcite{putra2022} tidak dievaluasi kualitasnya.
+Banyak potensi \ti{instance} data berkualitas buruk yang digunakan sebagai data latih, sehingga dapat mengurangi kinerja model.
+Perhitungan kualitas tersebut juga dapat dimanfaatkan sebagai acuan dalam memperbaiki kualitas dataset silver untuk meningkatkan kinerja model \amrparsing{}.
 
-\tabl{1-dataset-putra}
-  {sections/chapter-3/1-dataset-putra.csv}
-  {Statistik dataset berkualitas gold dan silver yang dibangun oleh \textcite{putra2022}.}
-
-\textcite{putra2022} telah membangun sebuah model \AMR{} \ti{Parser} Lintas Bahasa untuk Bahasa Indonesia dengan skor \SMATCH{} 51.0.
-Model tersebut dibangun dengan \mwordem{} mT5 yang merupakan sebuah \gls{PLM}.
-Namun dengan baseline dari \ti{pipeline translate-and-parse} yang memiliki skor \SMATCH{} 62.5, model tersebut masih belum dapat melampaui kinerja baseline.
-\textcite{putra2022} menggunakan model \gls{stog} \citek{zhang2019} yang bukan lagi \ti{state of the art} \amrparsing{} saat ini.
-\textcite{bai2022} menyebutkan bahwa \gls{PLM} umumnya dilatih pada data tekstual, sehingga tidak optimal untuk melakukan generasi data terstruktur seperti \AMR{}.
-Hasil kinerja yang buruk juga dimungkinkan disebabkan oleh kualitas data latih yang buruk.
-\textcite{lee2022} menyebutkan bahwa kenaikan kinerja dari \amrparsing{} dari penelitian-penelitian sebelumnya tidak lagi meningkat secara signifikan.
-Ini dikarenakan efek dari self-learning dan augmentasi silver data mulai berkurang.
+Model \gls{AMRBART} \citek{bai2022} merupakan model \sota{} yang dibangun untuk \amrparsing{} dan AMR-to-text untuk Bahasa Inggris.
+Belum dikembangkan sebuah model \amrparsing{} untuk lintas bahasa berdasarkan model graf pralatih \gls{AMRBART}.

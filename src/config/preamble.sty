@@ -347,7 +347,7 @@ Desember\fi~\number\year}
     late after last line=\csv@tablefoot\end{tabular}\csv@posttable,
     command=\csvlinetotablerow
   },
-  dashed/.style={
+  bordered/.style={
     file=#1,
     after head=\csv@pretable\begin{tabular}{*{\csv@columncount}{c}}\csv@tablehead,
     table head=\toprule\csvlinetotablerow\\\midrule,
@@ -357,19 +357,27 @@ Desember\fi~\number\year}
     late after last line=\csv@tablefoot\end{tabular}\csv@posttable,
     command=\csvlinetotablerow
   },
+  dashed/.style={
+    file=#1,
+    after head=\csv@pretable\begin{tabular}{*{\csv@columncount}{c}}\csv@tablehead,
+    table head=\toprule\csvlinetotablerow\\\midrule,
+    late after line=\\\hdashline,
+    late after last line=\\,
+    table foot=\\\bottomrule,
+    late after last line=\csv@tablefoot\end{tabular}\csv@posttable,
+    command=\csvlinetotablerow
+  },
 }
 \makeatother
 \newcommand{\csvnormal}[2][]{\csvloop{normal={#2},#1}}
 \newcommand{\csvdashed}[2][]{\csvloop{dashed={#2},#1}}
-\NewDocumentCommand{\tabl}{O{} m m m}{
+\NewDocumentCommand{\tabl}{O{normal} m m m}{
   \begin{table}[htbp]
     \caption{#4}
     \label{tab:#2}
     \centering
     \catcode`\%=12
-    \ifthenelse{\equal{#1}{dashed}}
-      {\csvdashed{#3}}
-      {\csvnormal{#3}}
+    \csvloop{#1={#3}}
   \end{table}
 }
 
