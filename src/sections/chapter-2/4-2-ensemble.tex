@@ -4,15 +4,48 @@ Kenaikan kinerja dari \amrparsing{} dari penelitian-penelitian sebelumnya tidak 
 Ini dikarenakan efek dari self-learning dan augmentasi silver data mulai berkurang.
 Untuk mengatasi hal tersebut, \textcite{lee2022} mengusulkan untuk menggabungkan teknik \ti{ensemble} berbasis \SMATCH{} \citek{hoang2021} dengan \ti{ensemble distillation} untuk menghasilkan silver data berkualitas tinggi.
 
-Teknik \ti{ensemble} yang diusulkan oleh \textcite{hoang2021} dapat dilihat pada \cref{fig:4-2-graph-ensemble-example}.
+Teknik \ti{ensemble} yang diusulkan oleh \textcite{hoang2021} bernama Algoritma Graphene dapat dilihat pada \cref{fig:4-2-graph-ensemble-example}.
 Ide utamanya adalah dengan memperbaiki sebuah pivot graf berdasarkan graf yang dihasilkan oleh \ti{parser} lain.
 Dari pivot graf, dilakukan \ti{voting} untuk menghitung jumlah simpul dan sisi graf yang berkorelasi.
 Setelah dilakukan \ti{voting}, dipilih simpul dan sisi yang memiliki jumlah voting terbesar sebagai hasil akhir graf tersebut.
 Hal ini dilakukan berulang kali untuk masing-masing graf sebagai pivot awal.
+Tahapan algoritma ini dapat dilihat sebagai pseudo-code pada \cref{alg:4-2-ensemble}
 
 \fig[1]{4-2-graph-ensemble-example}
   {sections/chapter-2/4-2-graph-ensemble-example.png}
   {Ilustrasi teknik \ti{ensemble} \citek{hoang2021}.}
+
+% \alg{4-2-ensemble}{Algoritma Graphene untuk \ti{ensemble} graf \textcite{hoang2021}.}
+% {
+%   \textbf{Input:} a set of graphs $G = {g_1, g_2, ..., g_m}$ and the support threshold $\theta$
+%   \textbf{Output:} an ensemble graph $g^e$
+%   \textbf{Algorithm:} Graphene($G$,$\theta$)
+%   \For{$i \gets 1$ \textbf{to} $m$}
+%     \State $g_{pivot} \gets g_i$
+%     \State $V \gets$ Initialise($g_{pivot}$)
+%   \EndFor
+% }
+\begin{algorithm}
+  \caption{Algoritma Graphene untuk \ti{ensemble} graf \citek{hoang2021}.}
+  \label{alg:4-2-ensemble}
+  \begin{algorithmic}
+    \State \textbf{Input:} a set of graphs $G = \{g_1, g_2, ..., g_m\}$ and the support threshold $\theta$
+    \State \textbf{Output:} an ensemble graph $g^e$
+    \State \textbf{Algorithm:} Graphene($G$,$\theta$)
+    \For{$i \gets 1$ \textbf{to} $m$}
+      \State $g_{pivot} \gets g_i$
+      \State $V \gets$ Initialise($g_{pivot}$)
+      \For{$j \gets 1$ \textbf{to} $m$}
+        \If{$j \neq i$}
+          \State $V \gets V \cup$ getVote($\phi(g_{pivot},g_j)$)
+        \EndIf
+      \EndFor
+      \State $g^e_i \gets Filter(V,\theta)$
+    \EndFor
+    \State $g^e \gets$ the graph with the largest support among $g^e_1,...,g^e_m$
+    \State \Return $g^e$
+  \end{algorithmic}
+\end{algorithm}
 
 \textcite{lee2022} mengusulkan sebuah framework untuk melakukan augmentasi data \AMR{}.
 Ilustrasi framework tersebut dapat dilihat pada \cref{fig:4-2-silver-data-generation-framework}.
@@ -30,11 +63,3 @@ Teknik-teknik yang digunakan untuk menghasilkannya adalah sebagai berikut:
 \fig[1]{4-2-silver-data-generation-framework}
   {sections/chapter-2/4-2-silver-data-generation-framework.png}
   {Framework untuk melakukan augmentasi pasangan data \AMR{} dan kalimat berbahasa Inggris untuk menghasilkan silver data \citek{lee2022}.}
-% Ensemble distillation (Hilton, 2015) mengintegrasikan pengetahuan dari perbedaan model pengajar ke model murid.
-% Untuk model sekuens ke sekuens seperti mesin translasi, dimungkinkan untuk membangun model dengan mengkombinasikan kemungkinan konteks kaya yang diberikan setiap langkah waktu (Kim and Rush, 2016).
-% Parser syntactic dan semantik memodelkan distribusi terhadap grad yang lebih sulit diintegrasikan antara model pengajar dalam cara yang optimal.
-% Pada kasus tertentu seperti dependency parsing, dimunhgkinkan untuk melakukan ensemble pengajar berdasar nosi dari edge attachment yang berhubungan dengan metric evaluasi Label Attachment Score (LAS).
-% Meski demikian, graf AMR cukup kompleks dan tidak diratakan kata per kata.
-% Standar metric Smatch (Cai, 2013) memperkirakan NP-Complete problem dari aligning nodes antara graf menggunakan hill climbing algorithm.
-% Hal ini mengilustrasikan kesulitan mencapai konsensus antara pengajar dalam ensembling AMR.
-

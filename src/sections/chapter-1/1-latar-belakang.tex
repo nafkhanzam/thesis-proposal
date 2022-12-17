@@ -23,17 +23,13 @@ Pendekatan satu tahap jenis \ti{parsing} berbasis graf di mana setiap langkah wa
 Dalam mengukur kelayakan hasil graf \AMR{} yang dihasilkan dari suatu teknik, digunakan metrik \SMATCH{} \citek{cai2013}.
 SMATCH mengukur derajat \ti{overlap} antara dua struktur fitur semantik graf \AMR{}.
 Teknik-teknik \amrparsing{} tersebut diukur kelayakannya menggunakan dataset pasangan teks berbahasa Inggris dengan graf AMR-nya.
-% Dataset yang pertama kali dikeluarkan adalah AMR 1.0 (LDC2014T12) yang mengandung sebanyak 13.051 kalimat.
-% Dataset tersebut kemudian dikembangkan lagi dengan tambahan kalimat dan aturan anotasi menjadi AMR 2.0 (LDC2017T10) sebanyak 39.260 kalimat dan AMR 3.0 (LDC2020T02) sebanyak 59.255 kalimat.
 
 % ID-ID Conventional AMR Parsing
 Pada \AMR{} berbahasa Indonesia, telah dikembangkan untuk \ti{parsing} berbasis aturan \citek{severina2019}, berbasis \ti{dependency parser} \citek{ilmy2020}, dan berbasis \crosslingual{} \citek{putra2022}.
 Teknik \amrparsing{} berbasis aturan dan \ti{dependency parser} masih terbatas karena kurangnya panduan anotasi dan PropBank untuk adaptasi \AMR{} dalam Bahasa Indonesia.
 Dataset yang digunakan sebagai data pelatihan teknik tersebut terdiri dari 1,130 pasang kalimat dan AMR berbahasa Indonesia.
-Jumlah dataset tersebut masih sangat kurang untuk menghasilkan model yang berkualitas tinggi jika dibandingkan dengan jumlah dataset berbahasa Inggris yang memiliki 59.255 pasang.
-Anotasi untuk \AMR{} Bahasa Indonesia hanya terbatas pada 6 relasi saja, yaitu \code{:ARG0}, \code{:ARG1}, \code{:name}, \code{:time}, \code{:location}, \code{:mod} \citek{ilmy2020}.
-Konsep yang membutuhkan argumen relasi lebih banyak yang tidak tersedia akan diabaikan.
-Sehingga AMR Bahasa Indonesia tidak dapat merepresentasikan kalimat yang lebih panjang dan kompleks.
+Anotasi pada dataset tersebut hanya terbatas pada 6 relasi saja, yaitu \code{:ARG0}, \code{:ARG1}, \code{:name}, \code{:time}, \code{:location}, \code{:mod} \citek{ilmy2020}.
+Konsep yang membutuhkan argumen relasi lebih banyak yang tidak tersedia akan diabaikan sehingga AMR Bahasa Indonesia tidak dapat merepresentasikan kalimat yang lebih panjang dan kompleks.
 
 % XL-AMR
 \amrparsing{} awalnya digunakan untuk mengubah dari kalimat berbahasa Inggris menjadi sebuah graf \AMR{} berbahasa Inggris.
@@ -60,10 +56,10 @@ Kalimat Bahasa Inggris dari dataset AMR 2.0 ditranslasi menjadi Bahasa Indonesia
 Namun, kualitas dataset hasil \amrparsing{} dari korpus paralel tidak dievaluasi.
 Model terbaik dari penelitian \textcite{putra2022} menghasilkan kinerja SMATCH 51.0.
 Kinerja tersebut masih kalah dengan \ti{baseline}-nya yang menggunakan teknik \ti{translate-and-parse} dengan kinerja SMATCH 62.5.
-Hal ini diduga karena jumlah dataset yang dihasilkan masih belum maksimal dan dataset yang dihasilkan belum menggunakan model AMR parser dengan kualitas yang lebih baik.
+Hal ini diduga karena jumlah dan kualitas dataset yang dihasilkan masih belum maksimal, dan model yang dihasilkan belum menggunakan teknik pelatihan model yang lebih baik.
 
 \textcite{lee2022} memperkenalkan teknik augmentasi data dalam menghasilkan data latih untuk model \amrparsing{} lintas bahasa.
-Karena keterbatasan jumlah dataset yang dipunya untuk melatih model \amrparsing{} lintas bahasa, teknik ini menghasilkan lebih banyak pasangan graf \AMR{} dan kalimat dengan bahasa yang dituju.
+Teknik ini menghasilkan lebih banyak pasangan graf \AMR{} dan kalimat dengan bahasa yang dituju, sehingga karena variasi data tersebut, model yang dilatih dapat menghasilkan kinerja yang lebih baik.
 Teknik tersebut meningkatkan kinerja SMATCH pada model XL-AMR \citek{blloshmi2020} menjadi 63.0 untuk Bahasa Cina, 73.7 untuk Bahasa Jernam, 76.1 untuk Bahasa Italia, dan 77.1 untuk Bahasa Spanyol.
 
 % AMRBART

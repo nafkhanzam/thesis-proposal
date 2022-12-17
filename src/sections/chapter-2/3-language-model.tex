@@ -52,8 +52,20 @@ Dalam menangani \ti{task} yang memerlukan lebih dari satu bahasa, seperti mesin 
 Model \multil{} dapat dibangun dengan menambahkan \ti{vocabulary} dari bahasa lain dalam data \ti{training}.
 \gls{BERT} juga dapat digunakan untuk menghasilkan \mwordem{} dengan dilatih menggunakan dataset yang terdiri dari 101 bahasa untuk menghasilkan \multil{} model bernama mBERT.
 Terdapat variasi \gls{BERT} yang digunakan sebagai \mwordem{} yang tidak terikat ke bahasa apapun, yaitu \gls{LABSE} \citek{feng2022}.
+\gls{LABSE} berusaha merepresentasikan kalimat dalam bahasa yang berbeda-beda menjadi satu representasi yang sama.
 \gls{BART} juga dikembangkan untuk menghasilkan representasi \mwordem{} bernama mBART \citek{liu2020}.
 
 Model berbasis transformer lain bernama T5 \citek{raffel2020} merupakan model yang dilatih dengan campuran \ti{task} \ti{unsupervised} dan \ti{supervised}.
 T5 bekerja dengan baik untuk berbagai macam \ti{task} seperti peringkasan teks dan translasi.
 Model T5 juga dikembangkan untuk \mwordem{} bernama mT5 \citek{xue2021} yang dilatih pada Common Crawl yang memiliki 101 bahasa.
+
+\gls{XLM} menunjukkan sebuah teknik \pretraining{} lain untuk memanfaatkan korpus paralel.
+\gls{XLM} memanfaatkan kombinasi \gls{MLM} dan \gls{TLM}.
+Teknik \pretraining{} \gls{MLM} mengikuti cara \pretraining{} \gls{BERT}, yaitu dengan melakukan \ti{masking} pada beberapa kata dari input.
+Teknik \pretraining{} \gls{TLM} melakukan \ti{concatenation} antara dua kalimat dari bahasa yang berbeda.
+Kalimat dari bahasa yang berbeda tersebut dianggap sebagai \ti{next sentence} pada model \gls{BERT} dengan mengulang kembali \ti{position embeddings} dari indeks awal kembali.
+Ilustrasi \pretraining{} \gls{XLM} dapat dilihat pada \cref{fig:3-xlm-pretraining}.
+
+\fig[1]{3-xlm-pretraining}
+  {sections/chapter-2/3-xlm-pretraining.png}
+  {\Glsfirst{XLM} \pretraining{} \citek{conneau2019}.}

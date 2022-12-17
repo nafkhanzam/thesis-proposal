@@ -333,6 +333,8 @@ Desember\fi~\number\year}
 \usepackage[noabbrev,capitalise]{cleveref}
 \crefname{figure}{Gambar}{Gambar}
 \Crefname{figure}{Gambar}{Gambar}
+\crefname{equation}{Persamaan}{Persamaan}
+\Crefname{equation}{Persamaan}{Persamaan}
 
 \usepackage{csvsimple}
 \makeatletter
@@ -372,7 +374,7 @@ Desember\fi~\number\year}
 \newcommand{\csvnormal}[2][]{\csvloop{normal={#2},#1}}
 \newcommand{\csvdashed}[2][]{\csvloop{dashed={#2},#1}}
 \NewDocumentCommand{\tabl}{O{normal} m m m}{
-  \begin{table}[htbp]
+  \begin{table}[h]
     \caption{#4}
     \label{tab:#2}
     \centering
@@ -386,7 +388,7 @@ Desember\fi~\number\year}
 \newcommand{\citek}[1]{(\cite{#1})}
 \newcommand{\quotei}[1]{"\textit{#1}"}
 \NewDocumentCommand{\fig}{O{0.5} m m m}{
-  \begin{figure}[htbp]
+  \begin{figure}[h]
     \centering
     \includegraphics[width=#1\textwidth]{#3}
     \caption{#4}
@@ -400,4 +402,24 @@ Desember\fi~\number\year}
   \IfNoValueTF{#1}
   {\textcolor{white}{\hl{\mbox{TODO}}}}
   {\textcolor{white}{\hl{\mbox{TODO: #1}}}}
+}
+
+\usepackage{amsmath}
+\NewDocumentCommand{\eq}{m m}{
+  \begin{equation}
+    #2
+    \label{eq:#1}
+  \end{equation}
+}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\NewDocumentCommand{\alg}{m m m}{
+  \begin{algorithm}
+    \caption{#2}
+    \label{alg:#1}
+    \begin{algorithmic}
+      #3
+    \end{algorithmic}
+  \end{algorithm}
 }

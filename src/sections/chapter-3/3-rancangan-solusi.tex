@@ -5,7 +5,6 @@ Pada masalah kurangnya jumlah dataset yang digunakan sebagai data latih model, d
 Diagram alur keseluruhan proses konstruksi dataset gold dan silver dapat dilihat pada \cref{fig:3-dataset-construction}.
 Alur proses konstruksi dataset berkualitas silver mengikuti framework augmentasi data oleh \textcite{lee2022}.
 
-% TODO: Add filtration process.
 \fig[1]{3-dataset-construction}
   {sections/chapter-3/3-dataset-construction.png}
   {Diagram alur untuk konstruksi dataset gold dan silver dari korpus paralel dan dataset AMR.}
@@ -26,36 +25,58 @@ Model AMR-to-text yang digunakan adalah \gls{AMRBART}.
 Kalimat berbahasa Inggris hasil \ti{parsing} tersebut juga diubah menjadi kalimat berbahasa Indonesia dengan menggunakan mesin translasi.
 Maka akan terdapat dua pasangan kalimat berbahasa Inggris dan Indonesia untuk satu buah graf \AMR{}.
 Dua pasangan tersebut dilakukan \ti{cross join} untuk menghasilkan empat pasang data latih berkualitas silver.
-Hasil kumpulan kalimat yang dihasilkan akan digunakan sebagai dataset latih berkualitas silver.
 
-% TODO: Add quality measurement and filtration explanations.
+% Quality measurement and filtration.
+Kumpulan semua dataset silver tersebut kemudian dilakukan filtrasi dengan algoritma 1-NN dengan \cossim{} sebagai fungsi jarak antar representasi kalimatnya.
+Hasil filtrasi yang dihasilkan akan digunakan sebagai dataset latih.
+Dataset latih tersebut juga dihitung kualitasnya menggunakan rata-rata \cossim{}.
 
 % Dataset Gold
 Augmentasi data untuk konstruksi dataset berkualitas gold mengambil bagian Test \ti{split} dari AMR 3.0.
 Bagian kalimat berbahasa Inggris dari Test \ti{split} ditranslasi menjadi Bahasa Indonesia oleh ahli.
 Hasil kalimat berbahasa Indonesia tersebut berkualitas gold dan digunakan sebagai dataset test.
 
-% \fig[0.8]{3-xl-amr-training-schema}
-%   {sections/chapter-3/3-xl-amr-training-schema.png}
-%   {Model pelatihan \crosslingual{} dengan skema bilingual untuk Bahasa Indonesia.}
+\newcommand\graphMasked{\codesm{\textcolor[rgb]{0,.33,0}{<g>$g_1$,..[mask]..,$g_m$</g>}}}
+\newcommand\graphBarMasked{\codesm{\textcolor[rgb]{0,.33,0}{<g>[mask]</g>}}}
+\newcommand\idTagged[1]{\codesm{\textcolor{purple}{<id>#1</id>}}}
+\newcommand\enTagged[1]{\codesm{\textcolor{blue}{<en>#1</en>}}}
+\newcommand\sTagged[1]{\codesm{\textcolor{purple}{<s>#1</s>}}}
 
 % Training Techniques
 Skema pelatihan yang digunakan hanya untuk yang melakukan \amrparsing{} dengan menggunakan skema \ti{bilingual}.
-Pada skema pelatihan \ti{bilingual}, diperlukan sedikit modifikasi untuk melakukan \pretraining{} graf pada teknik \gls{AMRBART}.
+Ilustrasi pelatihan dengan skema \ti{bilingual} dapat dilihat pada \cref{fig:3-bilingual-training-schema}
+Pelatihan dicoba dengan konfigurasi dengan dan tanpa \ti{concatenating}.
+Pada konfigurasi tanpa \ti{concatenating} tetap mengikuti teknik pelatihan sebelumnya yang dapat dilihat pada \cref{tab:3-pt-ft-strategies}.
+Sedangkan pada konfigurasi dengan \ti{concatenating}, diperlukan sedikit modifikasi untuk melakukan \pretraining{} graf pada teknik \gls{AMRBART}.
 Token \code{<s>} yang digunakan pada \gls{AMRBART} diganti menjadi kode bahasa yang digunakan.
 Bahasa Indonesia ditandai dengan token \code{<id>} dan Bahasa Inggris ditandai dengan token \code{<en>}.
-Sesuai dengan skema pelatihan \ti{bilingual}, kalimat berbahasa Indonesia dan Inggris dilinearisasi secara sejajar sebagai input \pretraining{} maupun \finetuning{}.
-Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa tersebut dapat dilihat pada \cref{tab:3-pt-ft-strategies}.
+Kalimat berbahasa Indonesia dan Inggris dilinearisasi secara sejajar sebagai input \pretraining{} maupun \finetuning{}.
+Strategi \pretraining{} dan \finetuning{} untuk pelatihan graf model \amrparsing{} lintas bahasa tersebut dapat dilihat pada \cref{tab:3-pt-ft-strategies-with-concat}.
 Output dari pelatihan tersebut merupakan graf \AMR{} yang dilinearisasi, yaitu \code{<g>$g_1$,..,$g_m$</g>}.
 Linearisasi graf menggunakan algoritma \gls{DFS} \citek{bevilacqua2021}.
 
-\newcommand\graphMasked{\codesm{\textcolor[rgb]{0,.33,0}{<g>$g_1$,..[mask]..,$g_m$</g>}}}
-\newcommand\graphBarMasked{\codesm{\textcolor[rgb]{0,.33,0}{<g>[mask]</g>}}}
-\newcommand\idTagged[1]{\codesm{\textcolor{red}{<id>#1</id>}}}
-\newcommand\enTagged[1]{\codesm{\textcolor{blue}{<en>#1</en>}}}
+\fig[0.6]{3-bilingual-training-schema}
+  {sections/chapter-3/3-bilingual-training-schema.png}
+  {Pelatihan dengan skema \ti{bilingual}.}
 
-% TODO: Colorize
 \begin{filecontents*}{3-pt-ft-strategies.csv}
+Phase,Task,Input
+PT,\code{$\bar{t}\hat{g}2g$},\makecell[cl]{\sTagged{[mask]}\graphMasked{}}
+,\code{$t\hat{g}2g$},\makecell[cl]{\sTagged{$a_1$,..,$a_n$}\graphMasked{}}
+,\code{$\hat{t}\hat{g}2g$},\makecell[cl]{\sTagged{$a_1$,..[mask]..,$a_n$}\graphMasked{}}
+FT,\code{$t\bar{g}2g$},\makecell[cl]{\sTagged{$a_1$,..,$a_n$}\graphMasked{}}
+\end{filecontents*}
+\tabl{3-pt-ft-strategies}
+  {3-pt-ft-strategies.csv}
+  {
+    Strategi \pretraining{} (PT) dan \finetuning{} (FT) untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual}.
+    \code{$t/g$} merupakan teks/graf \ti{original}.
+    \code{$\hat{t}/\hat{g}$} merupakan teks/graf yang \ti{noisy} (hasil \denoising{}).
+    \code{$\bar{t}/\bar{g}$} merupakan teks/graf yang hilang.
+    Semua output dari pelatihan ini adalah bentuk graf yang utuh.
+  }
+
+\begin{filecontents*}{3-pt-ft-strategies-with-concat.csv}
 Phase,Task,Input
 PT,\code{$\bar{t}_{_{ID}}\bar{t}{_{_{EN}}}\hat{g}2g$},\makecell[cl]{\idTagged{[mask]}\enTagged{[mask]}\graphMasked{}}
 ,\code{$t_{_{ID}}\bar{t}{_{_{EN}}}\hat{g}2g$},\makecell[cl]{\idTagged{$a_1$,..,$a_{n_1}$}\enTagged{[mask]}\graphMasked{}}
@@ -65,17 +86,27 @@ PT,\code{$\bar{t}_{_{ID}}\bar{t}{_{_{EN}}}\hat{g}2g$},\makecell[cl]{\idTagged{[m
 ,\code{$\hat{t}{_{_{ID}}}t_{_{EN}}\hat{g}2g$},\makecell[cl]{\idTagged{$a_1$,..[mask]..,$a_{n_1}$}\enTagged{$b_1$,..,$b_{n_2}$}\graphMasked{}}
 ,\code{$\hat{t}{_{_{ID}}}\hat{t}{_{_{EN}}}\hat{g}2g$},\makecell[cl]{\idTagged{$a_1$,..[mask]..,$a_{n_1}$}\enTagged{$b_1$,..[mask]..,$b_{n_2}$}\graphMasked{}}
 FT,\code{$t_{_{ID}}\bar{t}{_{_{EN}}}\bar{g}{}2g$},\makecell[cl]{\idTagged{$a_1$,..,$a_{n_1}$}\enTagged{[mask]}\graphBarMasked{}}
+,\code{$\bar{t}{_{_{ID}}}t_{_{EN}}\bar{g}{}2g$},\makecell[cl]{\idTagged{[mask]}\enTagged{$b_1$,..,$b_{n_2}$}\graphBarMasked{}}
 \end{filecontents*}
-\tabl{3-pt-ft-strategies}
-  {3-pt-ft-strategies.csv}
+\tabl{3-pt-ft-strategies-with-concat}
+  {3-pt-ft-strategies-with-concat.csv}
   {
-    Strategi \pretraining{} (PT) dan \finetuning{} (FT) untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual} dengan teknik data augmentasi \ti{concatenate}.
+    Strategi \pretraining{} (PT) dan \finetuning{} (FT) untuk pelatihan graf model \amrparsing{} lintas bahasa pada skema pelatihan \ti{bilingual} dengan konfigurasi \ti{concatenating}.
     \code{$t/g$} merupakan teks/graf \ti{original}.
     \code{$\hat{t}/\hat{g}$} merupakan teks/graf yang \ti{noisy} (hasil \denoising{}).
     \code{$\bar{t}/\bar{g}$} merupakan teks/graf yang hilang.
+    Semua output dari pelatihan ini adalah bentuk graf yang utuh.
   }
 
-% TODO: Explain data augmentation for masked pre-training language model.
+Pembangunan data latih silver ketika \pretraining{} dilakukan \ti{masking} secara dinamis ketika melakukan training \citek{bai2022}.
+Fungsi \ti{noising} dilakukan secara acak untuk melakukan \ti{masking} sebuah subgraf, 15\% bagian untuk \ti{masking} simpul (konsep), dan/atau 15\% untuk \ti{masking} sisi (relasi).
+Sebuah subgraf minimal memiliki satu simpul dan satu sisi.
+Setiap jenis \ti{noising} tersebut memiliki kemungkinan yang bertambah setiap \ti{step} pelatihan.
+Nilai kemungkinan tersebut dapat dilihat pada \cref{eq:masking-probability}.
+Nilai $p$ merupakan kemungkinan dilakukan \ti{noising}.
+Nilai $t$ merupakan iterasi pelatihan dan $T$ merupakan iterasi maksimal.
+
+\eq{masking-probability}{p = 0.1 + 0.75 \times t/T}
 
 Pelatihan \amrparsing{} akan dicoba pada beberapa \multil{} model.
 Model-model yang akan dicoba adalah mBART, mT5, IndoBART, dan IndoT5.
