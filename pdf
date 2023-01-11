@@ -2,9 +2,9 @@
 
 OUTDIR=build/main
 
-mkdirp $OUTDIR
+mkdir -p $OUTDIR
 
-tectonic tectonic -X compile \
+tectonic -X compile \
   -k \
   -o $OUTDIR \
   --pass default \
